@@ -1,0 +1,11 @@
+BibtexToHTML/src/*
+BibtexToHTML/bin/*
+
+org.xtext.bibtex.bib/src-gen/*
+org.xtext.bibtex.bib/xtend-gen/*
+
+org.xtext.bibtex.bib.tests/src-gen/*
+org.xtext.bibtex.bib.tests/xtend-gen/*
+
+org.xtext.bibtex.bib.ui/src-gen/*
+org.xtext.bibtex.bib.ui/xtend-gen/*

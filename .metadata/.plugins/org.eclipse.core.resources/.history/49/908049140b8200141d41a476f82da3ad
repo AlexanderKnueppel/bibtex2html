@@ -1,0 +1,539 @@
+/**
+ */
+package uebung1Aufgabe3;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
+ * <ul>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
+ * </ul>
+ * <!-- end-user-doc -->
+ * @see uebung1Aufgabe3.Uebung1Aufgabe3Factory
+ * @model kind="package"
+ * @generated
+ */
+public interface Uebung1Aufgabe3Package extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "uebung1Aufgabe3";
+
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http://www.example.org/uebung1Aufgabe3";
+
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "uebung1Aufgabe3";
+
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	Uebung1Aufgabe3Package eINSTANCE = uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl.init();
+
+	/**
+	 * The meta object id for the '{@link uebung1Aufgabe3.impl.UniversitaetImpl <em>Universitaet</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uebung1Aufgabe3.impl.UniversitaetImpl
+	 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getUniversitaet()
+	 * @generated
+	 */
+	int UNIVERSITAET = 0;
+
+	/**
+	 * The feature id for the '<em><b>Bietet an</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSITAET__BIETET_AN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Besteht aus</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSITAET__BESTEHT_AUS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Universitaet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSITAET_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Universitaet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIVERSITAET_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uebung1Aufgabe3.impl.VorlesungImpl <em>Vorlesung</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uebung1Aufgabe3.impl.VorlesungImpl
+	 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getVorlesung()
+	 * @generated
+	 */
+	int VORLESUNG = 1;
+
+	/**
+	 * The feature id for the '<em><b>Dozent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VORLESUNG__DOZENT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Vorlesung</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VORLESUNG_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Vorlesung</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VORLESUNG_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uebung1Aufgabe3.impl.PersonImpl <em>Person</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uebung1Aufgabe3.impl.PersonImpl
+	 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getPerson()
+	 * @generated
+	 */
+	int PERSON = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Person</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Person</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link uebung1Aufgabe3.impl.DozentImpl <em>Dozent</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uebung1Aufgabe3.impl.DozentImpl
+	 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getDozent()
+	 * @generated
+	 */
+	int DOZENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOZENT__NAME = PERSON__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Pers Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOZENT__PERS_NR = PERSON_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Vorlesung</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOZENT__VORLESUNG = PERSON_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Dozent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOZENT_FEATURE_COUNT = PERSON_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Dozent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOZENT_OPERATION_COUNT = PERSON_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link uebung1Aufgabe3.impl.StudentImpl <em>Student</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see uebung1Aufgabe3.impl.StudentImpl
+	 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getStudent()
+	 * @generated
+	 */
+	int STUDENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDENT__NAME = PERSON__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Matr Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDENT__MATR_NR = PERSON_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Student</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDENT_FEATURE_COUNT = PERSON_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Student</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDENT_OPERATION_COUNT = PERSON_OPERATION_COUNT + 0;
+
+
+	/**
+	 * Returns the meta object for class '{@link uebung1Aufgabe3.Universitaet <em>Universitaet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Universitaet</em>'.
+	 * @see uebung1Aufgabe3.Universitaet
+	 * @generated
+	 */
+	EClass getUniversitaet();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uebung1Aufgabe3.Universitaet#getBietet_an <em>Bietet an</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Bietet an</em>'.
+	 * @see uebung1Aufgabe3.Universitaet#getBietet_an()
+	 * @see #getUniversitaet()
+	 * @generated
+	 */
+	EReference getUniversitaet_Bietet_an();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link uebung1Aufgabe3.Universitaet#getBesteht_aus <em>Besteht aus</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Besteht aus</em>'.
+	 * @see uebung1Aufgabe3.Universitaet#getBesteht_aus()
+	 * @see #getUniversitaet()
+	 * @generated
+	 */
+	EReference getUniversitaet_Besteht_aus();
+
+	/**
+	 * Returns the meta object for class '{@link uebung1Aufgabe3.Vorlesung <em>Vorlesung</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Vorlesung</em>'.
+	 * @see uebung1Aufgabe3.Vorlesung
+	 * @generated
+	 */
+	EClass getVorlesung();
+
+	/**
+	 * Returns the meta object for the reference '{@link uebung1Aufgabe3.Vorlesung#getDozent <em>Dozent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Dozent</em>'.
+	 * @see uebung1Aufgabe3.Vorlesung#getDozent()
+	 * @see #getVorlesung()
+	 * @generated
+	 */
+	EReference getVorlesung_Dozent();
+
+	/**
+	 * Returns the meta object for class '{@link uebung1Aufgabe3.Dozent <em>Dozent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dozent</em>'.
+	 * @see uebung1Aufgabe3.Dozent
+	 * @generated
+	 */
+	EClass getDozent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uebung1Aufgabe3.Dozent#getPers_Nr <em>Pers Nr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Pers Nr</em>'.
+	 * @see uebung1Aufgabe3.Dozent#getPers_Nr()
+	 * @see #getDozent()
+	 * @generated
+	 */
+	EAttribute getDozent_Pers_Nr();
+
+	/**
+	 * Returns the meta object for the reference list '{@link uebung1Aufgabe3.Dozent#getVorlesung <em>Vorlesung</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Vorlesung</em>'.
+	 * @see uebung1Aufgabe3.Dozent#getVorlesung()
+	 * @see #getDozent()
+	 * @generated
+	 */
+	EReference getDozent_Vorlesung();
+
+	/**
+	 * Returns the meta object for class '{@link uebung1Aufgabe3.Student <em>Student</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Student</em>'.
+	 * @see uebung1Aufgabe3.Student
+	 * @generated
+	 */
+	EClass getStudent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uebung1Aufgabe3.Student#getMatr_Nr <em>Matr Nr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Matr Nr</em>'.
+	 * @see uebung1Aufgabe3.Student#getMatr_Nr()
+	 * @see #getStudent()
+	 * @generated
+	 */
+	EAttribute getStudent_Matr_Nr();
+
+	/**
+	 * Returns the meta object for class '{@link uebung1Aufgabe3.Person <em>Person</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Person</em>'.
+	 * @see uebung1Aufgabe3.Person
+	 * @generated
+	 */
+	EClass getPerson();
+
+	/**
+	 * Returns the meta object for the attribute '{@link uebung1Aufgabe3.Person#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see uebung1Aufgabe3.Person#getName()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EAttribute getPerson_Name();
+
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	Uebung1Aufgabe3Factory getUebung1Aufgabe3Factory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link uebung1Aufgabe3.impl.UniversitaetImpl <em>Universitaet</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uebung1Aufgabe3.impl.UniversitaetImpl
+		 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getUniversitaet()
+		 * @generated
+		 */
+		EClass UNIVERSITAET = eINSTANCE.getUniversitaet();
+
+		/**
+		 * The meta object literal for the '<em><b>Bietet an</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNIVERSITAET__BIETET_AN = eINSTANCE.getUniversitaet_Bietet_an();
+
+		/**
+		 * The meta object literal for the '<em><b>Besteht aus</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNIVERSITAET__BESTEHT_AUS = eINSTANCE.getUniversitaet_Besteht_aus();
+
+		/**
+		 * The meta object literal for the '{@link uebung1Aufgabe3.impl.VorlesungImpl <em>Vorlesung</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uebung1Aufgabe3.impl.VorlesungImpl
+		 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getVorlesung()
+		 * @generated
+		 */
+		EClass VORLESUNG = eINSTANCE.getVorlesung();
+
+		/**
+		 * The meta object literal for the '<em><b>Dozent</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VORLESUNG__DOZENT = eINSTANCE.getVorlesung_Dozent();
+
+		/**
+		 * The meta object literal for the '{@link uebung1Aufgabe3.impl.DozentImpl <em>Dozent</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uebung1Aufgabe3.impl.DozentImpl
+		 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getDozent()
+		 * @generated
+		 */
+		EClass DOZENT = eINSTANCE.getDozent();
+
+		/**
+		 * The meta object literal for the '<em><b>Pers Nr</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOZENT__PERS_NR = eINSTANCE.getDozent_Pers_Nr();
+
+		/**
+		 * The meta object literal for the '<em><b>Vorlesung</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOZENT__VORLESUNG = eINSTANCE.getDozent_Vorlesung();
+
+		/**
+		 * The meta object literal for the '{@link uebung1Aufgabe3.impl.StudentImpl <em>Student</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uebung1Aufgabe3.impl.StudentImpl
+		 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getStudent()
+		 * @generated
+		 */
+		EClass STUDENT = eINSTANCE.getStudent();
+
+		/**
+		 * The meta object literal for the '<em><b>Matr Nr</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STUDENT__MATR_NR = eINSTANCE.getStudent_Matr_Nr();
+
+		/**
+		 * The meta object literal for the '{@link uebung1Aufgabe3.impl.PersonImpl <em>Person</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see uebung1Aufgabe3.impl.PersonImpl
+		 * @see uebung1Aufgabe3.impl.Uebung1Aufgabe3PackageImpl#getPerson()
+		 * @generated
+		 */
+		EClass PERSON = eINSTANCE.getPerson();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSON__NAME = eINSTANCE.getPerson_Name();
+
+	}
+
+} //Uebung1Aufgabe3Package
