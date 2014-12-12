@@ -9,3 +9,5 @@ org.xtext.bibtex.bib.tests/xtend-gen/*
 
 org.xtext.bibtex.bib.ui/src-gen/*
 org.xtext.bibtex.bib.ui/xtend-gen/*
+
+.metadata/*

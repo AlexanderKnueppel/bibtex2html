@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bibtexToHTML" nsURI="http://www.example.org/bibtexToHTML" nsPrefix="bibtexToHTML">
-  <eClassifiers xsi:type="ecore:EClass" name="Bibtex">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bestehtAus" lowerBound="1"
-        upperBound="-1" eType="#//Entries" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Entries" eSuperTypes="#//Book #//Article"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Article">
+  <eClassifiers xsi:type="ecore:EClass" name="Root">
     <eStructuralFeatures xsi:type="ecore:EReference" name="hat" lowerBound="1" upperBound="-1"
-        eType="#//Author" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hat" lowerBound="1" eType="#//Title"
-        containment="true"/>
+        eType="#//OutputVariant" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Book">
+  <eClassifiers xsi:type="ecore:EClass" name="OutputVariant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="hat" lowerBound="1" upperBound="-1"
-        eType="#//Author" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hat" lowerBound="1" eType="#//Title"
-        containment="true"/>
+        eType="#//Fields" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Field" eSuperTypes="#//Author #//Title"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Author">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="surname" lowerBound="1"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fields">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FontStyle" eType="#//FontStyle"
+        defaultValueLiteral="Default"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FontType" eType="#//FontTypes"
+        defaultValueLiteral="Times"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="FontSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="12"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Title">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="FontTypes">
+    <eLiterals name="Arial"/>
+    <eLiterals name="Times"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FontStyle">
+    <eLiterals name="Bold"/>
+    <eLiterals name="Italic"/>
+    <eLiterals name="Default"/>
   </eClassifiers>
 </ecore:EPackage>
