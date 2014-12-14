@@ -11,3 +11,11 @@ org.xtext.bibtex.bib.ui/src-gen/*
 org.xtext.bibtex.bib.ui/xtend-gen/*
 
 .metadata/*
+
+#latex
+*.toc
+*.synctex.gz
+*.snm
+*.out
+*.nav
+*.aux
