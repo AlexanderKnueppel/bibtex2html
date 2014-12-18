@@ -1280,7 +1280,7 @@
         <semanticElements xmi:type="ecore:EReference" href="bibtexToHTML.ecore#//Root/hat"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_LGysCIbLEeS69oUgvq_erQ" description="_LGysBIbLEeS69oUgvq_erQ" sourceArrow="FillDiamond" routingStyle="manhattan">
           <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_LGysCYbLEeS69oUgvq_erQ"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_LGysCobLEeS69oUgvq_erQ" showIcon="false">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_LGysCobLEeS69oUgvq_erQ" labelFormat="bold" showIcon="false">
             <customFeatures>labelSize</customFeatures>
             <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_LGysC4bLEeS69oUgvq_erQ"/>
           </centerLabelStyle>
@@ -1296,7 +1296,7 @@
         <semanticElements xmi:type="ecore:EReference" href="bibtexToHTML.ecore#//OutputVariant/hat"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_LGz6JobLEeS69oUgvq_erQ" description="_LGz6IobLEeS69oUgvq_erQ" sourceArrow="FillDiamond" routingStyle="manhattan">
           <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_LGz6J4bLEeS69oUgvq_erQ"/>
-          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_LGz6KIbLEeS69oUgvq_erQ" showIcon="false">
+          <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_LGz6KIbLEeS69oUgvq_erQ" labelFormat="bold" showIcon="false">
             <customFeatures>labelSize</customFeatures>
             <labelColor xmi:type="viewpoint:RGBValues" xmi:id="_LGz6KYbLEeS69oUgvq_erQ"/>
           </centerLabelStyle>
