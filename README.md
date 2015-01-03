@@ -1,5 +1,7 @@
 # README #
 
+WICHTIG: Musste den Branch kurzzeitig löschen, funktioniert noch nicht wie erwartet... ich häng mich eben dran. 
+
 Hey Leute, die Zeit drückt etwas, deswegen lege ich jetzt mal die Readme an.
 
 ### Development-Branch ###
