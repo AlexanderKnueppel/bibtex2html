@@ -25,10 +25,11 @@ Wir brauchen ja zwei DSLs. Für die zweite müssen wir abermals ein neues xText-
 Ich habe schon mal mit der BibTeX-Grammar-File angefangen. Funktioniert noch nicht alles, aber schon mal etwas. 
 
 Die nächsten Schritte wären:
+
 * Zweites xText-Projekt mit Projektnamen de.tubs.bibtextohtml.(?? lookandfeel oder wie wollen wirs nennen? Brainstorming required)
 * Language name entsprechend de.tubs.bibtextohtml.[insertname].[SameNameWithUpperLettersBecauseWhyNot]
 * Vernünftige Endung (zB laf für lookandfeel)
-* BibTex.xtext erweitern, evtl. Rahmenbedingungen setzen? (BibTex erlaubt ziemlich viel, was mit xtext schwer umzusetzen ist...zB alles außerhalb von @Name{...} ist ein Kommentar)
+* BibTex.xtext erweitern, evtl. Rahmenbedingungen setzen? (BibTex erlaubt ziemlich viel, was mit xtext schwer umzusetzen ist...zB alles außerhalb von {at}Name{...} ist ein Kommentar)
 * Mal überlegen, was in die zweite DSL kommt und wie die Syntax aussieht (Aussehen, Sortierung, mehrere Varianten,...?? => Wir brauchen ein konkreten Use-Case)
 * Validierung der Eingaben (OCL)
 * ...
