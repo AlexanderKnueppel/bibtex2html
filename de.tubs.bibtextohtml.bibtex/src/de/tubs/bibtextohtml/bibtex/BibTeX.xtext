@@ -1,0 +1,74 @@
+grammar de.tubs.bibtextohtml.bibtex.BibTeX with org.eclipse.xtext.common.Terminals
+
+generate bibTeX "http://www.tubs.de/bibtextohtml/bibtex/BibTeX"
+
+Model:
+	(BibtexEntries+=BibtexEntryTypes)*;
+	
+//terminal COMMENT_SECTION  : !('@' .* '}');
+//Comments:
+//	comment = COMMENT_SECTION
+//;
+	
+BibtexEntryTypes:
+	Article// | Inproceeding | Book
+;
+
+Article:
+'@' ('ARTICLE' | 'Article' | 'article') '{' //what about case insensitivity? 
+key = CiteKey
+//mandatory
+((',')author = AuthorField)
+&((',')title = TitleField)
+&((',')journal = JournalField)
+&((',')year = YearField)	
+&((',')volume = VolumeField)?
+&((',')number = NumberField)?
+&((',')pages = PagesField)?
+&((',')month = MonthField)?	
+&((',')note = NoteField)?	
+'}';
+
+CiteKey:
+	key = ID
+;
+AuthorField:
+	'author = ' ('"' Authors '"' | '{' Authors '}')
+;
+Authors:
+	names+=Fullname
+	('and' names+=Fullname)*
+;
+Fullname:
+	(lastname=ID ',' firstname=ID | firstname=ID lastname=ID | firstname=ID)
+;
+
+
+TitleField:
+	'title = ' title = STRING 
+;
+JournalField:
+	'journal = ' journal = STRING 
+;
+YearField:
+	'year = ' year = STRING 
+;
+VolumeField:
+	'volume = ' volume = STRING 
+;
+NumberField:
+	'number = ' number = STRING 
+;
+PagesField:
+	'pages = ' pages = STRING 
+;
+MonthField:
+	'month = ' month = STRING 
+;
+NoteField:
+	'note = ' note = STRING 
+;
+
+/*Inproceeding:;
+
+Book:;*/
