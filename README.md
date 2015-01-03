@@ -30,8 +30,7 @@ Die nächsten Schritte wären:
 * Language name entsprechend de.tubs.bibtextohtml.[insertname].[SameNameWithUpperLettersBecauseWhyNot]
 * Vernünftige Endung (zB laf für lookandfeel)
 * BibTex.xtext erweitern, evtl. Rahmenbedingungen setzen? (BibTex erlaubt ziemlich viel, was mit xtext schwer umzusetzen ist...zB alles außerhalb von {at}Name{...} ist ein Kommentar)
-* Mal überlegen, was in die zweite DSL kommt und wie die Syntax aussieht (Aussehen, Sortierung, mehrere Varianten,...?? => Wir brauchen ein konkreten Use-Case)
+* Mal überlegen, was in die zweite DSL kommt und wie die Syntax aussieht (Aussehen, Sortierung, mehrere Varianten,...?? => Wir brauchen einen konkreten Use-Case)
 * Validierung der Eingaben (OCL)
+* HTML Generierung (seperate css oder nicht, template usage, usw...) 
 * ...
-* HTML Generierung (seperate css,... 
-
