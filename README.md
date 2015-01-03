@@ -1,6 +1,9 @@
 # README #
 
 WICHTIG: Musste den Branch kurzzeitig löschen, funktioniert noch nicht wie erwartet... ich häng mich eben dran. 
+... Ok habe das Problem gefunden. Wenn der src-gen- oder der xtend-gen-Ordner fehlt, kommt es zu Kompilierungsfehlern beim Generieren (Nachdem das erste mal generiert wurde, liegt wohl an den generierten Files im src-Ordner und der Manifestdatei). Er möchte alles löschen und neu generieren, meckert aber über fehlende classpath-Geschichten und das er nichts zum löschen findet. Dann bricht er einfach ab. 
+Die Ordner können daher auch leer sein... hab' sie jetzt aber mal dazu gelegt. Wenn's Probleme gibt, melden.
+Ein Maven- oder Antbuild anzulegen, fände ich für die kurze Zeit jetzt etwas overkill.
 
 Hey Leute, die Zeit drückt etwas, deswegen lege ich jetzt mal die Readme an.
 
