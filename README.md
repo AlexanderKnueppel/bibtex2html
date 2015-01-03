@@ -18,8 +18,8 @@ Den Development-Branch folgendermaßen holen:
 ```
 #!git
 
-git pull origin development
-git checkout development
+git pull origin Development
+git checkout Development
 ```
 
 Danach ganz normal die 4 neuen Projekte zu eurem Workspace hinzufügen und loslegen.
