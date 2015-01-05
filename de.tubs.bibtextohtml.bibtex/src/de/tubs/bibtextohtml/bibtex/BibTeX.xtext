@@ -15,25 +15,36 @@ BibtexEntryTypes:
 ;
 
 Article:
-'@' ('ARTICLE' | 'Article' | 'article') '{' //what about case insensitivity? 
+'@' 'article' '{' //what about case insensitivity? 
 key = CiteKey
 //mandatory
-((',')author = AuthorField)
-&((',')title = TitleField)
-&((',')journal = JournalField)
-&((',')year = YearField)	
-&((',')volume = VolumeField)?
-&((',')number = NumberField)?
-&((',')pages = PagesField)?
-&((',')month = MonthField)?	
-&((',')note = NoteField)?	
+((','author = AuthorField)
+&(','title = TitleField)
+&(','journal = JournalField)
+&(','year = YearField)	
+&(','volume = VolumeField)?
+&(','number = NumberField)?
+&(','pages = PagesField)?
+&(','month = MonthField)?	
+&(','note = NoteField)?
+&(','unknowns += UnknownField)*)
 '}';
+
+UnknownField:
+	type = UnknownType '=' value = UnknownValue
+;
+UnknownType:
+	type = ID
+;
+UnknownValue:
+	value = STRING
+;
 
 CiteKey:
 	key = ID
 ;
 AuthorField:
-	'author = ' ('"' Authors '"' | '{' Authors '}')
+	'author' '=' ('"' Authors '"' | '{' Authors '}')
 ;
 Authors:
 	names+=Fullname
@@ -45,28 +56,28 @@ Fullname:
 
 
 TitleField:
-	'title = ' title = STRING 
+	'title' '=' title = STRING 
 ;
 JournalField:
-	'journal = ' journal = STRING 
+	'journal' '=' journal = STRING 
 ;
 YearField:
-	'year = ' year = STRING 
+	'year' '=' year = STRING 
 ;
 VolumeField:
-	'volume = ' volume = STRING 
+	'volume' '=' volume = STRING 
 ;
 NumberField:
-	'number = ' number = STRING 
+	'number' '=' number = STRING 
 ;
 PagesField:
-	'pages = ' pages = STRING 
+	'pages' '=' pages = STRING 
 ;
 MonthField:
-	'month = ' month = STRING 
+	'month' '=' month = STRING 
 ;
 NoteField:
-	'note = ' note = STRING 
+	'note' '=' note = STRING 
 ;
 
 /*Inproceeding:;
