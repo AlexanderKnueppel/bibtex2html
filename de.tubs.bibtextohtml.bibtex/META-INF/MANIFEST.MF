@@ -32,4 +32,6 @@ Export-Package: de.tubs.bibtextohtml.bibtex,
  de.tubs.bibtextohtml.bibtex.validation,
  de.tubs.bibtextohtml.bibtex.scoping,
  de.tubs.bibtextohtml.bibtex.generator,
- de.tubs.bibtextohtml.bibtex.formatting
+ de.tubs.bibtextohtml.bibtex.formatting,
+ de.tubs.bibtextohtml.bibtex.parser.antlr.lexer
+

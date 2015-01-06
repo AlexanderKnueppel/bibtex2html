@@ -90,6 +90,26 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
         return createArticleAdapter();
       }
       @Override
+      public Adapter caseBook(Book object)
+      {
+        return createBookAdapter();
+      }
+      @Override
+      public Adapter caseUnknownField(UnknownField object)
+      {
+        return createUnknownFieldAdapter();
+      }
+      @Override
+      public Adapter caseUnknownType(UnknownType object)
+      {
+        return createUnknownTypeAdapter();
+      }
+      @Override
+      public Adapter caseUnknownValue(UnknownValue object)
+      {
+        return createUnknownValueAdapter();
+      }
+      @Override
       public Adapter caseCiteKey(CiteKey object)
       {
         return createCiteKeyAdapter();
@@ -110,9 +130,19 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
         return createFullnameAdapter();
       }
       @Override
+      public Adapter caseEditorField(EditorField object)
+      {
+        return createEditorFieldAdapter();
+      }
+      @Override
       public Adapter caseTitleField(TitleField object)
       {
         return createTitleFieldAdapter();
+      }
+      @Override
+      public Adapter casePublisherField(PublisherField object)
+      {
+        return createPublisherFieldAdapter();
       }
       @Override
       public Adapter caseJournalField(JournalField object)
@@ -143,6 +173,26 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMonthField(MonthField object)
       {
         return createMonthFieldAdapter();
+      }
+      @Override
+      public Adapter caseAddressField(AddressField object)
+      {
+        return createAddressFieldAdapter();
+      }
+      @Override
+      public Adapter caseSeriesField(SeriesField object)
+      {
+        return createSeriesFieldAdapter();
+      }
+      @Override
+      public Adapter caseEditionField(EditionField object)
+      {
+        return createEditionFieldAdapter();
+      }
+      @Override
+      public Adapter caseIsbnField(IsbnField object)
+      {
+        return createIsbnFieldAdapter();
       }
       @Override
       public Adapter caseNoteField(NoteField object)
@@ -217,6 +267,66 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book <em>Book</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book
+   * @generated
+   */
+  public Adapter createBookAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField <em>Unknown Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
+   * @generated
+   */
+  public Adapter createUnknownFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType <em>Unknown Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType
+   * @generated
+   */
+  public Adapter createUnknownTypeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue <em>Unknown Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue
+   * @generated
+   */
+  public Adapter createUnknownValueAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.CiteKey <em>Cite Key</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -277,6 +387,21 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditorField <em>Editor Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
+   * @generated
+   */
+  public Adapter createEditorFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.TitleField <em>Title Field</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -287,6 +412,21 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTitleFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField <em>Publisher Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField
+   * @generated
+   */
+  public Adapter createPublisherFieldAdapter()
   {
     return null;
   }
@@ -377,6 +517,66 @@ public class BibTeXAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMonthFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.AddressField <em>Address Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
+   * @generated
+   */
+  public Adapter createAddressFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField <em>Series Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
+   * @generated
+   */
+  public Adapter createSeriesFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditionField <em>Edition Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
+   * @generated
+   */
+  public Adapter createEditionFieldAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField <em>Isbn Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
+   * @generated
+   */
+  public Adapter createIsbnFieldAdapter()
   {
     return null;
   }

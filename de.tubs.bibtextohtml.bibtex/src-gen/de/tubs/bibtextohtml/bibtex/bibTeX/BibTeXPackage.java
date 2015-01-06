@@ -95,13 +95,67 @@ public interface BibTeXPackage extends EPackage
   int BIBTEX_ENTRY_TYPES = 1;
 
   /**
+   * The feature id for the '<em><b>Key</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__KEY = 0;
+
+  /**
+   * The feature id for the '<em><b>Title</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__TITLE = 1;
+
+  /**
+   * The feature id for the '<em><b>Year</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__YEAR = 2;
+
+  /**
+   * The feature id for the '<em><b>Month</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__MONTH = 3;
+
+  /**
+   * The feature id for the '<em><b>Note</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__NOTE = 4;
+
+  /**
+   * The feature id for the '<em><b>Unknowns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIBTEX_ENTRY_TYPES__UNKNOWNS = 5;
+
+  /**
    * The number of structural features of the '<em>Bibtex Entry Types</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BIBTEX_ENTRY_TYPES_FEATURE_COUNT = 0;
+  int BIBTEX_ENTRY_TYPES_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.ArticleImpl <em>Article</em>}' class.
@@ -120,16 +174,7 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE__KEY = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Author</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARTICLE__AUTHOR = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 1;
+  int ARTICLE__KEY = BIBTEX_ENTRY_TYPES__KEY;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -138,16 +183,7 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE__TITLE = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Journal</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARTICLE__JOURNAL = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 3;
+  int ARTICLE__TITLE = BIBTEX_ENTRY_TYPES__TITLE;
 
   /**
    * The feature id for the '<em><b>Year</b></em>' containment reference.
@@ -156,34 +192,7 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE__YEAR = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 4;
-
-  /**
-   * The feature id for the '<em><b>Volume</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARTICLE__VOLUME = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 5;
-
-  /**
-   * The feature id for the '<em><b>Number</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARTICLE__NUMBER = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 6;
-
-  /**
-   * The feature id for the '<em><b>Pages</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ARTICLE__PAGES = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 7;
+  int ARTICLE__YEAR = BIBTEX_ENTRY_TYPES__YEAR;
 
   /**
    * The feature id for the '<em><b>Month</b></em>' containment reference.
@@ -192,7 +201,7 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE__MONTH = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 8;
+  int ARTICLE__MONTH = BIBTEX_ENTRY_TYPES__MONTH;
 
   /**
    * The feature id for the '<em><b>Note</b></em>' containment reference.
@@ -201,7 +210,61 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE__NOTE = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 9;
+  int ARTICLE__NOTE = BIBTEX_ENTRY_TYPES__NOTE;
+
+  /**
+   * The feature id for the '<em><b>Unknowns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__UNKNOWNS = BIBTEX_ENTRY_TYPES__UNKNOWNS;
+
+  /**
+   * The feature id for the '<em><b>Author</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__AUTHOR = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Journal</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__JOURNAL = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Volume</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__VOLUME = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__NUMBER = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Pages</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARTICLE__PAGES = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Article</em>' class.
@@ -210,7 +273,236 @@ public interface BibTeXPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ARTICLE_FEATURE_COUNT = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 10;
+  int ARTICLE_FEATURE_COUNT = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 5;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.BookImpl <em>Book</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BookImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getBook()
+   * @generated
+   */
+  int BOOK = 3;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__KEY = BIBTEX_ENTRY_TYPES__KEY;
+
+  /**
+   * The feature id for the '<em><b>Title</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__TITLE = BIBTEX_ENTRY_TYPES__TITLE;
+
+  /**
+   * The feature id for the '<em><b>Year</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__YEAR = BIBTEX_ENTRY_TYPES__YEAR;
+
+  /**
+   * The feature id for the '<em><b>Month</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__MONTH = BIBTEX_ENTRY_TYPES__MONTH;
+
+  /**
+   * The feature id for the '<em><b>Note</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__NOTE = BIBTEX_ENTRY_TYPES__NOTE;
+
+  /**
+   * The feature id for the '<em><b>Unknowns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__UNKNOWNS = BIBTEX_ENTRY_TYPES__UNKNOWNS;
+
+  /**
+   * The feature id for the '<em><b>Author editor</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__AUTHOR_EDITOR = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Publisher</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__PUBLISHER = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Volume number</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__VOLUME_NUMBER = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Series</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__SERIES = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Address</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__ADDRESS = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Edition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__EDITION = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 5;
+
+  /**
+   * The feature id for the '<em><b>Isbn</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK__ISBN = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 6;
+
+  /**
+   * The number of structural features of the '<em>Book</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BOOK_FEATURE_COUNT = BIBTEX_ENTRY_TYPES_FEATURE_COUNT + 7;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownFieldImpl <em>Unknown Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownField()
+   * @generated
+   */
+  int UNKNOWN_FIELD = 4;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_FIELD__TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_FIELD__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Unknown Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_FIELD_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownTypeImpl <em>Unknown Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownTypeImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownType()
+   * @generated
+   */
+  int UNKNOWN_TYPE = 5;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_TYPE__TYPE = 0;
+
+  /**
+   * The number of structural features of the '<em>Unknown Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_TYPE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownValueImpl <em>Unknown Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownValueImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownValue()
+   * @generated
+   */
+  int UNKNOWN_VALUE = 6;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_VALUE__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Unknown Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int UNKNOWN_VALUE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.CiteKeyImpl <em>Cite Key</em>}' class.
@@ -220,7 +512,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getCiteKey()
    * @generated
    */
-  int CITE_KEY = 3;
+  int CITE_KEY = 7;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -248,7 +540,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getAuthorField()
    * @generated
    */
-  int AUTHOR_FIELD = 4;
+  int AUTHOR_FIELD = 8;
 
   /**
    * The number of structural features of the '<em>Author Field</em>' class.
@@ -267,7 +559,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getAuthors()
    * @generated
    */
-  int AUTHORS = 5;
+  int AUTHORS = 9;
 
   /**
    * The feature id for the '<em><b>Names</b></em>' containment reference list.
@@ -295,7 +587,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getFullname()
    * @generated
    */
-  int FULLNAME = 6;
+  int FULLNAME = 10;
 
   /**
    * The feature id for the '<em><b>Lastname</b></em>' attribute.
@@ -325,6 +617,34 @@ public interface BibTeXPackage extends EPackage
   int FULLNAME_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditorFieldImpl <em>Editor Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditorFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getEditorField()
+   * @generated
+   */
+  int EDITOR_FIELD = 11;
+
+  /**
+   * The feature id for the '<em><b>Editor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDITOR_FIELD__EDITOR = 0;
+
+  /**
+   * The number of structural features of the '<em>Editor Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDITOR_FIELD_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.TitleFieldImpl <em>Title Field</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -332,7 +652,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getTitleField()
    * @generated
    */
-  int TITLE_FIELD = 7;
+  int TITLE_FIELD = 12;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' attribute.
@@ -353,6 +673,34 @@ public interface BibTeXPackage extends EPackage
   int TITLE_FIELD_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.PublisherFieldImpl <em>Publisher Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.PublisherFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getPublisherField()
+   * @generated
+   */
+  int PUBLISHER_FIELD = 13;
+
+  /**
+   * The feature id for the '<em><b>Publisher</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PUBLISHER_FIELD__PUBLISHER = 0;
+
+  /**
+   * The number of structural features of the '<em>Publisher Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PUBLISHER_FIELD_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.JournalFieldImpl <em>Journal Field</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -360,7 +708,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getJournalField()
    * @generated
    */
-  int JOURNAL_FIELD = 8;
+  int JOURNAL_FIELD = 14;
 
   /**
    * The feature id for the '<em><b>Journal</b></em>' attribute.
@@ -388,7 +736,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getYearField()
    * @generated
    */
-  int YEAR_FIELD = 9;
+  int YEAR_FIELD = 15;
 
   /**
    * The feature id for the '<em><b>Year</b></em>' attribute.
@@ -416,7 +764,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getVolumeField()
    * @generated
    */
-  int VOLUME_FIELD = 10;
+  int VOLUME_FIELD = 16;
 
   /**
    * The feature id for the '<em><b>Volume</b></em>' attribute.
@@ -444,7 +792,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getNumberField()
    * @generated
    */
-  int NUMBER_FIELD = 11;
+  int NUMBER_FIELD = 17;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' attribute.
@@ -472,7 +820,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getPagesField()
    * @generated
    */
-  int PAGES_FIELD = 12;
+  int PAGES_FIELD = 18;
 
   /**
    * The feature id for the '<em><b>Pages</b></em>' attribute.
@@ -500,7 +848,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getMonthField()
    * @generated
    */
-  int MONTH_FIELD = 13;
+  int MONTH_FIELD = 19;
 
   /**
    * The feature id for the '<em><b>Month</b></em>' attribute.
@@ -521,6 +869,118 @@ public interface BibTeXPackage extends EPackage
   int MONTH_FIELD_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.AddressFieldImpl <em>Address Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.AddressFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getAddressField()
+   * @generated
+   */
+  int ADDRESS_FIELD = 20;
+
+  /**
+   * The feature id for the '<em><b>Address</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDRESS_FIELD__ADDRESS = 0;
+
+  /**
+   * The number of structural features of the '<em>Address Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDRESS_FIELD_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.SeriesFieldImpl <em>Series Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.SeriesFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getSeriesField()
+   * @generated
+   */
+  int SERIES_FIELD = 21;
+
+  /**
+   * The feature id for the '<em><b>Series</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERIES_FIELD__SERIES = 0;
+
+  /**
+   * The number of structural features of the '<em>Series Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SERIES_FIELD_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditionFieldImpl <em>Edition Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditionFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getEditionField()
+   * @generated
+   */
+  int EDITION_FIELD = 22;
+
+  /**
+   * The feature id for the '<em><b>Edition</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDITION_FIELD__EDITION = 0;
+
+  /**
+   * The number of structural features of the '<em>Edition Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDITION_FIELD_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.IsbnFieldImpl <em>Isbn Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.IsbnFieldImpl
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getIsbnField()
+   * @generated
+   */
+  int ISBN_FIELD = 23;
+
+  /**
+   * The feature id for the '<em><b>Isbn</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ISBN_FIELD__ISBN = 0;
+
+  /**
+   * The number of structural features of the '<em>Isbn Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ISBN_FIELD_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.NoteFieldImpl <em>Note Field</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -528,7 +988,7 @@ public interface BibTeXPackage extends EPackage
    * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getNoteField()
    * @generated
    */
-  int NOTE_FIELD = 14;
+  int NOTE_FIELD = 24;
 
   /**
    * The feature id for the '<em><b>Note</b></em>' attribute.
@@ -581,6 +1041,72 @@ public interface BibTeXPackage extends EPackage
   EClass getBibtexEntryTypes();
 
   /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Key</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getKey()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Key();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getTitle <em>Title</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Title</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getTitle()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Title();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getYear <em>Year</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Year</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getYear()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Year();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getMonth <em>Month</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Month</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getMonth()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Month();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getNote <em>Note</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Note</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getNote()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Note();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getUnknowns <em>Unknowns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Unknowns</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes#getUnknowns()
+   * @see #getBibtexEntryTypes()
+   * @generated
+   */
+  EReference getBibtexEntryTypes_Unknowns();
+
+  /**
    * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article <em>Article</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -589,17 +1115,6 @@ public interface BibTeXPackage extends EPackage
    * @generated
    */
   EClass getArticle();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getKey <em>Key</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Key</em>'.
-   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Article#getKey()
-   * @see #getArticle()
-   * @generated
-   */
-  EReference getArticle_Key();
 
   /**
    * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getAuthor <em>Author</em>}'.
@@ -613,17 +1128,6 @@ public interface BibTeXPackage extends EPackage
   EReference getArticle_Author();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getTitle <em>Title</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Article#getTitle()
-   * @see #getArticle()
-   * @generated
-   */
-  EReference getArticle_Title();
-
-  /**
    * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getJournal <em>Journal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -633,17 +1137,6 @@ public interface BibTeXPackage extends EPackage
    * @generated
    */
   EReference getArticle_Journal();
-
-  /**
-   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getYear <em>Year</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Year</em>'.
-   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Article#getYear()
-   * @see #getArticle()
-   * @generated
-   */
-  EReference getArticle_Year();
 
   /**
    * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getVolume <em>Volume</em>}'.
@@ -679,26 +1172,165 @@ public interface BibTeXPackage extends EPackage
   EReference getArticle_Pages();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getMonth <em>Month</em>}'.
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book <em>Book</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Month</em>'.
-   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Article#getMonth()
-   * @see #getArticle()
+   * @return the meta object for class '<em>Book</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book
    * @generated
    */
-  EReference getArticle_Month();
+  EClass getBook();
 
   /**
-   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Article#getNote <em>Note</em>}'.
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getAuthor_editor <em>Author editor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Note</em>'.
-   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Article#getNote()
-   * @see #getArticle()
+   * @return the meta object for the containment reference '<em>Author editor</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getAuthor_editor()
+   * @see #getBook()
    * @generated
    */
-  EReference getArticle_Note();
+  EReference getBook_Author_editor();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getPublisher <em>Publisher</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Publisher</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getPublisher()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Publisher();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getVolume_number <em>Volume number</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Volume number</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getVolume_number()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Volume_number();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getSeries <em>Series</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Series</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getSeries()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Series();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getAddress <em>Address</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Address</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getAddress()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Address();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getEdition <em>Edition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Edition</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getEdition()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Edition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.Book#getIsbn <em>Isbn</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Isbn</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.Book#getIsbn()
+   * @see #getBook()
+   * @generated
+   */
+  EReference getBook_Isbn();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField <em>Unknown Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unknown Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
+   * @generated
+   */
+  EClass getUnknownField();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField#getType()
+   * @see #getUnknownField()
+   * @generated
+   */
+  EReference getUnknownField_Type();
+
+  /**
+   * Returns the meta object for the containment reference '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField#getValue()
+   * @see #getUnknownField()
+   * @generated
+   */
+  EReference getUnknownField_Value();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType <em>Unknown Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unknown Type</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType
+   * @generated
+   */
+  EClass getUnknownType();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Type</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType#getType()
+   * @see #getUnknownType()
+   * @generated
+   */
+  EAttribute getUnknownType_Type();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue <em>Unknown Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Unknown Value</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue
+   * @generated
+   */
+  EClass getUnknownValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue#getValue()
+   * @see #getUnknownValue()
+   * @generated
+   */
+  EAttribute getUnknownValue_Value();
 
   /**
    * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.CiteKey <em>Cite Key</em>}'.
@@ -785,6 +1417,27 @@ public interface BibTeXPackage extends EPackage
   EAttribute getFullname_Firstname();
 
   /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditorField <em>Editor Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Editor Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
+   * @generated
+   */
+  EClass getEditorField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditorField#getEditor <em>Editor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Editor</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditorField#getEditor()
+   * @see #getEditorField()
+   * @generated
+   */
+  EAttribute getEditorField_Editor();
+
+  /**
    * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.TitleField <em>Title Field</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -804,6 +1457,27 @@ public interface BibTeXPackage extends EPackage
    * @generated
    */
   EAttribute getTitleField_Title();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField <em>Publisher Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Publisher Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField
+   * @generated
+   */
+  EClass getPublisherField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField#getPublisher <em>Publisher</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Publisher</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField#getPublisher()
+   * @see #getPublisherField()
+   * @generated
+   */
+  EAttribute getPublisherField_Publisher();
 
   /**
    * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.JournalField <em>Journal Field</em>}'.
@@ -932,6 +1606,90 @@ public interface BibTeXPackage extends EPackage
   EAttribute getMonthField_Month();
 
   /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.AddressField <em>Address Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Address Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
+   * @generated
+   */
+  EClass getAddressField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.AddressField#getAddress <em>Address</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Address</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.AddressField#getAddress()
+   * @see #getAddressField()
+   * @generated
+   */
+  EAttribute getAddressField_Address();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField <em>Series Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Series Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
+   * @generated
+   */
+  EClass getSeriesField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField#getSeries <em>Series</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Series</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField#getSeries()
+   * @see #getSeriesField()
+   * @generated
+   */
+  EAttribute getSeriesField_Series();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditionField <em>Edition Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Edition Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
+   * @generated
+   */
+  EClass getEditionField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.EditionField#getEdition <em>Edition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Edition</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.EditionField#getEdition()
+   * @see #getEditionField()
+   * @generated
+   */
+  EAttribute getEditionField_Edition();
+
+  /**
+   * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField <em>Isbn Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Isbn Field</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
+   * @generated
+   */
+  EClass getIsbnField();
+
+  /**
+   * Returns the meta object for the attribute '{@link de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField#getIsbn <em>Isbn</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Isbn</em>'.
+   * @see de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField#getIsbn()
+   * @see #getIsbnField()
+   * @generated
+   */
+  EAttribute getIsbnField_Isbn();
+
+  /**
    * Returns the meta object for class '{@link de.tubs.bibtextohtml.bibtex.bibTeX.NoteField <em>Note Field</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1004,6 +1762,54 @@ public interface BibTeXPackage extends EPackage
     EClass BIBTEX_ENTRY_TYPES = eINSTANCE.getBibtexEntryTypes();
 
     /**
+     * The meta object literal for the '<em><b>Key</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__KEY = eINSTANCE.getBibtexEntryTypes_Key();
+
+    /**
+     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__TITLE = eINSTANCE.getBibtexEntryTypes_Title();
+
+    /**
+     * The meta object literal for the '<em><b>Year</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__YEAR = eINSTANCE.getBibtexEntryTypes_Year();
+
+    /**
+     * The meta object literal for the '<em><b>Month</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__MONTH = eINSTANCE.getBibtexEntryTypes_Month();
+
+    /**
+     * The meta object literal for the '<em><b>Note</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__NOTE = eINSTANCE.getBibtexEntryTypes_Note();
+
+    /**
+     * The meta object literal for the '<em><b>Unknowns</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BIBTEX_ENTRY_TYPES__UNKNOWNS = eINSTANCE.getBibtexEntryTypes_Unknowns();
+
+    /**
      * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.ArticleImpl <em>Article</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1014,14 +1820,6 @@ public interface BibTeXPackage extends EPackage
     EClass ARTICLE = eINSTANCE.getArticle();
 
     /**
-     * The meta object literal for the '<em><b>Key</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTICLE__KEY = eINSTANCE.getArticle_Key();
-
-    /**
      * The meta object literal for the '<em><b>Author</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1030,28 +1828,12 @@ public interface BibTeXPackage extends EPackage
     EReference ARTICLE__AUTHOR = eINSTANCE.getArticle_Author();
 
     /**
-     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTICLE__TITLE = eINSTANCE.getArticle_Title();
-
-    /**
      * The meta object literal for the '<em><b>Journal</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ARTICLE__JOURNAL = eINSTANCE.getArticle_Journal();
-
-    /**
-     * The meta object literal for the '<em><b>Year</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ARTICLE__YEAR = eINSTANCE.getArticle_Year();
 
     /**
      * The meta object literal for the '<em><b>Volume</b></em>' containment reference feature.
@@ -1078,20 +1860,132 @@ public interface BibTeXPackage extends EPackage
     EReference ARTICLE__PAGES = eINSTANCE.getArticle_Pages();
 
     /**
-     * The meta object literal for the '<em><b>Month</b></em>' containment reference feature.
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.BookImpl <em>Book</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BookImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getBook()
      * @generated
      */
-    EReference ARTICLE__MONTH = eINSTANCE.getArticle_Month();
+    EClass BOOK = eINSTANCE.getBook();
 
     /**
-     * The meta object literal for the '<em><b>Note</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Author editor</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ARTICLE__NOTE = eINSTANCE.getArticle_Note();
+    EReference BOOK__AUTHOR_EDITOR = eINSTANCE.getBook_Author_editor();
+
+    /**
+     * The meta object literal for the '<em><b>Publisher</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__PUBLISHER = eINSTANCE.getBook_Publisher();
+
+    /**
+     * The meta object literal for the '<em><b>Volume number</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__VOLUME_NUMBER = eINSTANCE.getBook_Volume_number();
+
+    /**
+     * The meta object literal for the '<em><b>Series</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__SERIES = eINSTANCE.getBook_Series();
+
+    /**
+     * The meta object literal for the '<em><b>Address</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__ADDRESS = eINSTANCE.getBook_Address();
+
+    /**
+     * The meta object literal for the '<em><b>Edition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__EDITION = eINSTANCE.getBook_Edition();
+
+    /**
+     * The meta object literal for the '<em><b>Isbn</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BOOK__ISBN = eINSTANCE.getBook_Isbn();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownFieldImpl <em>Unknown Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownField()
+     * @generated
+     */
+    EClass UNKNOWN_FIELD = eINSTANCE.getUnknownField();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference UNKNOWN_FIELD__TYPE = eINSTANCE.getUnknownField_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference UNKNOWN_FIELD__VALUE = eINSTANCE.getUnknownField_Value();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownTypeImpl <em>Unknown Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownTypeImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownType()
+     * @generated
+     */
+    EClass UNKNOWN_TYPE = eINSTANCE.getUnknownType();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute UNKNOWN_TYPE__TYPE = eINSTANCE.getUnknownType_Type();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownValueImpl <em>Unknown Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.UnknownValueImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getUnknownValue()
+     * @generated
+     */
+    EClass UNKNOWN_VALUE = eINSTANCE.getUnknownValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute UNKNOWN_VALUE__VALUE = eINSTANCE.getUnknownValue_Value();
 
     /**
      * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.CiteKeyImpl <em>Cite Key</em>}' class.
@@ -1166,6 +2060,24 @@ public interface BibTeXPackage extends EPackage
     EAttribute FULLNAME__FIRSTNAME = eINSTANCE.getFullname_Firstname();
 
     /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditorFieldImpl <em>Editor Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditorFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getEditorField()
+     * @generated
+     */
+    EClass EDITOR_FIELD = eINSTANCE.getEditorField();
+
+    /**
+     * The meta object literal for the '<em><b>Editor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EDITOR_FIELD__EDITOR = eINSTANCE.getEditorField_Editor();
+
+    /**
      * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.TitleFieldImpl <em>Title Field</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1182,6 +2094,24 @@ public interface BibTeXPackage extends EPackage
      * @generated
      */
     EAttribute TITLE_FIELD__TITLE = eINSTANCE.getTitleField_Title();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.PublisherFieldImpl <em>Publisher Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.PublisherFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getPublisherField()
+     * @generated
+     */
+    EClass PUBLISHER_FIELD = eINSTANCE.getPublisherField();
+
+    /**
+     * The meta object literal for the '<em><b>Publisher</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PUBLISHER_FIELD__PUBLISHER = eINSTANCE.getPublisherField_Publisher();
 
     /**
      * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.JournalFieldImpl <em>Journal Field</em>}' class.
@@ -1290,6 +2220,78 @@ public interface BibTeXPackage extends EPackage
      * @generated
      */
     EAttribute MONTH_FIELD__MONTH = eINSTANCE.getMonthField_Month();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.AddressFieldImpl <em>Address Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.AddressFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getAddressField()
+     * @generated
+     */
+    EClass ADDRESS_FIELD = eINSTANCE.getAddressField();
+
+    /**
+     * The meta object literal for the '<em><b>Address</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADDRESS_FIELD__ADDRESS = eINSTANCE.getAddressField_Address();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.SeriesFieldImpl <em>Series Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.SeriesFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getSeriesField()
+     * @generated
+     */
+    EClass SERIES_FIELD = eINSTANCE.getSeriesField();
+
+    /**
+     * The meta object literal for the '<em><b>Series</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SERIES_FIELD__SERIES = eINSTANCE.getSeriesField_Series();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditionFieldImpl <em>Edition Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.EditionFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getEditionField()
+     * @generated
+     */
+    EClass EDITION_FIELD = eINSTANCE.getEditionField();
+
+    /**
+     * The meta object literal for the '<em><b>Edition</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EDITION_FIELD__EDITION = eINSTANCE.getEditionField_Edition();
+
+    /**
+     * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.IsbnFieldImpl <em>Isbn Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.IsbnFieldImpl
+     * @see de.tubs.bibtextohtml.bibtex.bibTeX.impl.BibTeXPackageImpl#getIsbnField()
+     * @generated
+     */
+    EClass ISBN_FIELD = eINSTANCE.getIsbnField();
+
+    /**
+     * The meta object literal for the '<em><b>Isbn</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ISBN_FIELD__ISBN = eINSTANCE.getIsbnField_Isbn();
 
     /**
      * The meta object literal for the '{@link de.tubs.bibtextohtml.bibtex.bibTeX.impl.NoteFieldImpl <em>Note Field</em>}' class.

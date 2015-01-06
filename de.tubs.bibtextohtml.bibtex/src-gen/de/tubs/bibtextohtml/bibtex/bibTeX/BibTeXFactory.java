@@ -50,6 +50,42 @@ public interface BibTeXFactory extends EFactory
   Article createArticle();
 
   /**
+   * Returns a new object of class '<em>Book</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Book</em>'.
+   * @generated
+   */
+  Book createBook();
+
+  /**
+   * Returns a new object of class '<em>Unknown Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unknown Field</em>'.
+   * @generated
+   */
+  UnknownField createUnknownField();
+
+  /**
+   * Returns a new object of class '<em>Unknown Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unknown Type</em>'.
+   * @generated
+   */
+  UnknownType createUnknownType();
+
+  /**
+   * Returns a new object of class '<em>Unknown Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unknown Value</em>'.
+   * @generated
+   */
+  UnknownValue createUnknownValue();
+
+  /**
    * Returns a new object of class '<em>Cite Key</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -86,6 +122,15 @@ public interface BibTeXFactory extends EFactory
   Fullname createFullname();
 
   /**
+   * Returns a new object of class '<em>Editor Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Editor Field</em>'.
+   * @generated
+   */
+  EditorField createEditorField();
+
+  /**
    * Returns a new object of class '<em>Title Field</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -93,6 +138,15 @@ public interface BibTeXFactory extends EFactory
    * @generated
    */
   TitleField createTitleField();
+
+  /**
+   * Returns a new object of class '<em>Publisher Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Publisher Field</em>'.
+   * @generated
+   */
+  PublisherField createPublisherField();
 
   /**
    * Returns a new object of class '<em>Journal Field</em>'.
@@ -147,6 +201,42 @@ public interface BibTeXFactory extends EFactory
    * @generated
    */
   MonthField createMonthField();
+
+  /**
+   * Returns a new object of class '<em>Address Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Address Field</em>'.
+   * @generated
+   */
+  AddressField createAddressField();
+
+  /**
+   * Returns a new object of class '<em>Series Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Series Field</em>'.
+   * @generated
+   */
+  SeriesField createSeriesField();
+
+  /**
+   * Returns a new object of class '<em>Edition Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Edition Field</em>'.
+   * @generated
+   */
+  EditionField createEditionField();
+
+  /**
+   * Returns a new object of class '<em>Isbn Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Isbn Field</em>'.
+   * @generated
+   */
+  IsbnField createIsbnField();
 
   /**
    * Returns a new object of class '<em>Note Field</em>'.

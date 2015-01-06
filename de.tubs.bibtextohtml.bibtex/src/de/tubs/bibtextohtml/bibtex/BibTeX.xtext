@@ -11,7 +11,7 @@ Model:
 //;
 	
 BibtexEntryTypes:
-	Article// | Inproceeding | Book
+	Article | Book // | Inproceeding | Book
 ;
 
 Article:
@@ -26,6 +26,24 @@ key = CiteKey
 &(','number = NumberField)?
 &(','pages = PagesField)?
 &(','month = MonthField)?	
+&(','note = NoteField)?
+&(','unknowns += UnknownField)*)
+'}';
+
+Book:
+'@' 'book' '{' //what about case insensitivity? 
+key = CiteKey
+//mandatory
+((','author_editor = (AuthorField | EditorField))
+&(','title = TitleField)
+&(','publisher = PublisherField)
+&(','year = YearField)	
+&(','volume_number = (VolumeField | NumberField))?
+&(','series = SeriesField)?
+&(','address = AddressField)?
+&(','edition = EditionField)?
+&(','month = MonthField)?
+&(','isbn = IsbnField)?	
 &(','note = NoteField)?
 &(','unknowns += UnknownField)*)
 '}';
@@ -53,10 +71,16 @@ Authors:
 Fullname:
 	(lastname=ID ',' firstname=ID | firstname=ID lastname=ID | firstname=ID)
 ;
+EditorField:
+	'editor' '=' editor = STRING
+;
 
 
 TitleField:
 	'title' '=' title = STRING 
+;
+PublisherField:
+	'publisher' '=' publisher = STRING 
 ;
 JournalField:
 	'journal' '=' journal = STRING 
@@ -75,6 +99,18 @@ PagesField:
 ;
 MonthField:
 	'month' '=' month = STRING 
+;
+AddressField:
+	'address' '=' address = STRING 
+;
+SeriesField:
+	'series' '=' series = STRING 
+;
+EditionField:
+	'edition' '=' edition = STRING 
+;
+IsbnField:
+	'isbn' '=' isbn = STRING 
 ;
 NoteField:
 	'note' '=' note = STRING 

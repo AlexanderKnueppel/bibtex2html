@@ -36,230 +36,566 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class BibtexEntryTypesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BibtexEntryTypes");
-		private final RuleCall cArticleParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cArticleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cBookParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		////terminal COMMENT_SECTION  : !('@' .* '}');
 		////Comments:
 		////	comment = COMMENT_SECTION
 		////;
-		//BibtexEntryTypes: // | Inproceeding | Book
-		//	Article;
+		//BibtexEntryTypes:
+		//	Article | // | Inproceeding | Book
+		//	Book;
 		public ParserRule getRule() { return rule; }
 
-		//// | Inproceeding | Book
+		//Article | // | Inproceeding | Book
+		//Book
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//Article
-		public RuleCall getArticleParserRuleCall() { return cArticleParserRuleCall; }
+		public RuleCall getArticleParserRuleCall_0() { return cArticleParserRuleCall_0; }
+
+		//// | Inproceeding | Book
+		//Book
+		public RuleCall getBookParserRuleCall_1() { return cBookParserRuleCall_1; }
 	}
 
 	public class ArticleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Article");
-		private final UnorderedGroup cUnorderedGroup = (UnorderedGroup)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cUnorderedGroup.eContents().get(0);
-		private final Keyword cCommercialAtKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
-		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
-		private final Keyword cARTICLEKeyword_0_1_0 = (Keyword)cAlternatives_0_1.eContents().get(0);
-		private final Keyword cArticleKeyword_0_1_1 = (Keyword)cAlternatives_0_1.eContents().get(1);
-		private final Keyword cArticleKeyword_0_1_2 = (Keyword)cAlternatives_0_1.eContents().get(2);
-		private final Keyword cLeftCurlyBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final Assignment cKeyAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
-		private final RuleCall cKeyCiteKeyParserRuleCall_0_3_0 = (RuleCall)cKeyAssignment_0_3.eContents().get(0);
-		private final Group cGroup_0_4 = (Group)cGroup_0.eContents().get(4);
-		private final Keyword cCommaKeyword_0_4_0 = (Keyword)cGroup_0_4.eContents().get(0);
-		private final Assignment cAuthorAssignment_0_4_1 = (Assignment)cGroup_0_4.eContents().get(1);
-		private final RuleCall cAuthorAuthorFieldParserRuleCall_0_4_1_0 = (RuleCall)cAuthorAssignment_0_4_1.eContents().get(0);
-		private final Group cGroup_1 = (Group)cUnorderedGroup.eContents().get(1);
-		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cTitleAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cTitleTitleFieldParserRuleCall_1_1_0 = (RuleCall)cTitleAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cUnorderedGroup.eContents().get(2);
-		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cJournalAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cJournalJournalFieldParserRuleCall_2_1_0 = (RuleCall)cJournalAssignment_2_1.eContents().get(0);
-		private final Group cGroup_3 = (Group)cUnorderedGroup.eContents().get(3);
-		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cYearAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cYearYearFieldParserRuleCall_3_1_0 = (RuleCall)cYearAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cUnorderedGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cVolumeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cVolumeVolumeFieldParserRuleCall_4_1_0 = (RuleCall)cVolumeAssignment_4_1.eContents().get(0);
-		private final Group cGroup_5 = (Group)cUnorderedGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cNumberAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cNumberNumberFieldParserRuleCall_5_1_0 = (RuleCall)cNumberAssignment_5_1.eContents().get(0);
-		private final Group cGroup_6 = (Group)cUnorderedGroup.eContents().get(6);
-		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cPagesAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cPagesPagesFieldParserRuleCall_6_1_0 = (RuleCall)cPagesAssignment_6_1.eContents().get(0);
-		private final Group cGroup_7 = (Group)cUnorderedGroup.eContents().get(7);
-		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cMonthAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cMonthMonthFieldParserRuleCall_7_1_0 = (RuleCall)cMonthAssignment_7_1.eContents().get(0);
-		private final Group cGroup_8 = (Group)cUnorderedGroup.eContents().get(8);
-		private final Group cGroup_8_0 = (Group)cGroup_8.eContents().get(0);
-		private final Keyword cCommaKeyword_8_0_0 = (Keyword)cGroup_8_0.eContents().get(0);
-		private final Assignment cNoteAssignment_8_0_1 = (Assignment)cGroup_8_0.eContents().get(1);
-		private final RuleCall cNoteNoteFieldParserRuleCall_8_0_1_0 = (RuleCall)cNoteAssignment_8_0_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cArticleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cKeyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKeyCiteKeyParserRuleCall_3_0 = (RuleCall)cKeyAssignment_3.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_4 = (UnorderedGroup)cGroup.eContents().get(4);
+		private final Group cGroup_4_0 = (Group)cUnorderedGroup_4.eContents().get(0);
+		private final Keyword cCommaKeyword_4_0_0 = (Keyword)cGroup_4_0.eContents().get(0);
+		private final Assignment cAuthorAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
+		private final RuleCall cAuthorAuthorFieldParserRuleCall_4_0_1_0 = (RuleCall)cAuthorAssignment_4_0_1.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cUnorderedGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cTitleAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cTitleTitleFieldParserRuleCall_4_1_1_0 = (RuleCall)cTitleAssignment_4_1_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cUnorderedGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cJournalAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cJournalJournalFieldParserRuleCall_4_2_1_0 = (RuleCall)cJournalAssignment_4_2_1.eContents().get(0);
+		private final Group cGroup_4_3 = (Group)cUnorderedGroup_4.eContents().get(3);
+		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
+		private final Assignment cYearAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cYearYearFieldParserRuleCall_4_3_1_0 = (RuleCall)cYearAssignment_4_3_1.eContents().get(0);
+		private final Group cGroup_4_4 = (Group)cUnorderedGroup_4.eContents().get(4);
+		private final Keyword cCommaKeyword_4_4_0 = (Keyword)cGroup_4_4.eContents().get(0);
+		private final Assignment cVolumeAssignment_4_4_1 = (Assignment)cGroup_4_4.eContents().get(1);
+		private final RuleCall cVolumeVolumeFieldParserRuleCall_4_4_1_0 = (RuleCall)cVolumeAssignment_4_4_1.eContents().get(0);
+		private final Group cGroup_4_5 = (Group)cUnorderedGroup_4.eContents().get(5);
+		private final Keyword cCommaKeyword_4_5_0 = (Keyword)cGroup_4_5.eContents().get(0);
+		private final Assignment cNumberAssignment_4_5_1 = (Assignment)cGroup_4_5.eContents().get(1);
+		private final RuleCall cNumberNumberFieldParserRuleCall_4_5_1_0 = (RuleCall)cNumberAssignment_4_5_1.eContents().get(0);
+		private final Group cGroup_4_6 = (Group)cUnorderedGroup_4.eContents().get(6);
+		private final Keyword cCommaKeyword_4_6_0 = (Keyword)cGroup_4_6.eContents().get(0);
+		private final Assignment cPagesAssignment_4_6_1 = (Assignment)cGroup_4_6.eContents().get(1);
+		private final RuleCall cPagesPagesFieldParserRuleCall_4_6_1_0 = (RuleCall)cPagesAssignment_4_6_1.eContents().get(0);
+		private final Group cGroup_4_7 = (Group)cUnorderedGroup_4.eContents().get(7);
+		private final Keyword cCommaKeyword_4_7_0 = (Keyword)cGroup_4_7.eContents().get(0);
+		private final Assignment cMonthAssignment_4_7_1 = (Assignment)cGroup_4_7.eContents().get(1);
+		private final RuleCall cMonthMonthFieldParserRuleCall_4_7_1_0 = (RuleCall)cMonthAssignment_4_7_1.eContents().get(0);
+		private final Group cGroup_4_8 = (Group)cUnorderedGroup_4.eContents().get(8);
+		private final Keyword cCommaKeyword_4_8_0 = (Keyword)cGroup_4_8.eContents().get(0);
+		private final Assignment cNoteAssignment_4_8_1 = (Assignment)cGroup_4_8.eContents().get(1);
+		private final RuleCall cNoteNoteFieldParserRuleCall_4_8_1_0 = (RuleCall)cNoteAssignment_4_8_1.eContents().get(0);
+		private final Group cGroup_4_9 = (Group)cUnorderedGroup_4.eContents().get(9);
+		private final Keyword cCommaKeyword_4_9_0 = (Keyword)cGroup_4_9.eContents().get(0);
+		private final Assignment cUnknownsAssignment_4_9_1 = (Assignment)cGroup_4_9.eContents().get(1);
+		private final RuleCall cUnknownsUnknownFieldParserRuleCall_4_9_1_0 = (RuleCall)cUnknownsAssignment_4_9_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Article:
-		//	"@" ("ARTICLE" | "Article" | "article") //what about case insensitivity? 
+		//	"@" "article" //what about case insensitivity? 
 		//	"{" key=CiteKey //mandatory
-		//	("," author=AuthorField) & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
+		//	("," author=AuthorField & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
 		//	volume=VolumeField)? & ("," number=NumberField)? & ("," pages=PagesField)? & ("," month=MonthField)? & (","
-		//	note=NoteField)? "}";
+		//	note=NoteField)? & ("," unknowns+=UnknownField)*) "}";
 		public ParserRule getRule() { return rule; }
 
-		//"@" ("ARTICLE" | "Article" | "article") //what about case insensitivity? 
+		//"@" "article" //what about case insensitivity? 
 		//"{" key=CiteKey //mandatory
-		//("," author=AuthorField) & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
+		//("," author=AuthorField & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
 		//volume=VolumeField)? & ("," number=NumberField)? & ("," pages=PagesField)? & ("," month=MonthField)? & (","
-		//note=NoteField)? "}"
-		public UnorderedGroup getUnorderedGroup() { return cUnorderedGroup; }
-
-		//"@" ("ARTICLE" | "Article" | "article") //what about case insensitivity? 
-		//"{" key=CiteKey //mandatory
-		//("," author=AuthorField)
-		public Group getGroup_0() { return cGroup_0; }
+		//note=NoteField)? & ("," unknowns+=UnknownField)*) "}"
+		public Group getGroup() { return cGroup; }
 
 		//"@"
-		public Keyword getCommercialAtKeyword_0_0() { return cCommercialAtKeyword_0_0; }
-
-		//"ARTICLE" | "Article" | "article"
-		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
-
-		//"ARTICLE"
-		public Keyword getARTICLEKeyword_0_1_0() { return cARTICLEKeyword_0_1_0; }
-
-		//"Article"
-		public Keyword getArticleKeyword_0_1_1() { return cArticleKeyword_0_1_1; }
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
 
 		//"article"
-		public Keyword getArticleKeyword_0_1_2() { return cArticleKeyword_0_1_2; }
+		public Keyword getArticleKeyword_1() { return cArticleKeyword_1; }
 
 		////what about case insensitivity? 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_0_2() { return cLeftCurlyBracketKeyword_0_2; }
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
 		//key=CiteKey
-		public Assignment getKeyAssignment_0_3() { return cKeyAssignment_0_3; }
+		public Assignment getKeyAssignment_3() { return cKeyAssignment_3; }
 
 		//CiteKey
-		public RuleCall getKeyCiteKeyParserRuleCall_0_3_0() { return cKeyCiteKeyParserRuleCall_0_3_0; }
+		public RuleCall getKeyCiteKeyParserRuleCall_3_0() { return cKeyCiteKeyParserRuleCall_3_0; }
+
+		//"," author=AuthorField & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
+		//volume=VolumeField)? & ("," number=NumberField)? & ("," pages=PagesField)? & ("," month=MonthField)? & (","
+		//note=NoteField)? & ("," unknowns+=UnknownField)*
+		public UnorderedGroup getUnorderedGroup_4() { return cUnorderedGroup_4; }
 
 		//"," author=AuthorField
-		public Group getGroup_0_4() { return cGroup_0_4; }
+		public Group getGroup_4_0() { return cGroup_4_0; }
 
 		//","
-		public Keyword getCommaKeyword_0_4_0() { return cCommaKeyword_0_4_0; }
+		public Keyword getCommaKeyword_4_0_0() { return cCommaKeyword_4_0_0; }
 
 		//author=AuthorField
-		public Assignment getAuthorAssignment_0_4_1() { return cAuthorAssignment_0_4_1; }
+		public Assignment getAuthorAssignment_4_0_1() { return cAuthorAssignment_4_0_1; }
 
 		//AuthorField
-		public RuleCall getAuthorAuthorFieldParserRuleCall_0_4_1_0() { return cAuthorAuthorFieldParserRuleCall_0_4_1_0; }
+		public RuleCall getAuthorAuthorFieldParserRuleCall_4_0_1_0() { return cAuthorAuthorFieldParserRuleCall_4_0_1_0; }
 
 		//"," title=TitleField
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_4_1() { return cGroup_4_1; }
 
 		//","
-		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
 
 		//title=TitleField
-		public Assignment getTitleAssignment_1_1() { return cTitleAssignment_1_1; }
+		public Assignment getTitleAssignment_4_1_1() { return cTitleAssignment_4_1_1; }
 
 		//TitleField
-		public RuleCall getTitleTitleFieldParserRuleCall_1_1_0() { return cTitleTitleFieldParserRuleCall_1_1_0; }
+		public RuleCall getTitleTitleFieldParserRuleCall_4_1_1_0() { return cTitleTitleFieldParserRuleCall_4_1_1_0; }
 
 		//"," journal=JournalField
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_4_2() { return cGroup_4_2; }
 
 		//","
-		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
 
 		//journal=JournalField
-		public Assignment getJournalAssignment_2_1() { return cJournalAssignment_2_1; }
+		public Assignment getJournalAssignment_4_2_1() { return cJournalAssignment_4_2_1; }
 
 		//JournalField
-		public RuleCall getJournalJournalFieldParserRuleCall_2_1_0() { return cJournalJournalFieldParserRuleCall_2_1_0; }
+		public RuleCall getJournalJournalFieldParserRuleCall_4_2_1_0() { return cJournalJournalFieldParserRuleCall_4_2_1_0; }
 
 		//"," year=YearField
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4_3() { return cGroup_4_3; }
 
 		//","
-		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
 
 		//year=YearField
-		public Assignment getYearAssignment_3_1() { return cYearAssignment_3_1; }
+		public Assignment getYearAssignment_4_3_1() { return cYearAssignment_4_3_1; }
 
 		//YearField
-		public RuleCall getYearYearFieldParserRuleCall_3_1_0() { return cYearYearFieldParserRuleCall_3_1_0; }
+		public RuleCall getYearYearFieldParserRuleCall_4_3_1_0() { return cYearYearFieldParserRuleCall_4_3_1_0; }
 
 		//("," volume=VolumeField)?
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_4_4() { return cGroup_4_4; }
 
 		//","
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		public Keyword getCommaKeyword_4_4_0() { return cCommaKeyword_4_4_0; }
 
 		//volume=VolumeField
-		public Assignment getVolumeAssignment_4_1() { return cVolumeAssignment_4_1; }
+		public Assignment getVolumeAssignment_4_4_1() { return cVolumeAssignment_4_4_1; }
 
 		//VolumeField
-		public RuleCall getVolumeVolumeFieldParserRuleCall_4_1_0() { return cVolumeVolumeFieldParserRuleCall_4_1_0; }
+		public RuleCall getVolumeVolumeFieldParserRuleCall_4_4_1_0() { return cVolumeVolumeFieldParserRuleCall_4_4_1_0; }
 
 		//("," number=NumberField)?
-		public Group getGroup_5() { return cGroup_5; }
+		public Group getGroup_4_5() { return cGroup_4_5; }
 
 		//","
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
+		public Keyword getCommaKeyword_4_5_0() { return cCommaKeyword_4_5_0; }
 
 		//number=NumberField
-		public Assignment getNumberAssignment_5_1() { return cNumberAssignment_5_1; }
+		public Assignment getNumberAssignment_4_5_1() { return cNumberAssignment_4_5_1; }
 
 		//NumberField
-		public RuleCall getNumberNumberFieldParserRuleCall_5_1_0() { return cNumberNumberFieldParserRuleCall_5_1_0; }
+		public RuleCall getNumberNumberFieldParserRuleCall_4_5_1_0() { return cNumberNumberFieldParserRuleCall_4_5_1_0; }
 
 		//("," pages=PagesField)?
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_4_6() { return cGroup_4_6; }
 
 		//","
-		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		public Keyword getCommaKeyword_4_6_0() { return cCommaKeyword_4_6_0; }
 
 		//pages=PagesField
-		public Assignment getPagesAssignment_6_1() { return cPagesAssignment_6_1; }
+		public Assignment getPagesAssignment_4_6_1() { return cPagesAssignment_4_6_1; }
 
 		//PagesField
-		public RuleCall getPagesPagesFieldParserRuleCall_6_1_0() { return cPagesPagesFieldParserRuleCall_6_1_0; }
+		public RuleCall getPagesPagesFieldParserRuleCall_4_6_1_0() { return cPagesPagesFieldParserRuleCall_4_6_1_0; }
 
 		//("," month=MonthField)?
-		public Group getGroup_7() { return cGroup_7; }
+		public Group getGroup_4_7() { return cGroup_4_7; }
 
 		//","
-		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
+		public Keyword getCommaKeyword_4_7_0() { return cCommaKeyword_4_7_0; }
 
 		//month=MonthField
-		public Assignment getMonthAssignment_7_1() { return cMonthAssignment_7_1; }
+		public Assignment getMonthAssignment_4_7_1() { return cMonthAssignment_4_7_1; }
 
 		//MonthField
-		public RuleCall getMonthMonthFieldParserRuleCall_7_1_0() { return cMonthMonthFieldParserRuleCall_7_1_0; }
-
-		//("," note=NoteField)? "}"
-		public Group getGroup_8() { return cGroup_8; }
+		public RuleCall getMonthMonthFieldParserRuleCall_4_7_1_0() { return cMonthMonthFieldParserRuleCall_4_7_1_0; }
 
 		//("," note=NoteField)?
-		public Group getGroup_8_0() { return cGroup_8_0; }
+		public Group getGroup_4_8() { return cGroup_4_8; }
 
 		//","
-		public Keyword getCommaKeyword_8_0_0() { return cCommaKeyword_8_0_0; }
+		public Keyword getCommaKeyword_4_8_0() { return cCommaKeyword_4_8_0; }
 
 		//note=NoteField
-		public Assignment getNoteAssignment_8_0_1() { return cNoteAssignment_8_0_1; }
+		public Assignment getNoteAssignment_4_8_1() { return cNoteAssignment_4_8_1; }
 
 		//NoteField
-		public RuleCall getNoteNoteFieldParserRuleCall_8_0_1_0() { return cNoteNoteFieldParserRuleCall_8_0_1_0; }
+		public RuleCall getNoteNoteFieldParserRuleCall_4_8_1_0() { return cNoteNoteFieldParserRuleCall_4_8_1_0; }
+
+		//("," unknowns+=UnknownField)*
+		public Group getGroup_4_9() { return cGroup_4_9; }
+
+		//","
+		public Keyword getCommaKeyword_4_9_0() { return cCommaKeyword_4_9_0; }
+
+		//unknowns+=UnknownField
+		public Assignment getUnknownsAssignment_4_9_1() { return cUnknownsAssignment_4_9_1; }
+
+		//UnknownField
+		public RuleCall getUnknownsUnknownFieldParserRuleCall_4_9_1_0() { return cUnknownsUnknownFieldParserRuleCall_4_9_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_8_1() { return cRightCurlyBracketKeyword_8_1; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+
+	public class BookElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Book");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCommercialAtKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cBookKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cKeyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cKeyCiteKeyParserRuleCall_3_0 = (RuleCall)cKeyAssignment_3.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_4 = (UnorderedGroup)cGroup.eContents().get(4);
+		private final Group cGroup_4_0 = (Group)cUnorderedGroup_4.eContents().get(0);
+		private final Keyword cCommaKeyword_4_0_0 = (Keyword)cGroup_4_0.eContents().get(0);
+		private final Assignment cAuthor_editorAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
+		private final Alternatives cAuthor_editorAlternatives_4_0_1_0 = (Alternatives)cAuthor_editorAssignment_4_0_1.eContents().get(0);
+		private final RuleCall cAuthor_editorAuthorFieldParserRuleCall_4_0_1_0_0 = (RuleCall)cAuthor_editorAlternatives_4_0_1_0.eContents().get(0);
+		private final RuleCall cAuthor_editorEditorFieldParserRuleCall_4_0_1_0_1 = (RuleCall)cAuthor_editorAlternatives_4_0_1_0.eContents().get(1);
+		private final Group cGroup_4_1 = (Group)cUnorderedGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cTitleAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cTitleTitleFieldParserRuleCall_4_1_1_0 = (RuleCall)cTitleAssignment_4_1_1.eContents().get(0);
+		private final Group cGroup_4_2 = (Group)cUnorderedGroup_4.eContents().get(2);
+		private final Keyword cCommaKeyword_4_2_0 = (Keyword)cGroup_4_2.eContents().get(0);
+		private final Assignment cPublisherAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
+		private final RuleCall cPublisherPublisherFieldParserRuleCall_4_2_1_0 = (RuleCall)cPublisherAssignment_4_2_1.eContents().get(0);
+		private final Group cGroup_4_3 = (Group)cUnorderedGroup_4.eContents().get(3);
+		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
+		private final Assignment cYearAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cYearYearFieldParserRuleCall_4_3_1_0 = (RuleCall)cYearAssignment_4_3_1.eContents().get(0);
+		private final Group cGroup_4_4 = (Group)cUnorderedGroup_4.eContents().get(4);
+		private final Keyword cCommaKeyword_4_4_0 = (Keyword)cGroup_4_4.eContents().get(0);
+		private final Assignment cVolume_numberAssignment_4_4_1 = (Assignment)cGroup_4_4.eContents().get(1);
+		private final Alternatives cVolume_numberAlternatives_4_4_1_0 = (Alternatives)cVolume_numberAssignment_4_4_1.eContents().get(0);
+		private final RuleCall cVolume_numberVolumeFieldParserRuleCall_4_4_1_0_0 = (RuleCall)cVolume_numberAlternatives_4_4_1_0.eContents().get(0);
+		private final RuleCall cVolume_numberNumberFieldParserRuleCall_4_4_1_0_1 = (RuleCall)cVolume_numberAlternatives_4_4_1_0.eContents().get(1);
+		private final Group cGroup_4_5 = (Group)cUnorderedGroup_4.eContents().get(5);
+		private final Keyword cCommaKeyword_4_5_0 = (Keyword)cGroup_4_5.eContents().get(0);
+		private final Assignment cSeriesAssignment_4_5_1 = (Assignment)cGroup_4_5.eContents().get(1);
+		private final RuleCall cSeriesSeriesFieldParserRuleCall_4_5_1_0 = (RuleCall)cSeriesAssignment_4_5_1.eContents().get(0);
+		private final Group cGroup_4_6 = (Group)cUnorderedGroup_4.eContents().get(6);
+		private final Keyword cCommaKeyword_4_6_0 = (Keyword)cGroup_4_6.eContents().get(0);
+		private final Assignment cAddressAssignment_4_6_1 = (Assignment)cGroup_4_6.eContents().get(1);
+		private final RuleCall cAddressAddressFieldParserRuleCall_4_6_1_0 = (RuleCall)cAddressAssignment_4_6_1.eContents().get(0);
+		private final Group cGroup_4_7 = (Group)cUnorderedGroup_4.eContents().get(7);
+		private final Keyword cCommaKeyword_4_7_0 = (Keyword)cGroup_4_7.eContents().get(0);
+		private final Assignment cEditionAssignment_4_7_1 = (Assignment)cGroup_4_7.eContents().get(1);
+		private final RuleCall cEditionEditionFieldParserRuleCall_4_7_1_0 = (RuleCall)cEditionAssignment_4_7_1.eContents().get(0);
+		private final Group cGroup_4_8 = (Group)cUnorderedGroup_4.eContents().get(8);
+		private final Keyword cCommaKeyword_4_8_0 = (Keyword)cGroup_4_8.eContents().get(0);
+		private final Assignment cMonthAssignment_4_8_1 = (Assignment)cGroup_4_8.eContents().get(1);
+		private final RuleCall cMonthMonthFieldParserRuleCall_4_8_1_0 = (RuleCall)cMonthAssignment_4_8_1.eContents().get(0);
+		private final Group cGroup_4_9 = (Group)cUnorderedGroup_4.eContents().get(9);
+		private final Keyword cCommaKeyword_4_9_0 = (Keyword)cGroup_4_9.eContents().get(0);
+		private final Assignment cIsbnAssignment_4_9_1 = (Assignment)cGroup_4_9.eContents().get(1);
+		private final RuleCall cIsbnIsbnFieldParserRuleCall_4_9_1_0 = (RuleCall)cIsbnAssignment_4_9_1.eContents().get(0);
+		private final Group cGroup_4_10 = (Group)cUnorderedGroup_4.eContents().get(10);
+		private final Keyword cCommaKeyword_4_10_0 = (Keyword)cGroup_4_10.eContents().get(0);
+		private final Assignment cNoteAssignment_4_10_1 = (Assignment)cGroup_4_10.eContents().get(1);
+		private final RuleCall cNoteNoteFieldParserRuleCall_4_10_1_0 = (RuleCall)cNoteAssignment_4_10_1.eContents().get(0);
+		private final Group cGroup_4_11 = (Group)cUnorderedGroup_4.eContents().get(11);
+		private final Keyword cCommaKeyword_4_11_0 = (Keyword)cGroup_4_11.eContents().get(0);
+		private final Assignment cUnknownsAssignment_4_11_1 = (Assignment)cGroup_4_11.eContents().get(1);
+		private final RuleCall cUnknownsUnknownFieldParserRuleCall_4_11_1_0 = (RuleCall)cUnknownsAssignment_4_11_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//Book:
+		//	"@" "book" //what about case insensitivity? 
+		//	"{" key=CiteKey //mandatory
+		//	("," author_editor=(AuthorField | EditorField) & "," title=TitleField & "," publisher=PublisherField & ","
+		//	year=YearField & ("," volume_number=(VolumeField | NumberField))? & ("," series=SeriesField)? & (","
+		//	address=AddressField)? & ("," edition=EditionField)? & ("," month=MonthField)? & ("," isbn=IsbnField)? & (","
+		//	note=NoteField)? & ("," unknowns+=UnknownField)*) "}";
+		public ParserRule getRule() { return rule; }
+
+		//"@" "book" //what about case insensitivity? 
+		//"{" key=CiteKey //mandatory
+		//("," author_editor=(AuthorField | EditorField) & "," title=TitleField & "," publisher=PublisherField & ","
+		//year=YearField & ("," volume_number=(VolumeField | NumberField))? & ("," series=SeriesField)? & (","
+		//address=AddressField)? & ("," edition=EditionField)? & ("," month=MonthField)? & ("," isbn=IsbnField)? & (","
+		//note=NoteField)? & ("," unknowns+=UnknownField)*) "}"
+		public Group getGroup() { return cGroup; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_0() { return cCommercialAtKeyword_0; }
+
+		//"book"
+		public Keyword getBookKeyword_1() { return cBookKeyword_1; }
+
+		////what about case insensitivity? 
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+
+		//key=CiteKey
+		public Assignment getKeyAssignment_3() { return cKeyAssignment_3; }
+
+		//CiteKey
+		public RuleCall getKeyCiteKeyParserRuleCall_3_0() { return cKeyCiteKeyParserRuleCall_3_0; }
+
+		//"," author_editor=(AuthorField | EditorField) & "," title=TitleField & "," publisher=PublisherField & "," year=YearField
+		//& ("," volume_number=(VolumeField | NumberField))? & ("," series=SeriesField)? & ("," address=AddressField)? & (","
+		//edition=EditionField)? & ("," month=MonthField)? & ("," isbn=IsbnField)? & ("," note=NoteField)? & (","
+		//unknowns+=UnknownField)*
+		public UnorderedGroup getUnorderedGroup_4() { return cUnorderedGroup_4; }
+
+		//"," author_editor=(AuthorField | EditorField)
+		public Group getGroup_4_0() { return cGroup_4_0; }
+
+		//","
+		public Keyword getCommaKeyword_4_0_0() { return cCommaKeyword_4_0_0; }
+
+		//author_editor=(AuthorField | EditorField)
+		public Assignment getAuthor_editorAssignment_4_0_1() { return cAuthor_editorAssignment_4_0_1; }
+
+		//AuthorField | EditorField
+		public Alternatives getAuthor_editorAlternatives_4_0_1_0() { return cAuthor_editorAlternatives_4_0_1_0; }
+
+		//AuthorField
+		public RuleCall getAuthor_editorAuthorFieldParserRuleCall_4_0_1_0_0() { return cAuthor_editorAuthorFieldParserRuleCall_4_0_1_0_0; }
+
+		//EditorField
+		public RuleCall getAuthor_editorEditorFieldParserRuleCall_4_0_1_0_1() { return cAuthor_editorEditorFieldParserRuleCall_4_0_1_0_1; }
+
+		//"," title=TitleField
+		public Group getGroup_4_1() { return cGroup_4_1; }
+
+		//","
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+
+		//title=TitleField
+		public Assignment getTitleAssignment_4_1_1() { return cTitleAssignment_4_1_1; }
+
+		//TitleField
+		public RuleCall getTitleTitleFieldParserRuleCall_4_1_1_0() { return cTitleTitleFieldParserRuleCall_4_1_1_0; }
+
+		//"," publisher=PublisherField
+		public Group getGroup_4_2() { return cGroup_4_2; }
+
+		//","
+		public Keyword getCommaKeyword_4_2_0() { return cCommaKeyword_4_2_0; }
+
+		//publisher=PublisherField
+		public Assignment getPublisherAssignment_4_2_1() { return cPublisherAssignment_4_2_1; }
+
+		//PublisherField
+		public RuleCall getPublisherPublisherFieldParserRuleCall_4_2_1_0() { return cPublisherPublisherFieldParserRuleCall_4_2_1_0; }
+
+		//"," year=YearField
+		public Group getGroup_4_3() { return cGroup_4_3; }
+
+		//","
+		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
+
+		//year=YearField
+		public Assignment getYearAssignment_4_3_1() { return cYearAssignment_4_3_1; }
+
+		//YearField
+		public RuleCall getYearYearFieldParserRuleCall_4_3_1_0() { return cYearYearFieldParserRuleCall_4_3_1_0; }
+
+		//("," volume_number=(VolumeField | NumberField))?
+		public Group getGroup_4_4() { return cGroup_4_4; }
+
+		//","
+		public Keyword getCommaKeyword_4_4_0() { return cCommaKeyword_4_4_0; }
+
+		//volume_number=(VolumeField | NumberField)
+		public Assignment getVolume_numberAssignment_4_4_1() { return cVolume_numberAssignment_4_4_1; }
+
+		//VolumeField | NumberField
+		public Alternatives getVolume_numberAlternatives_4_4_1_0() { return cVolume_numberAlternatives_4_4_1_0; }
+
+		//VolumeField
+		public RuleCall getVolume_numberVolumeFieldParserRuleCall_4_4_1_0_0() { return cVolume_numberVolumeFieldParserRuleCall_4_4_1_0_0; }
+
+		//NumberField
+		public RuleCall getVolume_numberNumberFieldParserRuleCall_4_4_1_0_1() { return cVolume_numberNumberFieldParserRuleCall_4_4_1_0_1; }
+
+		//("," series=SeriesField)?
+		public Group getGroup_4_5() { return cGroup_4_5; }
+
+		//","
+		public Keyword getCommaKeyword_4_5_0() { return cCommaKeyword_4_5_0; }
+
+		//series=SeriesField
+		public Assignment getSeriesAssignment_4_5_1() { return cSeriesAssignment_4_5_1; }
+
+		//SeriesField
+		public RuleCall getSeriesSeriesFieldParserRuleCall_4_5_1_0() { return cSeriesSeriesFieldParserRuleCall_4_5_1_0; }
+
+		//("," address=AddressField)?
+		public Group getGroup_4_6() { return cGroup_4_6; }
+
+		//","
+		public Keyword getCommaKeyword_4_6_0() { return cCommaKeyword_4_6_0; }
+
+		//address=AddressField
+		public Assignment getAddressAssignment_4_6_1() { return cAddressAssignment_4_6_1; }
+
+		//AddressField
+		public RuleCall getAddressAddressFieldParserRuleCall_4_6_1_0() { return cAddressAddressFieldParserRuleCall_4_6_1_0; }
+
+		//("," edition=EditionField)?
+		public Group getGroup_4_7() { return cGroup_4_7; }
+
+		//","
+		public Keyword getCommaKeyword_4_7_0() { return cCommaKeyword_4_7_0; }
+
+		//edition=EditionField
+		public Assignment getEditionAssignment_4_7_1() { return cEditionAssignment_4_7_1; }
+
+		//EditionField
+		public RuleCall getEditionEditionFieldParserRuleCall_4_7_1_0() { return cEditionEditionFieldParserRuleCall_4_7_1_0; }
+
+		//("," month=MonthField)?
+		public Group getGroup_4_8() { return cGroup_4_8; }
+
+		//","
+		public Keyword getCommaKeyword_4_8_0() { return cCommaKeyword_4_8_0; }
+
+		//month=MonthField
+		public Assignment getMonthAssignment_4_8_1() { return cMonthAssignment_4_8_1; }
+
+		//MonthField
+		public RuleCall getMonthMonthFieldParserRuleCall_4_8_1_0() { return cMonthMonthFieldParserRuleCall_4_8_1_0; }
+
+		//("," isbn=IsbnField)?
+		public Group getGroup_4_9() { return cGroup_4_9; }
+
+		//","
+		public Keyword getCommaKeyword_4_9_0() { return cCommaKeyword_4_9_0; }
+
+		//isbn=IsbnField
+		public Assignment getIsbnAssignment_4_9_1() { return cIsbnAssignment_4_9_1; }
+
+		//IsbnField
+		public RuleCall getIsbnIsbnFieldParserRuleCall_4_9_1_0() { return cIsbnIsbnFieldParserRuleCall_4_9_1_0; }
+
+		//("," note=NoteField)?
+		public Group getGroup_4_10() { return cGroup_4_10; }
+
+		//","
+		public Keyword getCommaKeyword_4_10_0() { return cCommaKeyword_4_10_0; }
+
+		//note=NoteField
+		public Assignment getNoteAssignment_4_10_1() { return cNoteAssignment_4_10_1; }
+
+		//NoteField
+		public RuleCall getNoteNoteFieldParserRuleCall_4_10_1_0() { return cNoteNoteFieldParserRuleCall_4_10_1_0; }
+
+		//("," unknowns+=UnknownField)*
+		public Group getGroup_4_11() { return cGroup_4_11; }
+
+		//","
+		public Keyword getCommaKeyword_4_11_0() { return cCommaKeyword_4_11_0; }
+
+		//unknowns+=UnknownField
+		public Assignment getUnknownsAssignment_4_11_1() { return cUnknownsAssignment_4_11_1; }
+
+		//UnknownField
+		public RuleCall getUnknownsUnknownFieldParserRuleCall_4_11_1_0() { return cUnknownsUnknownFieldParserRuleCall_4_11_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+	}
+
+	public class UnknownFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnknownField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeUnknownTypeParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cValueUnknownValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		
+		//UnknownField:
+		//	type=UnknownType "=" value=UnknownValue;
+		public ParserRule getRule() { return rule; }
+
+		//type=UnknownType "=" value=UnknownValue
+		public Group getGroup() { return cGroup; }
+
+		//type=UnknownType
+		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+
+		//UnknownType
+		public RuleCall getTypeUnknownTypeParserRuleCall_0_0() { return cTypeUnknownTypeParserRuleCall_0_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//value=UnknownValue
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+
+		//UnknownValue
+		public RuleCall getValueUnknownValueParserRuleCall_2_0() { return cValueUnknownValueParserRuleCall_2_0; }
+	}
+
+	public class UnknownTypeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnknownType");
+		private final Assignment cTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cTypeIDTerminalRuleCall_0 = (RuleCall)cTypeAssignment.eContents().get(0);
+		
+		//UnknownType:
+		//	type=ID;
+		public ParserRule getRule() { return rule; }
+
+		//type=ID
+		public Assignment getTypeAssignment() { return cTypeAssignment; }
+
+		//ID
+		public RuleCall getTypeIDTerminalRuleCall_0() { return cTypeIDTerminalRuleCall_0; }
+	}
+
+	public class UnknownValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnknownValue");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//UnknownValue:
+		//	value=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//value=STRING
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
 	public class CiteKeyElements extends AbstractParserRuleElementFinder {
@@ -282,52 +618,56 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AuthorField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAuthorKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
-		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
-		private final Keyword cQuotationMarkKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
-		private final RuleCall cAuthorsParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final Keyword cQuotationMarkKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final RuleCall cAuthorsParserRuleCall_1_1_1 = (RuleCall)cGroup_1_1.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Keyword cQuotationMarkKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
+		private final RuleCall cAuthorsParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final Keyword cQuotationMarkKeyword_2_0_2 = (Keyword)cGroup_2_0.eContents().get(2);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final RuleCall cAuthorsParserRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_2_1_2 = (Keyword)cGroup_2_1.eContents().get(2);
 		
 		//AuthorField:
-		//	"author = " ("\"" Authors "\"" | "{" Authors "}");
+		//	"author" "=" ("\"" Authors "\"" | "{" Authors "}");
 		public ParserRule getRule() { return rule; }
 
-		//"author = " ("\"" Authors "\"" | "{" Authors "}")
+		//"author" "=" ("\"" Authors "\"" | "{" Authors "}")
 		public Group getGroup() { return cGroup; }
 
-		//"author = "
+		//"author"
 		public Keyword getAuthorKeyword_0() { return cAuthorKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//"\"" Authors "\"" | "{" Authors "}"
-		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//"\"" Authors "\""
-		public Group getGroup_1_0() { return cGroup_1_0; }
+		public Group getGroup_2_0() { return cGroup_2_0; }
 
 		//"\""
-		public Keyword getQuotationMarkKeyword_1_0_0() { return cQuotationMarkKeyword_1_0_0; }
+		public Keyword getQuotationMarkKeyword_2_0_0() { return cQuotationMarkKeyword_2_0_0; }
 
 		//Authors
-		public RuleCall getAuthorsParserRuleCall_1_0_1() { return cAuthorsParserRuleCall_1_0_1; }
+		public RuleCall getAuthorsParserRuleCall_2_0_1() { return cAuthorsParserRuleCall_2_0_1; }
 
 		//"\""
-		public Keyword getQuotationMarkKeyword_1_0_2() { return cQuotationMarkKeyword_1_0_2; }
+		public Keyword getQuotationMarkKeyword_2_0_2() { return cQuotationMarkKeyword_2_0_2; }
 
 		//"{" Authors "}"
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1_1_0() { return cLeftCurlyBracketKeyword_1_1_0; }
+		public Keyword getLeftCurlyBracketKeyword_2_1_0() { return cLeftCurlyBracketKeyword_2_1_0; }
 
 		//Authors
-		public RuleCall getAuthorsParserRuleCall_1_1_1() { return cAuthorsParserRuleCall_1_1_1; }
+		public RuleCall getAuthorsParserRuleCall_2_1_1() { return cAuthorsParserRuleCall_2_1_1; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_1_1_2() { return cRightCurlyBracketKeyword_1_1_2; }
+		public Keyword getRightCurlyBracketKeyword_2_1_2() { return cRightCurlyBracketKeyword_2_1_2; }
 	}
 
 	public class AuthorsElements extends AbstractParserRuleElementFinder {
@@ -430,215 +770,425 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getFirstnameIDTerminalRuleCall_2_0() { return cFirstnameIDTerminalRuleCall_2_0; }
 	}
 
+	public class EditorFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EditorField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEditorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEditorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEditorSTRINGTerminalRuleCall_2_0 = (RuleCall)cEditorAssignment_2.eContents().get(0);
+		
+		//EditorField:
+		//	"editor" "=" editor=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"editor" "=" editor=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"editor"
+		public Keyword getEditorKeyword_0() { return cEditorKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//editor=STRING
+		public Assignment getEditorAssignment_2() { return cEditorAssignment_2; }
+
+		//STRING
+		public RuleCall getEditorSTRINGTerminalRuleCall_2_0() { return cEditorSTRINGTerminalRuleCall_2_0; }
+	}
+
 	public class TitleFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TitleField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTitleKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTitleAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTitleSTRINGTerminalRuleCall_1_0 = (RuleCall)cTitleAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTitleAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTitleSTRINGTerminalRuleCall_2_0 = (RuleCall)cTitleAssignment_2.eContents().get(0);
 		
 		//TitleField:
-		//	"title = " title=STRING;
+		//	"title" "=" title=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"title = " title=STRING
+		//"title" "=" title=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"title = "
+		//"title"
 		public Keyword getTitleKeyword_0() { return cTitleKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//title=STRING
-		public Assignment getTitleAssignment_1() { return cTitleAssignment_1; }
+		public Assignment getTitleAssignment_2() { return cTitleAssignment_2; }
 
 		//STRING
-		public RuleCall getTitleSTRINGTerminalRuleCall_1_0() { return cTitleSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getTitleSTRINGTerminalRuleCall_2_0() { return cTitleSTRINGTerminalRuleCall_2_0; }
+	}
+
+	public class PublisherFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PublisherField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPublisherKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPublisherAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPublisherSTRINGTerminalRuleCall_2_0 = (RuleCall)cPublisherAssignment_2.eContents().get(0);
+		
+		//PublisherField:
+		//	"publisher" "=" publisher=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"publisher" "=" publisher=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"publisher"
+		public Keyword getPublisherKeyword_0() { return cPublisherKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//publisher=STRING
+		public Assignment getPublisherAssignment_2() { return cPublisherAssignment_2; }
+
+		//STRING
+		public RuleCall getPublisherSTRINGTerminalRuleCall_2_0() { return cPublisherSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class JournalFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "JournalField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cJournalKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cJournalAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cJournalSTRINGTerminalRuleCall_1_0 = (RuleCall)cJournalAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cJournalAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cJournalSTRINGTerminalRuleCall_2_0 = (RuleCall)cJournalAssignment_2.eContents().get(0);
 		
 		//JournalField:
-		//	"journal = " journal=STRING;
+		//	"journal" "=" journal=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"journal = " journal=STRING
+		//"journal" "=" journal=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"journal = "
+		//"journal"
 		public Keyword getJournalKeyword_0() { return cJournalKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//journal=STRING
-		public Assignment getJournalAssignment_1() { return cJournalAssignment_1; }
+		public Assignment getJournalAssignment_2() { return cJournalAssignment_2; }
 
 		//STRING
-		public RuleCall getJournalSTRINGTerminalRuleCall_1_0() { return cJournalSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getJournalSTRINGTerminalRuleCall_2_0() { return cJournalSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class YearFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "YearField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cYearKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cYearAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cYearSTRINGTerminalRuleCall_1_0 = (RuleCall)cYearAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cYearAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cYearSTRINGTerminalRuleCall_2_0 = (RuleCall)cYearAssignment_2.eContents().get(0);
 		
 		//YearField:
-		//	"year = " year=STRING;
+		//	"year" "=" year=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"year = " year=STRING
+		//"year" "=" year=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"year = "
+		//"year"
 		public Keyword getYearKeyword_0() { return cYearKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//year=STRING
-		public Assignment getYearAssignment_1() { return cYearAssignment_1; }
+		public Assignment getYearAssignment_2() { return cYearAssignment_2; }
 
 		//STRING
-		public RuleCall getYearSTRINGTerminalRuleCall_1_0() { return cYearSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getYearSTRINGTerminalRuleCall_2_0() { return cYearSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class VolumeFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VolumeField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVolumeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cVolumeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVolumeSTRINGTerminalRuleCall_1_0 = (RuleCall)cVolumeAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cVolumeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVolumeSTRINGTerminalRuleCall_2_0 = (RuleCall)cVolumeAssignment_2.eContents().get(0);
 		
 		//VolumeField:
-		//	"volume = " volume=STRING;
+		//	"volume" "=" volume=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"volume = " volume=STRING
+		//"volume" "=" volume=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"volume = "
+		//"volume"
 		public Keyword getVolumeKeyword_0() { return cVolumeKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//volume=STRING
-		public Assignment getVolumeAssignment_1() { return cVolumeAssignment_1; }
+		public Assignment getVolumeAssignment_2() { return cVolumeAssignment_2; }
 
 		//STRING
-		public RuleCall getVolumeSTRINGTerminalRuleCall_1_0() { return cVolumeSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getVolumeSTRINGTerminalRuleCall_2_0() { return cVolumeSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class NumberFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumberField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNumberKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNumberAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNumberSTRINGTerminalRuleCall_1_0 = (RuleCall)cNumberAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNumberAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNumberSTRINGTerminalRuleCall_2_0 = (RuleCall)cNumberAssignment_2.eContents().get(0);
 		
 		//NumberField:
-		//	"number = " number=STRING;
+		//	"number" "=" number=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"number = " number=STRING
+		//"number" "=" number=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"number = "
+		//"number"
 		public Keyword getNumberKeyword_0() { return cNumberKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//number=STRING
-		public Assignment getNumberAssignment_1() { return cNumberAssignment_1; }
+		public Assignment getNumberAssignment_2() { return cNumberAssignment_2; }
 
 		//STRING
-		public RuleCall getNumberSTRINGTerminalRuleCall_1_0() { return cNumberSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getNumberSTRINGTerminalRuleCall_2_0() { return cNumberSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class PagesFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PagesField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPagesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPagesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPagesSTRINGTerminalRuleCall_1_0 = (RuleCall)cPagesAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPagesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPagesSTRINGTerminalRuleCall_2_0 = (RuleCall)cPagesAssignment_2.eContents().get(0);
 		
 		//PagesField:
-		//	"pages = " pages=STRING;
+		//	"pages" "=" pages=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"pages = " pages=STRING
+		//"pages" "=" pages=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"pages = "
+		//"pages"
 		public Keyword getPagesKeyword_0() { return cPagesKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//pages=STRING
-		public Assignment getPagesAssignment_1() { return cPagesAssignment_1; }
+		public Assignment getPagesAssignment_2() { return cPagesAssignment_2; }
 
 		//STRING
-		public RuleCall getPagesSTRINGTerminalRuleCall_1_0() { return cPagesSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getPagesSTRINGTerminalRuleCall_2_0() { return cPagesSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class MonthFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MonthField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMonthKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cMonthAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cMonthSTRINGTerminalRuleCall_1_0 = (RuleCall)cMonthAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cMonthAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMonthSTRINGTerminalRuleCall_2_0 = (RuleCall)cMonthAssignment_2.eContents().get(0);
 		
 		//MonthField:
-		//	"month = " month=STRING;
+		//	"month" "=" month=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"month = " month=STRING
+		//"month" "=" month=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"month = "
+		//"month"
 		public Keyword getMonthKeyword_0() { return cMonthKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//month=STRING
-		public Assignment getMonthAssignment_1() { return cMonthAssignment_1; }
+		public Assignment getMonthAssignment_2() { return cMonthAssignment_2; }
 
 		//STRING
-		public RuleCall getMonthSTRINGTerminalRuleCall_1_0() { return cMonthSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getMonthSTRINGTerminalRuleCall_2_0() { return cMonthSTRINGTerminalRuleCall_2_0; }
+	}
+
+	public class AddressFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AddressField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAddressKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cAddressAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cAddressSTRINGTerminalRuleCall_2_0 = (RuleCall)cAddressAssignment_2.eContents().get(0);
+		
+		//AddressField:
+		//	"address" "=" address=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"address" "=" address=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"address"
+		public Keyword getAddressKeyword_0() { return cAddressKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//address=STRING
+		public Assignment getAddressAssignment_2() { return cAddressAssignment_2; }
+
+		//STRING
+		public RuleCall getAddressSTRINGTerminalRuleCall_2_0() { return cAddressSTRINGTerminalRuleCall_2_0; }
+	}
+
+	public class SeriesFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SeriesField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSeriesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSeriesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSeriesSTRINGTerminalRuleCall_2_0 = (RuleCall)cSeriesAssignment_2.eContents().get(0);
+		
+		//SeriesField:
+		//	"series" "=" series=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"series" "=" series=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"series"
+		public Keyword getSeriesKeyword_0() { return cSeriesKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//series=STRING
+		public Assignment getSeriesAssignment_2() { return cSeriesAssignment_2; }
+
+		//STRING
+		public RuleCall getSeriesSTRINGTerminalRuleCall_2_0() { return cSeriesSTRINGTerminalRuleCall_2_0; }
+	}
+
+	public class EditionFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EditionField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEditionKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cEditionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEditionSTRINGTerminalRuleCall_2_0 = (RuleCall)cEditionAssignment_2.eContents().get(0);
+		
+		//EditionField:
+		//	"edition" "=" edition=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"edition" "=" edition=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"edition"
+		public Keyword getEditionKeyword_0() { return cEditionKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//edition=STRING
+		public Assignment getEditionAssignment_2() { return cEditionAssignment_2; }
+
+		//STRING
+		public RuleCall getEditionSTRINGTerminalRuleCall_2_0() { return cEditionSTRINGTerminalRuleCall_2_0; }
+	}
+
+	public class IsbnFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IsbnField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cIsbnKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIsbnAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIsbnSTRINGTerminalRuleCall_2_0 = (RuleCall)cIsbnAssignment_2.eContents().get(0);
+		
+		//IsbnField:
+		//	"isbn" "=" isbn=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"isbn" "=" isbn=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"isbn"
+		public Keyword getIsbnKeyword_0() { return cIsbnKeyword_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
+		//isbn=STRING
+		public Assignment getIsbnAssignment_2() { return cIsbnAssignment_2; }
+
+		//STRING
+		public RuleCall getIsbnSTRINGTerminalRuleCall_2_0() { return cIsbnSTRINGTerminalRuleCall_2_0; }
 	}
 
 	public class NoteFieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NoteField");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNoteKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNoteAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNoteSTRINGTerminalRuleCall_1_0 = (RuleCall)cNoteAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNoteAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNoteSTRINGTerminalRuleCall_2_0 = (RuleCall)cNoteAssignment_2.eContents().get(0);
 		
 		/// *Inproceeding:;
 		//
 		//Book:;* / NoteField:
-		//	"note = " note=STRING;
+		//	"note" "=" note=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"note = " note=STRING
+		//"note" "=" note=STRING
 		public Group getGroup() { return cGroup; }
 
-		//"note = "
+		//"note"
 		public Keyword getNoteKeyword_0() { return cNoteKeyword_0; }
 
+		//"="
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+
 		//note=STRING
-		public Assignment getNoteAssignment_1() { return cNoteAssignment_1; }
+		public Assignment getNoteAssignment_2() { return cNoteAssignment_2; }
 
 		//STRING
-		public RuleCall getNoteSTRINGTerminalRuleCall_1_0() { return cNoteSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getNoteSTRINGTerminalRuleCall_2_0() { return cNoteSTRINGTerminalRuleCall_2_0; }
 	}
 	
 	
 	private final ModelElements pModel;
 	private final BibtexEntryTypesElements pBibtexEntryTypes;
 	private final ArticleElements pArticle;
+	private final BookElements pBook;
+	private final UnknownFieldElements pUnknownField;
+	private final UnknownTypeElements pUnknownType;
+	private final UnknownValueElements pUnknownValue;
 	private final CiteKeyElements pCiteKey;
 	private final AuthorFieldElements pAuthorField;
 	private final AuthorsElements pAuthors;
 	private final FullnameElements pFullname;
+	private final EditorFieldElements pEditorField;
 	private final TitleFieldElements pTitleField;
+	private final PublisherFieldElements pPublisherField;
 	private final JournalFieldElements pJournalField;
 	private final YearFieldElements pYearField;
 	private final VolumeFieldElements pVolumeField;
 	private final NumberFieldElements pNumberField;
 	private final PagesFieldElements pPagesField;
 	private final MonthFieldElements pMonthField;
+	private final AddressFieldElements pAddressField;
+	private final SeriesFieldElements pSeriesField;
+	private final EditionFieldElements pEditionField;
+	private final IsbnFieldElements pIsbnField;
 	private final NoteFieldElements pNoteField;
 	
 	private final Grammar grammar;
@@ -653,17 +1203,27 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		this.pModel = new ModelElements();
 		this.pBibtexEntryTypes = new BibtexEntryTypesElements();
 		this.pArticle = new ArticleElements();
+		this.pBook = new BookElements();
+		this.pUnknownField = new UnknownFieldElements();
+		this.pUnknownType = new UnknownTypeElements();
+		this.pUnknownValue = new UnknownValueElements();
 		this.pCiteKey = new CiteKeyElements();
 		this.pAuthorField = new AuthorFieldElements();
 		this.pAuthors = new AuthorsElements();
 		this.pFullname = new FullnameElements();
+		this.pEditorField = new EditorFieldElements();
 		this.pTitleField = new TitleFieldElements();
+		this.pPublisherField = new PublisherFieldElements();
 		this.pJournalField = new JournalFieldElements();
 		this.pYearField = new YearFieldElements();
 		this.pVolumeField = new VolumeFieldElements();
 		this.pNumberField = new NumberFieldElements();
 		this.pPagesField = new PagesFieldElements();
 		this.pMonthField = new MonthFieldElements();
+		this.pAddressField = new AddressFieldElements();
+		this.pSeriesField = new SeriesFieldElements();
+		this.pEditionField = new EditionFieldElements();
+		this.pIsbnField = new IsbnFieldElements();
 		this.pNoteField = new NoteFieldElements();
 	}
 	
@@ -708,8 +1268,9 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	////Comments:
 	////	comment = COMMENT_SECTION
 	////;
-	//BibtexEntryTypes: // | Inproceeding | Book
-	//	Article;
+	//BibtexEntryTypes:
+	//	Article | // | Inproceeding | Book
+	//	Book;
 	public BibtexEntryTypesElements getBibtexEntryTypesAccess() {
 		return pBibtexEntryTypes;
 	}
@@ -719,17 +1280,62 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Article:
-	//	"@" ("ARTICLE" | "Article" | "article") //what about case insensitivity? 
+	//	"@" "article" //what about case insensitivity? 
 	//	"{" key=CiteKey //mandatory
-	//	("," author=AuthorField) & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
+	//	("," author=AuthorField & "," title=TitleField & "," journal=JournalField & "," year=YearField & (","
 	//	volume=VolumeField)? & ("," number=NumberField)? & ("," pages=PagesField)? & ("," month=MonthField)? & (","
-	//	note=NoteField)? "}";
+	//	note=NoteField)? & ("," unknowns+=UnknownField)*) "}";
 	public ArticleElements getArticleAccess() {
 		return pArticle;
 	}
 	
 	public ParserRule getArticleRule() {
 		return getArticleAccess().getRule();
+	}
+
+	//Book:
+	//	"@" "book" //what about case insensitivity? 
+	//	"{" key=CiteKey //mandatory
+	//	("," author_editor=(AuthorField | EditorField) & "," title=TitleField & "," publisher=PublisherField & ","
+	//	year=YearField & ("," volume_number=(VolumeField | NumberField))? & ("," series=SeriesField)? & (","
+	//	address=AddressField)? & ("," edition=EditionField)? & ("," month=MonthField)? & ("," isbn=IsbnField)? & (","
+	//	note=NoteField)? & ("," unknowns+=UnknownField)*) "}";
+	public BookElements getBookAccess() {
+		return pBook;
+	}
+	
+	public ParserRule getBookRule() {
+		return getBookAccess().getRule();
+	}
+
+	//UnknownField:
+	//	type=UnknownType "=" value=UnknownValue;
+	public UnknownFieldElements getUnknownFieldAccess() {
+		return pUnknownField;
+	}
+	
+	public ParserRule getUnknownFieldRule() {
+		return getUnknownFieldAccess().getRule();
+	}
+
+	//UnknownType:
+	//	type=ID;
+	public UnknownTypeElements getUnknownTypeAccess() {
+		return pUnknownType;
+	}
+	
+	public ParserRule getUnknownTypeRule() {
+		return getUnknownTypeAccess().getRule();
+	}
+
+	//UnknownValue:
+	//	value=STRING;
+	public UnknownValueElements getUnknownValueAccess() {
+		return pUnknownValue;
+	}
+	
+	public ParserRule getUnknownValueRule() {
+		return getUnknownValueAccess().getRule();
 	}
 
 	//CiteKey:
@@ -743,7 +1349,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AuthorField:
-	//	"author = " ("\"" Authors "\"" | "{" Authors "}");
+	//	"author" "=" ("\"" Authors "\"" | "{" Authors "}");
 	public AuthorFieldElements getAuthorFieldAccess() {
 		return pAuthorField;
 	}
@@ -772,8 +1378,18 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		return getFullnameAccess().getRule();
 	}
 
+	//EditorField:
+	//	"editor" "=" editor=STRING;
+	public EditorFieldElements getEditorFieldAccess() {
+		return pEditorField;
+	}
+	
+	public ParserRule getEditorFieldRule() {
+		return getEditorFieldAccess().getRule();
+	}
+
 	//TitleField:
-	//	"title = " title=STRING;
+	//	"title" "=" title=STRING;
 	public TitleFieldElements getTitleFieldAccess() {
 		return pTitleField;
 	}
@@ -782,8 +1398,18 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		return getTitleFieldAccess().getRule();
 	}
 
+	//PublisherField:
+	//	"publisher" "=" publisher=STRING;
+	public PublisherFieldElements getPublisherFieldAccess() {
+		return pPublisherField;
+	}
+	
+	public ParserRule getPublisherFieldRule() {
+		return getPublisherFieldAccess().getRule();
+	}
+
 	//JournalField:
-	//	"journal = " journal=STRING;
+	//	"journal" "=" journal=STRING;
 	public JournalFieldElements getJournalFieldAccess() {
 		return pJournalField;
 	}
@@ -793,7 +1419,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//YearField:
-	//	"year = " year=STRING;
+	//	"year" "=" year=STRING;
 	public YearFieldElements getYearFieldAccess() {
 		return pYearField;
 	}
@@ -803,7 +1429,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//VolumeField:
-	//	"volume = " volume=STRING;
+	//	"volume" "=" volume=STRING;
 	public VolumeFieldElements getVolumeFieldAccess() {
 		return pVolumeField;
 	}
@@ -813,7 +1439,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumberField:
-	//	"number = " number=STRING;
+	//	"number" "=" number=STRING;
 	public NumberFieldElements getNumberFieldAccess() {
 		return pNumberField;
 	}
@@ -823,7 +1449,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PagesField:
-	//	"pages = " pages=STRING;
+	//	"pages" "=" pages=STRING;
 	public PagesFieldElements getPagesFieldAccess() {
 		return pPagesField;
 	}
@@ -833,7 +1459,7 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MonthField:
-	//	"month = " month=STRING;
+	//	"month" "=" month=STRING;
 	public MonthFieldElements getMonthFieldAccess() {
 		return pMonthField;
 	}
@@ -842,10 +1468,50 @@ public class BibTeXGrammarAccess extends AbstractGrammarElementFinder {
 		return getMonthFieldAccess().getRule();
 	}
 
+	//AddressField:
+	//	"address" "=" address=STRING;
+	public AddressFieldElements getAddressFieldAccess() {
+		return pAddressField;
+	}
+	
+	public ParserRule getAddressFieldRule() {
+		return getAddressFieldAccess().getRule();
+	}
+
+	//SeriesField:
+	//	"series" "=" series=STRING;
+	public SeriesFieldElements getSeriesFieldAccess() {
+		return pSeriesField;
+	}
+	
+	public ParserRule getSeriesFieldRule() {
+		return getSeriesFieldAccess().getRule();
+	}
+
+	//EditionField:
+	//	"edition" "=" edition=STRING;
+	public EditionFieldElements getEditionFieldAccess() {
+		return pEditionField;
+	}
+	
+	public ParserRule getEditionFieldRule() {
+		return getEditionFieldAccess().getRule();
+	}
+
+	//IsbnField:
+	//	"isbn" "=" isbn=STRING;
+	public IsbnFieldElements getIsbnFieldAccess() {
+		return pIsbnField;
+	}
+	
+	public ParserRule getIsbnFieldRule() {
+		return getIsbnFieldAccess().getRule();
+	}
+
 	/// *Inproceeding:;
 	//
 	//Book:;* / NoteField:
-	//	"note = " note=STRING;
+	//	"note" "=" note=STRING;
 	public NoteFieldElements getNoteFieldAccess() {
 		return pNoteField;
 	}

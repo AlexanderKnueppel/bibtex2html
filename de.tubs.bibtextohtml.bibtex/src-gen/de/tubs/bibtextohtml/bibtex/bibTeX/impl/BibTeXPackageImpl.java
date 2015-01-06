@@ -2,21 +2,31 @@
  */
 package de.tubs.bibtextohtml.bibtex.bibTeX.impl;
 
+import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.Article;
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.Authors;
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXFactory;
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXPackage;
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes;
+import de.tubs.bibtextohtml.bibtex.bibTeX.Book;
 import de.tubs.bibtextohtml.bibtex.bibTeX.CiteKey;
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField;
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditorField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.Fullname;
+import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.JournalField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.Model;
 import de.tubs.bibtextohtml.bibtex.bibTeX.MonthField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.NoteField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.PagesField;
+import de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField;
+import de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField;
+import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField;
+import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownType;
+import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownValue;
 import de.tubs.bibtextohtml.bibtex.bibTeX.VolumeField;
 import de.tubs.bibtextohtml.bibtex.bibTeX.YearField;
 
@@ -61,6 +71,34 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass bookEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unknownFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unknownTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unknownValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass citeKeyEClass = null;
 
   /**
@@ -89,7 +127,21 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass editorFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass titleFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass publisherFieldEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,6 +184,34 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * @generated
    */
   private EClass monthFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass addressFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass seriesFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass editionFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass isbnFieldEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -238,6 +318,66 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getBibtexEntryTypes_Key()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBibtexEntryTypes_Title()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBibtexEntryTypes_Year()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBibtexEntryTypes_Month()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBibtexEntryTypes_Note()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBibtexEntryTypes_Unknowns()
+  {
+    return (EReference)bibtexEntryTypesEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getArticle()
   {
     return articleEClass;
@@ -248,7 +388,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Key()
+  public EReference getArticle_Author()
   {
     return (EReference)articleEClass.getEStructuralFeatures().get(0);
   }
@@ -258,7 +398,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Author()
+  public EReference getArticle_Journal()
   {
     return (EReference)articleEClass.getEStructuralFeatures().get(1);
   }
@@ -268,7 +408,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Title()
+  public EReference getArticle_Volume()
   {
     return (EReference)articleEClass.getEStructuralFeatures().get(2);
   }
@@ -278,7 +418,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Journal()
+  public EReference getArticle_Number()
   {
     return (EReference)articleEClass.getEStructuralFeatures().get(3);
   }
@@ -288,7 +428,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Year()
+  public EReference getArticle_Pages()
   {
     return (EReference)articleEClass.getEStructuralFeatures().get(4);
   }
@@ -298,9 +438,9 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Volume()
+  public EClass getBook()
   {
-    return (EReference)articleEClass.getEStructuralFeatures().get(5);
+    return bookEClass;
   }
 
   /**
@@ -308,9 +448,9 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Number()
+  public EReference getBook_Author_editor()
   {
-    return (EReference)articleEClass.getEStructuralFeatures().get(6);
+    return (EReference)bookEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -318,9 +458,9 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Pages()
+  public EReference getBook_Publisher()
   {
-    return (EReference)articleEClass.getEStructuralFeatures().get(7);
+    return (EReference)bookEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -328,9 +468,9 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Month()
+  public EReference getBook_Volume_number()
   {
-    return (EReference)articleEClass.getEStructuralFeatures().get(8);
+    return (EReference)bookEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -338,9 +478,109 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArticle_Note()
+  public EReference getBook_Series()
   {
-    return (EReference)articleEClass.getEStructuralFeatures().get(9);
+    return (EReference)bookEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBook_Address()
+  {
+    return (EReference)bookEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBook_Edition()
+  {
+    return (EReference)bookEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBook_Isbn()
+  {
+    return (EReference)bookEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnknownField()
+  {
+    return unknownFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnknownField_Type()
+  {
+    return (EReference)unknownFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnknownField_Value()
+  {
+    return (EReference)unknownFieldEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnknownType()
+  {
+    return unknownTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnknownType_Type()
+  {
+    return (EAttribute)unknownTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnknownValue()
+  {
+    return unknownValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnknownValue_Value()
+  {
+    return (EAttribute)unknownValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -428,6 +668,26 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getEditorField()
+  {
+    return editorFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEditorField_Editor()
+  {
+    return (EAttribute)editorFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTitleField()
   {
     return titleFieldEClass;
@@ -441,6 +701,26 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
   public EAttribute getTitleField_Title()
   {
     return (EAttribute)titleFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPublisherField()
+  {
+    return publisherFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPublisherField_Publisher()
+  {
+    return (EAttribute)publisherFieldEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -568,6 +848,86 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAddressField()
+  {
+    return addressFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAddressField_Address()
+  {
+    return (EAttribute)addressFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSeriesField()
+  {
+    return seriesFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSeriesField_Series()
+  {
+    return (EAttribute)seriesFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEditionField()
+  {
+    return editionFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEditionField_Edition()
+  {
+    return (EAttribute)editionFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIsbnField()
+  {
+    return isbnFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIsbnField_Isbn()
+  {
+    return (EAttribute)isbnFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getNoteField()
   {
     return noteFieldEClass;
@@ -617,18 +977,38 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
     createEReference(modelEClass, MODEL__BIBTEX_ENTRIES);
 
     bibtexEntryTypesEClass = createEClass(BIBTEX_ENTRY_TYPES);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__KEY);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__TITLE);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__YEAR);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__MONTH);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__NOTE);
+    createEReference(bibtexEntryTypesEClass, BIBTEX_ENTRY_TYPES__UNKNOWNS);
 
     articleEClass = createEClass(ARTICLE);
-    createEReference(articleEClass, ARTICLE__KEY);
     createEReference(articleEClass, ARTICLE__AUTHOR);
-    createEReference(articleEClass, ARTICLE__TITLE);
     createEReference(articleEClass, ARTICLE__JOURNAL);
-    createEReference(articleEClass, ARTICLE__YEAR);
     createEReference(articleEClass, ARTICLE__VOLUME);
     createEReference(articleEClass, ARTICLE__NUMBER);
     createEReference(articleEClass, ARTICLE__PAGES);
-    createEReference(articleEClass, ARTICLE__MONTH);
-    createEReference(articleEClass, ARTICLE__NOTE);
+
+    bookEClass = createEClass(BOOK);
+    createEReference(bookEClass, BOOK__AUTHOR_EDITOR);
+    createEReference(bookEClass, BOOK__PUBLISHER);
+    createEReference(bookEClass, BOOK__VOLUME_NUMBER);
+    createEReference(bookEClass, BOOK__SERIES);
+    createEReference(bookEClass, BOOK__ADDRESS);
+    createEReference(bookEClass, BOOK__EDITION);
+    createEReference(bookEClass, BOOK__ISBN);
+
+    unknownFieldEClass = createEClass(UNKNOWN_FIELD);
+    createEReference(unknownFieldEClass, UNKNOWN_FIELD__TYPE);
+    createEReference(unknownFieldEClass, UNKNOWN_FIELD__VALUE);
+
+    unknownTypeEClass = createEClass(UNKNOWN_TYPE);
+    createEAttribute(unknownTypeEClass, UNKNOWN_TYPE__TYPE);
+
+    unknownValueEClass = createEClass(UNKNOWN_VALUE);
+    createEAttribute(unknownValueEClass, UNKNOWN_VALUE__VALUE);
 
     citeKeyEClass = createEClass(CITE_KEY);
     createEAttribute(citeKeyEClass, CITE_KEY__KEY);
@@ -642,8 +1022,14 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
     createEAttribute(fullnameEClass, FULLNAME__LASTNAME);
     createEAttribute(fullnameEClass, FULLNAME__FIRSTNAME);
 
+    editorFieldEClass = createEClass(EDITOR_FIELD);
+    createEAttribute(editorFieldEClass, EDITOR_FIELD__EDITOR);
+
     titleFieldEClass = createEClass(TITLE_FIELD);
     createEAttribute(titleFieldEClass, TITLE_FIELD__TITLE);
+
+    publisherFieldEClass = createEClass(PUBLISHER_FIELD);
+    createEAttribute(publisherFieldEClass, PUBLISHER_FIELD__PUBLISHER);
 
     journalFieldEClass = createEClass(JOURNAL_FIELD);
     createEAttribute(journalFieldEClass, JOURNAL_FIELD__JOURNAL);
@@ -662,6 +1048,18 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
 
     monthFieldEClass = createEClass(MONTH_FIELD);
     createEAttribute(monthFieldEClass, MONTH_FIELD__MONTH);
+
+    addressFieldEClass = createEClass(ADDRESS_FIELD);
+    createEAttribute(addressFieldEClass, ADDRESS_FIELD__ADDRESS);
+
+    seriesFieldEClass = createEClass(SERIES_FIELD);
+    createEAttribute(seriesFieldEClass, SERIES_FIELD__SERIES);
+
+    editionFieldEClass = createEClass(EDITION_FIELD);
+    createEAttribute(editionFieldEClass, EDITION_FIELD__EDITION);
+
+    isbnFieldEClass = createEClass(ISBN_FIELD);
+    createEAttribute(isbnFieldEClass, ISBN_FIELD__ISBN);
 
     noteFieldEClass = createEClass(NOTE_FIELD);
     createEAttribute(noteFieldEClass, NOTE_FIELD__NOTE);
@@ -697,6 +1095,7 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
 
     // Add supertypes to classes
     articleEClass.getESuperTypes().add(this.getBibtexEntryTypes());
+    bookEClass.getESuperTypes().add(this.getBibtexEntryTypes());
     authorsEClass.getESuperTypes().add(this.getAuthorField());
 
     // Initialize classes and features; add operations and parameters
@@ -704,18 +1103,38 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
     initEReference(getModel_BibtexEntries(), this.getBibtexEntryTypes(), null, "BibtexEntries", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bibtexEntryTypesEClass, BibtexEntryTypes.class, "BibtexEntryTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBibtexEntryTypes_Key(), this.getCiteKey(), null, "key", null, 0, 1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBibtexEntryTypes_Title(), this.getTitleField(), null, "title", null, 0, 1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBibtexEntryTypes_Year(), this.getYearField(), null, "year", null, 0, 1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBibtexEntryTypes_Month(), this.getMonthField(), null, "month", null, 0, 1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBibtexEntryTypes_Note(), this.getNoteField(), null, "note", null, 0, 1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBibtexEntryTypes_Unknowns(), this.getUnknownField(), null, "unknowns", null, 0, -1, BibtexEntryTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(articleEClass, Article.class, "Article", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArticle_Key(), this.getCiteKey(), null, "key", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArticle_Author(), this.getAuthorField(), null, "author", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArticle_Title(), this.getTitleField(), null, "title", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArticle_Journal(), this.getJournalField(), null, "journal", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArticle_Year(), this.getYearField(), null, "year", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArticle_Volume(), this.getVolumeField(), null, "volume", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArticle_Number(), this.getNumberField(), null, "number", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArticle_Pages(), this.getPagesField(), null, "pages", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArticle_Month(), this.getMonthField(), null, "month", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getArticle_Note(), this.getNoteField(), null, "note", null, 0, 1, Article.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(bookEClass, Book.class, "Book", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBook_Author_editor(), ecorePackage.getEObject(), null, "author_editor", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Publisher(), this.getPublisherField(), null, "publisher", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Volume_number(), ecorePackage.getEObject(), null, "volume_number", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Series(), this.getSeriesField(), null, "series", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Address(), this.getAddressField(), null, "address", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Edition(), this.getEditionField(), null, "edition", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBook_Isbn(), this.getIsbnField(), null, "isbn", null, 0, 1, Book.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unknownFieldEClass, UnknownField.class, "UnknownField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getUnknownField_Type(), this.getUnknownType(), null, "type", null, 0, 1, UnknownField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnknownField_Value(), this.getUnknownValue(), null, "value", null, 0, 1, UnknownField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unknownTypeEClass, UnknownType.class, "UnknownType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnknownType_Type(), ecorePackage.getEString(), "type", null, 0, 1, UnknownType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unknownValueEClass, UnknownValue.class, "UnknownValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnknownValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, UnknownValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(citeKeyEClass, CiteKey.class, "CiteKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCiteKey_Key(), ecorePackage.getEString(), "key", null, 0, 1, CiteKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -729,8 +1148,14 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
     initEAttribute(getFullname_Lastname(), ecorePackage.getEString(), "lastname", null, 0, 1, Fullname.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFullname_Firstname(), ecorePackage.getEString(), "firstname", null, 0, 1, Fullname.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(editorFieldEClass, EditorField.class, "EditorField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEditorField_Editor(), ecorePackage.getEString(), "editor", null, 0, 1, EditorField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(titleFieldEClass, TitleField.class, "TitleField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTitleField_Title(), ecorePackage.getEString(), "title", null, 0, 1, TitleField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(publisherFieldEClass, PublisherField.class, "PublisherField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPublisherField_Publisher(), ecorePackage.getEString(), "publisher", null, 0, 1, PublisherField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(journalFieldEClass, JournalField.class, "JournalField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getJournalField_Journal(), ecorePackage.getEString(), "journal", null, 0, 1, JournalField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -749,6 +1174,18 @@ public class BibTeXPackageImpl extends EPackageImpl implements BibTeXPackage
 
     initEClass(monthFieldEClass, MonthField.class, "MonthField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMonthField_Month(), ecorePackage.getEString(), "month", null, 0, 1, MonthField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(addressFieldEClass, AddressField.class, "AddressField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAddressField_Address(), ecorePackage.getEString(), "address", null, 0, 1, AddressField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(seriesFieldEClass, SeriesField.class, "SeriesField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSeriesField_Series(), ecorePackage.getEString(), "series", null, 0, 1, SeriesField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(editionFieldEClass, EditionField.class, "EditionField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEditionField_Edition(), ecorePackage.getEString(), "edition", null, 0, 1, EditionField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(isbnFieldEClass, IsbnField.class, "IsbnField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIsbnField_Isbn(), ecorePackage.getEString(), "isbn", null, 0, 1, IsbnField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(noteFieldEClass, NoteField.class, "NoteField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getNoteField_Note(), ecorePackage.getEString(), "note", null, 0, 1, NoteField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

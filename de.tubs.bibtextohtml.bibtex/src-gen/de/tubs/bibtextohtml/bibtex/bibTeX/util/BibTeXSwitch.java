@@ -94,6 +94,35 @@ public class BibTeXSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BibTeXPackage.BOOK:
+      {
+        Book book = (Book)theEObject;
+        T result = caseBook(book);
+        if (result == null) result = caseBibtexEntryTypes(book);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.UNKNOWN_FIELD:
+      {
+        UnknownField unknownField = (UnknownField)theEObject;
+        T result = caseUnknownField(unknownField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.UNKNOWN_TYPE:
+      {
+        UnknownType unknownType = (UnknownType)theEObject;
+        T result = caseUnknownType(unknownType);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.UNKNOWN_VALUE:
+      {
+        UnknownValue unknownValue = (UnknownValue)theEObject;
+        T result = caseUnknownValue(unknownValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BibTeXPackage.CITE_KEY:
       {
         CiteKey citeKey = (CiteKey)theEObject;
@@ -123,10 +152,24 @@ public class BibTeXSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case BibTeXPackage.EDITOR_FIELD:
+      {
+        EditorField editorField = (EditorField)theEObject;
+        T result = caseEditorField(editorField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case BibTeXPackage.TITLE_FIELD:
       {
         TitleField titleField = (TitleField)theEObject;
         T result = caseTitleField(titleField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.PUBLISHER_FIELD:
+      {
+        PublisherField publisherField = (PublisherField)theEObject;
+        T result = casePublisherField(publisherField);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -169,6 +212,34 @@ public class BibTeXSwitch<T> extends Switch<T>
       {
         MonthField monthField = (MonthField)theEObject;
         T result = caseMonthField(monthField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.ADDRESS_FIELD:
+      {
+        AddressField addressField = (AddressField)theEObject;
+        T result = caseAddressField(addressField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.SERIES_FIELD:
+      {
+        SeriesField seriesField = (SeriesField)theEObject;
+        T result = caseSeriesField(seriesField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.EDITION_FIELD:
+      {
+        EditionField editionField = (EditionField)theEObject;
+        T result = caseEditionField(editionField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case BibTeXPackage.ISBN_FIELD:
+      {
+        IsbnField isbnField = (IsbnField)theEObject;
+        T result = caseIsbnField(isbnField);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -227,6 +298,70 @@ public class BibTeXSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseArticle(Article object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Book</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Book</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBook(Book object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unknown Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unknown Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnknownField(UnknownField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unknown Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unknown Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnknownType(UnknownType object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unknown Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unknown Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnknownValue(UnknownValue object)
   {
     return null;
   }
@@ -296,6 +431,22 @@ public class BibTeXSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Editor Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Editor Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditorField(EditorField object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Title Field</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -307,6 +458,22 @@ public class BibTeXSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTitleField(TitleField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Publisher Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Publisher Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePublisherField(PublisherField object)
   {
     return null;
   }
@@ -403,6 +570,70 @@ public class BibTeXSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMonthField(MonthField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Address Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Address Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAddressField(AddressField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Series Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Series Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSeriesField(SeriesField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Edition Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Edition Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditionField(EditionField object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Isbn Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Isbn Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIsbnField(IsbnField object)
   {
     return null;
   }

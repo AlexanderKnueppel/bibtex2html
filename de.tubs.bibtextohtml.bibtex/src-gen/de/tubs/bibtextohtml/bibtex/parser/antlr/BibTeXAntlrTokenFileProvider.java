@@ -10,6 +10,6 @@ public class BibTeXAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("de/tubs/bibtextohtml/bibtex/parser/antlr/internal/InternalBibTeX.tokens");
+    	return classLoader.getResourceAsStream("de/tubs/bibtextohtml/bibtex/parser/antlr/internal/InternalBibTeXParser.tokens");
 	}
 }
