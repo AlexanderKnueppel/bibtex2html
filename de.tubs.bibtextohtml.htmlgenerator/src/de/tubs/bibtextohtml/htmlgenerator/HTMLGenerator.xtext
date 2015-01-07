@@ -1,0 +1,9 @@
+grammar de.tubs.bibtextohtml.htmlgenerator.HTMLGenerator with org.eclipse.xtext.common.Terminals
+
+generate hTMLGenerator "http://www.tubs.de/bibtextohtml/htmlgenerator/HTMLGenerator"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
