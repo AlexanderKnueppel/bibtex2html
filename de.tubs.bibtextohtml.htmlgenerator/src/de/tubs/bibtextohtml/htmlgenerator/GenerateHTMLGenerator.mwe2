@@ -1,12 +1,12 @@
-module de.tubs.bibtextohtml.bibtex.GenerateBibTeX
+module de.tubs.bibtextohtml.htmlgenerator.GenerateHTMLGenerator
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/de/tubs/bibtextohtml/bibtex/BibTeX.xtext"
-var fileExtensions = "bib"
-var projectName = "de.tubs.bibtextohtml.bibtex"
+var grammarURI = "classpath:/de/tubs/bibtextohtml/htmlgenerator/HTMLGenerator.xtext"
+var fileExtensions = "htmlgen"
+var projectName = "de.tubs.bibtextohtml.htmlgenerator"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = true
 var encoding = "UTF-8"
@@ -64,16 +64,11 @@ Workflow {
     		fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
     
     		// The antlr parser generator fragment.
-//    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
-//    		//  options = {
-//    		//      backtrack = true
-//    		//  }
-//    		}
-    		fragment = parser.antlr.ex.rt.AntlrGeneratorFragment {
-			    options = {
-			        ignoreCase = true
-			    }
-			}
+    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
+    		//  options = {
+    		//      backtrack = true
+    		//  }
+    		}
     
     		// Xtend-based API for validation
     		fragment = validation.ValidatorFragment auto-inject {
@@ -110,12 +105,7 @@ Workflow {
     		fragment = contentAssist.ContentAssistFragment auto-inject {}
     
     		// generates a more lightweight Antlr parser and lexer tailored for content assist
-    		//fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
-    		fragment = parser.antlr.ex.ca.ContentAssistParserGeneratorFragment {
-			    options = {
-			        ignoreCase = true
-			    }
-			}
+    		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
     
     		// generates junit test support classes into Generator#pathTestProject
     		fragment = junit.Junit4Fragment auto-inject {}

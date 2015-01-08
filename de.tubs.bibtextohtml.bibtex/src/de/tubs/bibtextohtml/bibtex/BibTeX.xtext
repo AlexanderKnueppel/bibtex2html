@@ -5,68 +5,128 @@ generate bibTeX "http://www.tubs.de/bibtextohtml/bibtex/BibTeX"
 Model:
 	(BibtexEntries+=BibtexEntryTypes)*;
 	
-//terminal COMMENT_SECTION  : !('@' .* '}');
-//Comments:
-//	comment = COMMENT_SECTION
-//;
-	
+terminal SL_COMMENT : '%' !('\n'|'\r')* ('\r'? '\n')?;
+
 BibtexEntryTypes:
-	Article// | Inproceeding | Book
+	Article | Book // | Inproceeding | Book
 ;
 
 Article:
-'@' ('ARTICLE' | 'Article' | 'article') '{' //what about case insensitivity? 
+'@' 'article' '{' 
 key = CiteKey
 //mandatory
-((',')author = AuthorField)
-&((',')title = TitleField)
-&((',')journal = JournalField)
-&((',')year = YearField)	
-&((',')volume = VolumeField)?
-&((',')number = NumberField)?
-&((',')pages = PagesField)?
-&((',')month = MonthField)?	
-&((',')note = NoteField)?	
+((','author = AuthorField)
+&(','title = TitleField)
+&(','journal = JournalField)
+&(','year = YearField)	
+//optional
+&(','volume = VolumeField)?
+&(','number = NumberField)?
+&(','pages = PagesField)?
+&(','month = MonthField)?	
+&(','note = NoteField)? 
+&(','unknowns += UnknownField)* //Unknown doesn't really work, we need a workaround
+)
 '}';
 
+Book:
+'@' 'book' '{'  
+key = CiteKey
+//mandatory
+((','author_editor = (AuthorField | EditorField))
+&(','title = TitleField)
+&(','publisher = PublisherField)
+&(','year = YearField)	
+//optional
+&(','volume_number = (VolumeField | NumberField))?
+&(','series = SeriesField)?
+&(','address = AddressField)?
+&(','edition = EditionField)?
+&(','month = MonthField)?
+&(','isbn = IsbnField)?	
+&(','note = NoteField)?
+&(','unknowns += UnknownField)*)
+'}';
+
+UnknownField:
+	type = UnknownType '=' value = UnknownValue
+;
+UnknownType:
+	type = ID
+;
+UnknownValue:
+	value = STRING
+;
+
+
+// Values for various combinations
+FieldValue:
+	STRING | '{' (ID|'('|')'|'"'|"'"|'.'|'-'|'_'|'//'|';'|':'|'\\' | FieldValue | INT)* '}'
+;
+FieldValuePlusInt:
+	FieldValue | INT
+;
+FieldValuePlusId:
+	FieldValue | ID
+;
+
 CiteKey:
-	key = ID
+	key = ID (':'|'-'|ID|INT)*
 ;
 AuthorField:
-	'author = ' ('"' Authors '"' | '{' Authors '}')
+	'author' '=' (singleauthor?= (Author) | '{' Authors '}')
+;
+Author:
+	author = STRING //needed to be parsed seperatly
 ;
 Authors:
 	names+=Fullname
 	('and' names+=Fullname)*
 ;
 Fullname:
-	(lastname=ID ',' firstname=ID | firstname=ID lastname=ID | firstname=ID)
+	(lastname=ID ',' firstname=ID | (firstname=ID)? lastname=ID)
 ;
-
-
+EditorField:
+	'editor' '=' editor = FieldValue
+;
 TitleField:
-	'title = ' title = STRING 
+	'title' '=' title = FieldValue 
+;
+PublisherField:
+	'publisher' '=' publisher = FieldValue
 ;
 JournalField:
-	'journal = ' journal = STRING 
+	'journal' '=' journal = FieldValue 
 ;
 YearField:
-	'year = ' year = STRING 
+	'year' '=' year = FieldValuePlusInt
 ;
 VolumeField:
-	'volume = ' volume = STRING 
+	'volume' '=' volume = FieldValuePlusInt
 ;
 NumberField:
-	'number = ' number = STRING 
+	'number' '=' number = FieldValuePlusInt
 ;
 PagesField:
-	'pages = ' pages = STRING 
+	'pages' '=' pages = FieldValue
 ;
 MonthField:
-	'month = ' month = STRING 
+	'month' '=' month = FieldValuePlusId 
+;
+AddressField:
+	'address' '=' address = FieldValue 
+;
+SeriesField:
+	'series' '=' series = FieldValue 
+;
+EditionField:
+	'edition' '=' edition = FieldValue 
+;
+IsbnField:
+	'isbn' '=' isbn = FieldValue 
 ;
 NoteField:
-	'note = ' note = STRING 
+	'note' '=' note = FieldValue 
 ;
 
 /*Inproceeding:;

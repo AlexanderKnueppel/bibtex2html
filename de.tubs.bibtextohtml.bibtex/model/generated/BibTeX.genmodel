@@ -10,18 +10,39 @@
     <genClasses ecoreClass="BibTeX.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Model/BibtexEntries"/>
     </genClasses>
-    <genClasses ecoreClass="BibTeX.ecore#//BibtexEntryTypes"/>
+    <genClasses ecoreClass="BibTeX.ecore#//BibtexEntryTypes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/year"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/month"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/note"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//BibtexEntryTypes/unknowns"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//Article">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/author"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/title"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/journal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/year"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/volume"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/number"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/pages"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/month"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Article/note"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//Book">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/author_editor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/publisher"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/volume_number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/series"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/edition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/isbn"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//UnknownField">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//UnknownField/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//UnknownField/value"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//UnknownType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//UnknownType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//UnknownValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//UnknownValue/value"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//CiteKey">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//CiteKey/key"/>
@@ -34,8 +55,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//Fullname/lastname"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//Fullname/firstname"/>
     </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//EditorField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//EditorField/editor"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//TitleField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//TitleField/title"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//PublisherField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//PublisherField/publisher"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//JournalField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//JournalField/journal"/>
@@ -54,6 +81,18 @@
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//MonthField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//MonthField/month"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//AddressField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//AddressField/address"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//SeriesField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//SeriesField/series"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//EditionField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//EditionField/edition"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//IsbnField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//IsbnField/isbn"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//NoteField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//NoteField/note"/>
