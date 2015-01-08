@@ -8,7 +8,7 @@ Model:
 terminal SL_COMMENT : '%' !('\n'|'\r')* ('\r'? '\n')?;
 
 BibtexEntryTypes:
-	Article | Book // | Inproceeding | Book
+	Article | Book | Inproceedings //| Book
 ;
 
 Article:
@@ -48,14 +48,35 @@ key = CiteKey
 &(','unknowns += UnknownField)*)
 '}';
 
+Inproceedings:
+'@' 'inproceedings' '{'  
+key = CiteKey
+//mandatory
+((','author = AuthorField)
+&(','title = TitleField)
+&(','booktitle = BooktitleField)
+&(','year = YearField)	
+//optional
+&(','editor = EditorField)?
+&(','volume_number = (VolumeField | NumberField))?
+&(','series = SeriesField)?
+&(','pages = PagesField)?
+&(','address = AddressField)?
+&(','month = MonthField)?
+&(','organization = OrganizationField)?
+&(','publisher = PublisherField)?
+&(','note = NoteField)?
+&(','unknowns += UnknownField)*)
+'}';
+
 UnknownField:
-	type = UnknownType '=' value = UnknownValue
+	type = UnknownType '=' value = FieldValue
 ;
 UnknownType:
 	type = ID
 ;
 UnknownValue:
-	value = STRING
+	value = FieldValue 
 ;
 
 
@@ -92,8 +113,14 @@ EditorField:
 TitleField:
 	'title' '=' title = FieldValue 
 ;
+BooktitleField:
+	'booktitle' '=' booktitle = FieldValue 
+;
 PublisherField:
 	'publisher' '=' publisher = FieldValue
+;
+OrganizationField:
+	'organization' '=' organization = FieldValue
 ;
 JournalField:
 	'journal' '=' journal = FieldValue 
@@ -129,6 +156,6 @@ NoteField:
 	'note' '=' note = FieldValue 
 ;
 
-/*Inproceeding:;
+/*
 
 Book:;*/
