@@ -47,7 +47,12 @@
     <genClasses ecoreClass="BibTeX.ecore#//CiteKey">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//CiteKey/key"/>
     </genClasses>
-    <genClasses ecoreClass="BibTeX.ecore#//AuthorField"/>
+    <genClasses ecoreClass="BibTeX.ecore#//AuthorField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//AuthorField/singleauthor"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//Author">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//Author/author"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//Authors">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Authors/names"/>
     </genClasses>

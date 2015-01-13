@@ -3,6 +3,7 @@
 	<name>de.tubs.bibtextohtml.htmlgenerator</name>
 	<comment></comment>
 	<projects>
+		<project>de.tubs.bibtextohtml.bibtex</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

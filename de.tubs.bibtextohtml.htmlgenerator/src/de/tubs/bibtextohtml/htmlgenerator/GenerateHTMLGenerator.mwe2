@@ -17,7 +17,13 @@ Workflow {
     	platformUri = "${runtimeProject}/.."
     	// The following two lines can be removed, if Xbase is not used.
     	registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+    	//registerGeneratedEPackage = "de.tubs.bibtextohtml.bibtex.BibTeXPackage" //doesn't work
     	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+    	registerGenModelFile = "platform:/resource/de.tubs.bibtextohtml.bibtex/model/generated/BibTeX.genmodel"
+    	
+    	// BibTeX
+    	registerEcoreFile = "platform:/resource/de.tubs.bibtextohtml.bibtex/model/generated/BibTeX.ecore"
+//    	registerGenModelFile = "platform:/resource/de.tubs.bibtextohtml.bibtex/model/generated/BibTeX.genmodel"
     }
     
     component = DirectoryCleaner {
@@ -44,6 +50,8 @@ Workflow {
     	projectNameUi = "${projectName}.ui"
     	encoding = encoding
     	language = auto-inject {
+    		//loadedResource =  "platform:/resource/de.tubs.bibtextohtml.bibtex/model/generated/BibTeX.ecore"
+ 
     		uri = grammarURI
     
     		// Java API to access grammar elements (required by several other fragments)

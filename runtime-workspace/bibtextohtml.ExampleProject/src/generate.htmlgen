@@ -1,0 +1,38 @@
+
+module thisistest {
+	import "library.bib"
+	// Options
+	prefix = "B2H-"
+	// Styles
+	"Article" {
+		font-style: bold;
+		font-color: red;
+		font-type: "Arial";
+	}
+}
+module thisistest2 {
+	import "library.bib"
+	// Options
+	prefix = "B2H-"
+	// Styles
+	"Article" {
+		font-style: bold;
+		font-color: red;
+		font-type: "Arial";
+	}
+}
+module thisistest3 {
+	import "library.bib"
+	// Options
+	prefix = "B2H-"
+	// Styles
+	"Article" {
+		font-style: bold;
+		font-color: red;
+		font-type: "Arial";
+	}
+}
+
+run thisistest
+run thisistest2
+run thisistest3

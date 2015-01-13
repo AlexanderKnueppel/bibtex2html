@@ -2,8 +2,62 @@ grammar de.tubs.bibtextohtml.htmlgenerator.HTMLGenerator with org.eclipse.xtext.
 
 generate hTMLGenerator "http://www.tubs.de/bibtextohtml/htmlgenerator/HTMLGenerator"
 
-Model:
-	greetings+=Greeting*;
+import "http://www.tubs.de/bibtextohtml/bibtex/BibTeX" as bibtex
+
+HTMLGeneratorModel:
+	(elements+=ModuleDeclaration)* (modulesToRun+=RunModule)*;
 	
-Greeting:
-	'Hello' name=ID '!';
+AbstractElement:
+   Option | Styles | Import
+;
+
+RunModule:
+	'run' module = [ModuleDeclaration]
+;
+
+ModuleDeclaration:
+  'module' name = AllowedName '{'
+    (elements += AbstractElement)*
+  '}'
+;
+
+AllowedName:
+  ID ('.' ID)*
+;
+
+Import:
+  'import' (importBibtex = STRING | importAll?= '*')
+;
+
+Option:
+	PrefixOption //| OutputNameOption | SortByOption | SpecificDesignOption
+;
+
+PrefixOption:
+	'prefix' '=' prefix = STRING
+;
+
+enum FontStyle:
+	BOLD = 'bold' | ITALIC = 'italic' | UNDERLINED = 'underlined'
+;
+FontColorSemantic:
+	colorsemantic?=('red' | 'green' | 'blue' /* and some more */) 
+;
+FontColorHexcode hidden():
+	colorhexcode?= '#' ((INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f') 
+						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
+						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
+						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
+						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
+						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'))
+;
+
+Styles:
+	(bibtexType = STRING | wildcard?='*') '{' 
+		("font-style" ":" fontStyle=(FontStyle) ";")? 
+		& ("font-color" ":" fontColor=(FontColorSemantic | FontColorHexcode) ";")? 
+		& ("font-type" ":" fontType=STRING ";")? 
+	'}' 
+;
+
+									  
