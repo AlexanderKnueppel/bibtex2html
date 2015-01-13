@@ -8,7 +8,7 @@ Model:
 terminal SL_COMMENT : '%' !('\n'|'\r')* ('\r'? '\n')?;
 
 BibtexEntryTypes:
-	Article | Book | Inproceedings //| Book
+	Article | Book | Inproceedings //| Journal
 ;
 
 Article:
