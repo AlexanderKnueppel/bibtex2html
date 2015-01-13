@@ -4,158 +4,188 @@ generate bibTeX "http://www.tubs.de/bibtextohtml/bibtex/BibTeX"
 
 Model:
 	(BibtexEntries+=BibtexEntryTypes)*;
-	
-terminal SL_COMMENT : '%' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal SL_COMMENT:
+	'%' !('\n' | '\r')* ('\r'? '\n')?;
 
 BibtexEntryTypes:
-	Article | Book | Inproceedings //| Journal
-;
+	Article | Book | Conference | Inproceedings | Manual;
 
 Article:
-'@' 'article' '{' 
-key = CiteKey
-//mandatory
-((','author = AuthorField)
-&(','title = TitleField)
-&(','journal = JournalField)
-&(','year = YearField)	
-//optional
-&(','volume = VolumeField)?
-&(','number = NumberField)?
-&(','pages = PagesField)?
-&(','month = MonthField)?	
-&(','note = NoteField)? 
-&(','unknowns += UnknownField)* //Unknown doesn't really work, we need a workaround
+	'@' 'article' '{'
+	key=CiteKey
+	//mandatory
+	((',' author=AuthorField)
+	& (',' title=TitleField)
+	& (',' journal=JournalField)
+	& (',' year=YearField)
+	//optional
+	& (',' volume=VolumeField)?
+	& (',' number=NumberField)?
+	& (',' pages=PagesField)?
+	& (',' month=MonthField)?
+	& (',' note=NoteField)?
+	& (',' unknowns+=UnknownField)* //Unknown doesn't really work, we need a workaround
 )
-'}';
+	'}';
 
 Book:
-'@' 'book' '{'  
-key = CiteKey
-//mandatory
-((','author_editor = (AuthorField | EditorField))
-&(','title = TitleField)
-&(','publisher = PublisherField)
-&(','year = YearField)	
-//optional
-&(','volume_number = (VolumeField | NumberField))?
-&(','series = SeriesField)?
-&(','address = AddressField)?
-&(','edition = EditionField)?
-&(','month = MonthField)?
-&(','isbn = IsbnField)?	
-&(','note = NoteField)?
-&(','unknowns += UnknownField)*)
-'}';
+	'@' 'book' '{'
+	key=CiteKey
+	//mandatory
+	((',' author_editor=(AuthorField | EditorField))
+	& (',' title=TitleField)
+	& (',' publisher=PublisherField)
+	& (',' year=YearField)
+	//optional
+	& (',' volume_number=(VolumeField | NumberField))?
+	& (',' series=SeriesField)?
+	& (',' address=AddressField)?
+	& (',' edition=EditionField)?
+	& (',' month=MonthField)?
+	& (',' isbn=IsbnField)?
+	& (',' note=NoteField)?
+	& (',' unknowns+=UnknownField)*)
+	'}';
+
+Conference:
+	'@' 'conference' '{'
+	key=CiteKey
+	//mandatory
+	((',' author=AuthorField)
+	& (',' title=TitleField)
+	& (',' booktitle=BooktitleField)
+	& (',' year=YearField)
+	//optional
+	& (',' editor=EditorField)?
+	& (',' volume_number=(VolumeField | NumberField))?
+	& (',' series=SeriesField)?
+	& (',' pages=PagesField)?
+	& (',' address=AddressField)?
+	& (',' month=MonthField)?
+	& (',' organization=OrganizationField)?
+	& (',' publisher=PublisherField)?
+	& (',' note=NoteField)?
+	& (',' unknowns+=UnknownField)*)
+	'}';
 
 Inproceedings:
-'@' 'inproceedings' '{'  
-key = CiteKey
-//mandatory
-((','author = AuthorField)
-&(','title = TitleField)
-&(','booktitle = BooktitleField)
-&(','year = YearField)	
-//optional
-&(','editor = EditorField)?
-&(','volume_number = (VolumeField | NumberField))?
-&(','series = SeriesField)?
-&(','pages = PagesField)?
-&(','address = AddressField)?
-&(','month = MonthField)?
-&(','organization = OrganizationField)?
-&(','publisher = PublisherField)?
-&(','note = NoteField)?
-&(','unknowns += UnknownField)*)
-'}';
+	'@' 'inproceedings' '{'
+	key=CiteKey
+	//mandatory
+	((',' author=AuthorField)
+	& (',' title=TitleField)
+	& (',' booktitle=BooktitleField)
+	& (',' year=YearField)
+	//optional
+	& (',' editor=EditorField)?
+	& (',' volume_number=(VolumeField | NumberField))?
+	& (',' series=SeriesField)?
+	& (',' pages=PagesField)?
+	& (',' address=AddressField)?
+	& (',' month=MonthField)?
+	& (',' organization=OrganizationField)?
+	& (',' publisher=PublisherField)?
+	& (',' note=NoteField)?
+	& (',' unknowns+=UnknownField)*)
+	'}';
+
+Manual:
+	'@' 'manual' '{'
+	key=CiteKey
+	//mandatory
+	& (',' address=AddressField)
+	& (',' title=TitleField)
+	& (',' year=YearField)
+	//optional
+	((',' author=AuthorField)?
+	& (',' organization=OrganizationField)?
+	& (',' edition=EditionField)?
+	& (',' month=MonthField)?
+	& (',' note=NoteField)?
+	& (',' unknowns+=UnknownField)*)
+	'}';
 
 UnknownField:
-	type = UnknownType '=' value = FieldValue
-;
+	type=UnknownType '=' value=FieldValue;
+
 UnknownType:
-	type = ID
-;
+	type=ID;
+
 UnknownValue:
-	value = FieldValue 
-;
+	value=FieldValue;
 
-
-// Values for various combinations
+	// Values for various combinations
 FieldValue:
-	STRING | '{' (ID|'('|')'|'"'|"'"|'.'|'-'|'_'|'//'|';'|':'|'\\' | FieldValue | INT)* '}'
-;
+	STRING | '{' (ID | '(' | ')' | '"' | "'" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | FieldValue | INT)* '}';
+
 FieldValuePlusInt:
-	FieldValue | INT
-;
+	FieldValue | INT;
+
 FieldValuePlusId:
-	FieldValue | ID
-;
+	FieldValue | ID;
 
 CiteKey:
-	key = ID (':'|'-'|ID|INT)*
-;
+	key=ID (':' | '-' | ID | INT)*;
+
 AuthorField:
-	'author' '=' (singleauthor?= (Author) | '{' Authors '}')
-;
+	'author' '=' (singleauthor?=(Author) | '{' Authors '}');
+
 Author:
-	author = STRING //needed to be parsed seperatly
+	author=STRING //needed to be parsed seperatly
 ;
+
 Authors:
 	names+=Fullname
-	('and' names+=Fullname)*
-;
+	('and' names+=Fullname)*;
+
 Fullname:
-	(lastname=ID ',' firstname=ID | (firstname=ID)? lastname=ID)
-;
+	(lastname=ID ',' firstname=ID | (firstname=ID)? lastname=ID);
+
 EditorField:
-	'editor' '=' editor = FieldValue
-;
+	'editor' '=' editor=FieldValue;
+
 TitleField:
-	'title' '=' title = FieldValue 
-;
+	'title' '=' title=FieldValue;
+
 BooktitleField:
-	'booktitle' '=' booktitle = FieldValue 
-;
+	'booktitle' '=' booktitle=FieldValue;
+
 PublisherField:
-	'publisher' '=' publisher = FieldValue
-;
+	'publisher' '=' publisher=FieldValue;
+
 OrganizationField:
-	'organization' '=' organization = FieldValue
-;
+	'organization' '=' organization=FieldValue;
+
 JournalField:
-	'journal' '=' journal = FieldValue 
-;
+	'journal' '=' journal=FieldValue;
+
 YearField:
-	'year' '=' year = FieldValuePlusInt
-;
+	'year' '=' year=FieldValuePlusInt;
+
 VolumeField:
-	'volume' '=' volume = FieldValuePlusInt
-;
+	'volume' '=' volume=FieldValuePlusInt;
+
 NumberField:
-	'number' '=' number = FieldValuePlusInt
-;
+	'number' '=' number=FieldValuePlusInt;
+
 PagesField:
-	'pages' '=' pages = FieldValue
-;
+	'pages' '=' pages=FieldValue;
+
 MonthField:
-	'month' '=' month = FieldValuePlusId 
-;
+	'month' '=' month=FieldValuePlusId;
+
 AddressField:
-	'address' '=' address = FieldValue 
-;
+	'address' '=' address=FieldValue;
+
 SeriesField:
-	'series' '=' series = FieldValue 
-;
+	'series' '=' series=FieldValue;
+
 EditionField:
-	'edition' '=' edition = FieldValue 
-;
+	'edition' '=' edition=FieldValue;
+
 IsbnField:
-	'isbn' '=' isbn = FieldValue 
-;
+	'isbn' '=' isbn=FieldValue;
+
 NoteField:
-	'note' '=' note = FieldValue 
-;
-
-/*
-
-Book:;*/
+	'note' '=' note=FieldValue;
