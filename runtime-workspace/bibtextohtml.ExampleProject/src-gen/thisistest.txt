@@ -1,2 +1,21 @@
-einfach ein test
-thisistest
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+.B2H- {
+	font-style: BOLD;
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@7625f4a7 (colorsemantic: true);
+	font-type: Arial;
+}
+	</style>
+<meta charset="UTF-8">
+<title>library.bib</title>
+</head>
+
+<body>
+library.bib
+library2.bib
+</body>
+
+</html>
+

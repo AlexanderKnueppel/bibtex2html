@@ -1,6 +1,7 @@
 
 module thisistest {
 	import "library.bib"
+	import "library2.bib"
 	// Options
 	prefix = "B2H-"
 	// Styles
@@ -15,7 +16,7 @@ module thisistest2 {
 	// Options
 	prefix = "B2H-"
 	// Styles
-	"Article" {
+	author {
 		font-style: bold;
 		font-color: red;
 		font-type: "Arial";
@@ -26,7 +27,7 @@ module thisistest3 {
 	// Options
 	prefix = "B2H-"
 	// Styles
-	"Article" {
+	title {
 		font-style: bold;
 		font-color: red;
 		font-type: "Arial";

@@ -11,6 +11,11 @@ import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.ResourcesPlugin
 import java.net.URI
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.PrefixOption
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import com.google.inject.Inject
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Import
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Styles
 
 /**
  * Generates code from your model files on save.
@@ -19,10 +24,39 @@ import java.net.URI
  */
 class HTMLGeneratorGenerator implements IGenerator {
 	def compile(RunModule module) '''
-		einfach ein test
-		«module.getModule().name»
+		«var pre = (module.getModule().elements.filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<style>
+			«FOR styles :module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
+		      «styles.printStyles(pre)»
+		    «ENDFOR»
+			</style>
+		<meta charset="UTF-8">
+		<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
+		</head>
+		
+		<body>
+		«FOR imp :module.getModule().eAllContents().toIterable().filter(typeof(Import))»
+	      «imp.compile»
+	    «ENDFOR»
+		</body>
+		
+		</html>
+		
+	'''
+	def compile(Import imp) '''
+	  «imp.importBibtex»
 	'''
 	
+	def printStyles(Styles styles, String pre) '''
+		.«pre»«styles.attributeType» {
+			font-style: «styles.fontStyle.getName()»;
+			font-color: «styles.fontColor»;
+			font-type: «styles.fontType»;
+		}
+	'''
 	//public HTMLGeneratorGenerator() {}
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {

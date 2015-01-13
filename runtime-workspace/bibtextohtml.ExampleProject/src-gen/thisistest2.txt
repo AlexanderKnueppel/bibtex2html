@@ -1,2 +1,20 @@
-einfach ein test
-thisistest2
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+.B2H-author {
+	font-style: BOLD;
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@4446b235 (colorsemantic: true);
+	font-type: Arial;
+}
+	</style>
+<meta charset="UTF-8">
+<title>library.bib</title>
+</head>
+
+<body>
+library.bib
+</body>
+
+</html>
+

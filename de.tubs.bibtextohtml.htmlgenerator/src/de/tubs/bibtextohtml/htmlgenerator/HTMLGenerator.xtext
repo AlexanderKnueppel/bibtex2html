@@ -53,11 +53,15 @@ FontColorHexcode hidden():
 ;
 
 Styles:
-	(bibtexType = STRING | wildcard?='*') '{' 
+	(attributeType = AttributeSet | wildcard?='*') '{' 
 		("font-style" ":" fontStyle=(FontStyle) ";")? 
 		& ("font-color" ":" fontColor=(FontColorSemantic | FontColorHexcode) ";")? 
 		& ("font-type" ":" fontType=STRING ";")? 
 	'}' 
+;
+
+AttributeSet:
+	"author" | "title" | "year" | "location"
 ;
 
 									  
