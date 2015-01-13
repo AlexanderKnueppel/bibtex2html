@@ -275,12 +275,12 @@
   </extension>
    
    <extension point="org.eclipse.ui.menus">
-    <menuContribution locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
+    <menuContribution locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu">
         <command
             commandId="de.tubs.bibtextohtml.htmlgenerator.ui.handler.GenerationCommand"
             style="push">
             <visibleWhen
-                  checkEnabled="false">
+                  checkEnabled="false"> 
                   <iterate>
        <adapt type="org.eclipse.core.resources.IResource">
           <test property="org.eclipse.core.resources.name" 

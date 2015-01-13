@@ -34,9 +34,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/edition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/isbn"/>
     </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//Inproceedings">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/author"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/booktitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/editor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/volume_number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/series"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/pages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/organization"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/publisher"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//UnknownField">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//UnknownField/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//UnknownField/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//UnknownField/value"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//UnknownType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//UnknownType/type"/>
@@ -66,8 +77,14 @@
     <genClasses ecoreClass="BibTeX.ecore#//TitleField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//TitleField/title"/>
     </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//BooktitleField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//BooktitleField/booktitle"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//PublisherField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//PublisherField/publisher"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//OrganizationField">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//OrganizationField/organization"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//JournalField">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BibTeX.ecore#//JournalField/journal"/>
