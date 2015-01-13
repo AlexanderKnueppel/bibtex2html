@@ -48,6 +48,26 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="isbn" eType="#//IsbnField"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Conference" eSuperTypes="#//BibtexEntryTypes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" eType="#//AuthorField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booktitle" eType="#//BooktitleField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editor" eType="#//EditorField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volume_number" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="series" eType="#//SeriesField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pages" eType="#//PagesField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="address" eType="#//AddressField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="organization" eType="#//OrganizationField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" eType="#//PublisherField"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inproceedings" eSuperTypes="#//BibtexEntryTypes">
     <eStructuralFeatures xsi:type="ecore:EReference" name="author" eType="#//AuthorField"
         containment="true"/>
@@ -66,6 +86,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="organization" eType="#//OrganizationField"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publisher" eType="#//PublisherField"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Manual" eSuperTypes="#//BibtexEntryTypes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="address" eType="#//AddressField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="author" eType="#//AuthorField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="organization" eType="#//OrganizationField"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edition" eType="#//EditionField"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnknownField">
@@ -145,4 +175,3 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="note" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
-

@@ -34,6 +34,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/edition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Book/isbn"/>
     </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//Conference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/author"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/booktitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/editor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/volume_number"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/series"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/pages"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/organization"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Conference/publisher"/>
+    </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//Inproceedings">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/author"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/booktitle"/>
@@ -44,6 +55,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/address"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/organization"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Inproceedings/publisher"/>
+    </genClasses>
+    <genClasses ecoreClass="BibTeX.ecore#//Manual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Manual/address"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Manual/author"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Manual/organization"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//Manual/edition"/>
     </genClasses>
     <genClasses ecoreClass="BibTeX.ecore#//UnknownField">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BibTeX.ecore#//UnknownField/type"/>
