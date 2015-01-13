@@ -64,7 +64,7 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
 //                }
 //            }
 //     
-//            final EclipseResourceFileSystemAccess2 fsa = fileAccessProvider.get();
+//            final JavaIoFileSystemAccess fsa = fileAccessProvider.get();
 //            fsa.setOutputPath(srcGenFolder.getFullPath().toString());
 //            fsa.generateFile("test.txt", "test");
 //             
@@ -105,7 +105,7 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
                 }
  
                 final JavaIoFileSystemAccess fsa = fileAccessProvider.get();
-                fsa.setOutputPath(srcGenFolder.getFullPath().toString());
+                fsa.setOutputPath(srcGenFolder.getRawLocation().toOSString());
                 Guice.createInjector(new AbstractGenericModule() {
 
                     public Class<? extends IEncodingProvider> bindIEncodingProvider() {
@@ -113,7 +113,7 @@ public class GenerationHandler extends AbstractHandler implements IHandler {
                     }
 
                 }).injectMembers(fsa);
-                fsa.generateFile("test.txt", "test");
+                //fsa.generateFile("C:\\test.txt", "test");
                 
                 URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
                 ResourceSet rs = resourceSetProvider.get(project);
