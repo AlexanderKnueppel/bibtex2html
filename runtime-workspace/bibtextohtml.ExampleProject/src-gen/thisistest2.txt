@@ -4,7 +4,7 @@
 	<style>
 .B2H-author {
 	font-style: BOLD;
-	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@4446b235 (colorsemantic: true);
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@3fe19a69 (colorsemantic: true);
 	font-type: Arial;
 }
 	</style>

@@ -21,8 +21,8 @@ import com.google.inject.Injector;
 
 public class BibParser {
 
-//    @Inject
-//    private IParser parser;
+    @Inject
+    private IParser parser;
 // 
     public BibParser() {
         setupParser();
@@ -47,7 +47,7 @@ public class BibParser {
 //        }
 //        return result.getRootASTElement();
 //    }
-	
+//	
     @Inject
     private XtextResourceSet resourceSet;
  
@@ -66,7 +66,7 @@ public class BibParser {
      */
     public EObject parse(InputStream in) throws IOException
     {
-        Resource resource = resourceSet.createResource(URI.createURI("dummy:/inmemory.ext"));
+        Resource resource = resourceSet.createResource(URI.createURI("dummy:/inmemory.bib"));
         resource.load(in, resourceSet.getLoadOptions());
         return resource.getContents().get(0);
     }

@@ -16,6 +16,26 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider
 import com.google.inject.Inject
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Import
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Styles
+import org.eclipse.core.resources.IProject
+import org.eclipse.core.resources.IFolder
+import org.eclipse.core.runtime.Path
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.charset.Charset
+import java.io.FileNotFoundException
+import de.tubs.bibtextohtml.bibtex.bibTeX.Model
+import de.tubs.bibtextohtml.bibtex.BibParser
+import org.eclipse.xtext.util.StringInputStream
+import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes
+import java.io.InputStream
+import java.io.InputStreamReader
+import de.tubs.bibtextohtml.bibtex.BibTeXStandaloneSetup
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.resource.XtextResource
+import com.google.inject.Guice
+import de.tubs.bibtextohtml.bibtex.BibTeXRuntimeModule
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.resource.ResourceSet
 
 /**
  * Generates code from your model files on save.
@@ -61,47 +81,61 @@ class HTMLGeneratorGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
-//		val BibParser parser = new BibParser;
+		//val BibParser parser = new BibParser;
 //		//val List<String> modulesToRun = new ArrayList<String>();
 //		//val HTMLGeneratorModel model = resource.getContents().get(0) as HTMLGeneratorModel;
-//		System.out.println("hallo");
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-      	val String platformString = resource.getURI().toPlatformString(true);
-  		System.out.println(platformString);
+      	val foldername = "/" + String.join("/", resource.getURI().segmentsList().subList(1, resource.getURI().segmentCount()-1))
 
-//      val uri = new URI(platformString);
-//      System.out.println(resource.getURI().path());
-//      String platformString = resource.getURI().toPlatformString(true);
-//		val IFile[] myFile = ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(new URI(platformString));
-//		myFile.get(0).
-//        val String path = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformString)).getRawLocation().toString();
-
+  		val IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(foldername));//getFigetProject(proj_name);
+  		val String resLocation = folder.getRawLocation().toOSString();
+  		
+  		// Parse BibTeX-Model
+  		//val injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration
+//  		val injector = Guice.createInjector(new BibTeXRuntimeModule())
+//		val resourceSet = injector.getInstance(typeof(XtextResourceSet))
+		val ResourceSet resourceSet = new ResourceSetImpl();
+		//XtextResourceSet.
+		//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+		
 		for(RunModule module: resource.getAllContents().toIterable().filter(typeof(RunModule))) {
 			System.out.println(module.getModule().getName());
-//			val String bibtexEntries = "";
-//			for(Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
-//				if(!imp.isImportAll()) {
-//  					bibtexEntries.concat(
-//  						new String(
-//  							Files.readAllBytes(
-//  								Paths.get(imp.getImportBibtex())
-//  							), 
-//  							Charset.defaultCharset()
-//  						)
-//  					);
-//				} else {
-//					// import everything from directory
-//				}
-//			}
-//			System.out.println(bibtexEntries);
-			
-//			
-//			val Model bibtexModel = parser.parse(new StringInputStream(bibtexEntries)) as Model;
-//			
+			var String bibtexEntries = "";
+			for(Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
+				if(!imp.isImportAll()) { //import all doesn't make any sense or does it?
+					try {
+						val byte[] data = Files.readAllBytes( Paths.get(resLocation, imp.getImportBibtex()));
+						val String n = new String(
+	  							data, 
+	  							Charset.defaultCharset()
+	  						)
+						bibtexEntries += n;
+					} catch(FileNotFoundException e) {
+						System.out.println("File not found: " + e.getMessage());
+					} catch(Exception e) {
+						System.out.println("Exception: " + e.getMessage());
+					}
+				} else {
+					// import everything from directory
+				}
+			}		
+			val bibRes = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("dummy:/inmemory.bib"))
+		    bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
+			//bibRes.
+			try {
+				val Model bibtexModel = bibRes.contents.get(0) as Model	
+				for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
+					System.out.println(be.getKey().getKey());
+				}
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+				//do nothing
+			}
+//			val Model bibtexModel = bibRes.contents.get(0) as Model	
 //			for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
 //				System.out.println(be.getKey().getKey());
 //			}
+			
 			try {
 				fsa.generateFile(
 				module.getModule().getName() + ".txt", // class name

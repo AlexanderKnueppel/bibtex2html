@@ -1,7 +1,7 @@
 
 module thisistest {
 	import "library.bib"
-	import "library2.bib"
+//	import "library2.bib"
 	// Options
 	prefix = "B2H-"
 	// Styles
@@ -35,5 +35,5 @@ module thisistest3 {
 }
 
 run thisistest
-run thisistest2
-run thisistest3
+//run thisistest2
+//run thisistest3

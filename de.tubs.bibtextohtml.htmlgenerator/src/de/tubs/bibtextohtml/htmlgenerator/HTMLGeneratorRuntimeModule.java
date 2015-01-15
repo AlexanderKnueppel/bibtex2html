@@ -3,9 +3,14 @@
  */
 package de.tubs.bibtextohtml.htmlgenerator;
 
+import org.eclipse.xtext.linking.ILinker;
+
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class HTMLGeneratorRuntimeModule extends de.tubs.bibtextohtml.htmlgenerator.AbstractHTMLGeneratorRuntimeModule {
-
+	@Override
+	public Class<? extends ILinker> bindILinker() {
+	    return org.eclipse.xtext.linking.impl.Linker.class;
+	}
 }

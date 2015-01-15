@@ -2,7 +2,7 @@ grammar de.tubs.bibtextohtml.htmlgenerator.HTMLGenerator with org.eclipse.xtext.
 
 generate hTMLGenerator "http://www.tubs.de/bibtextohtml/htmlgenerator/HTMLGenerator"
 
-//import "http://www.tubs.de/bibtextohtml/bibtex/BibTeX" as bibtex
+import "http://www.tubs.de/bibtextohtml/bibtex/BibTeX" as bibtex
 
 HTMLGeneratorModel:
 	(elements+=ModuleDeclaration)* (modulesToRun+=RunModule)*;

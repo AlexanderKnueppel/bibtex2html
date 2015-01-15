@@ -5,6 +5,9 @@ package de.tubs.bibtextohtml.bibtex.validation
 import org.eclipse.xtext.validation.Check
 import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXPackage
+import de.tubs.bibtextohtml.bibtex.bibTeX.Article
+import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
+import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
 
 /**
  * Custom validation rules. 
@@ -25,11 +28,25 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 //	}
 
   public static val UNKNOWN_FIELD = 'UnknownField'
-
+public static val TITLE_FIELD = 'TitleField'
 	@Check
 	def checkForUnknowns(UnknownField unknown) {
 		warning('Field "'+unknown.getType().getType()+'" is unknown or not implemented yet. Hence it will be ignored.', 
 				BibTeXPackage.Literals.UNKNOWN_FIELD__TYPE,
 				UNKNOWN_FIELD)
+	}
+	
+	@Check
+	def checkForMultipleOccurence(Article article) {
+		if(article.elements.filter(TitleField).size > 1) {
+			warning("Title already defined", 
+				BibTeXPackage.Literals.ARTICLE__ELEMENTS)
+		} else if(article.elements.filter(TitleField).size == 0 ) {
+				error("Missing Title-Attribute", 
+				BibTeXPackage.Literals.MODEL__BIBTEX_ENTRIES)
+		}
+//		warning('Field "'+unknown.getType().getType()+'" is unknown or not implemented yet. Hence it will be ignored.', 
+//				BibTeXPackage.Literals.UNKNOWN_FIELD__TYPE,
+//				UNKNOWN_FIELD)
 	}
 }

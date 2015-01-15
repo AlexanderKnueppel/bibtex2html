@@ -15,19 +15,29 @@ Article:
 	'@' 'article' '{'
 	key=CiteKey
 	//mandatory
-	((',' author=AuthorField)
-	& (',' title=TitleField)
-	& (',' journal=JournalField)
-	& (',' year=YearField)
-	//optional
-	& (',' volume=VolumeField)?
-	& (',' number=NumberField)?
-	& (',' pages=PagesField)?
-	& (',' month=MonthField)?
-	& (',' note=NoteField)?
-	& (',' unknowns+=UnknownField)* //Unknown doesn't really work, we need a workaround
-)
+//	((',' author=AuthorField)
+//	& (',' title=TitleField)
+//	& (',' journal=JournalField)
+//	& (',' year=YearField)
+//	//optional
+//	& (',' volume=VolumeField)?
+//	& (',' number=NumberField)?
+//	& (',' pages=PagesField)?
+//	& (',' month=MonthField)?
+//	& (',' note=NoteField)?
+//	& (',' unknowns+=UnknownField)* //Unknown doesn't really work, we need a workaround
+//)
+	(',' elements+=ArticleFields)*
 	'}';
+	
+/* 
+ * UPDATE: alternative approach; with this, unknows are accepted everywhere. One has to implement specific validators though.
+ */
+ArticleFields:
+	AuthorField | TitleField | JournalField | YearField |
+	 VolumeField | NumberField | PagesField | MonthField |
+     NoteField  | UnknownField
+;
 
 Book:
 	'@' 'book' '{'

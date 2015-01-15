@@ -4,7 +4,7 @@
 	<style>
 .B2H-title {
 	font-style: BOLD;
-	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@129df247 (colorsemantic: true);
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@24b5863a (colorsemantic: true);
 	font-type: Arial;
 }
 	</style>
