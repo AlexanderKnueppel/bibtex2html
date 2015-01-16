@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-	def compile(RunModule module) '''
+	def compile(RunModule module, Resource _bibRes) '''
 		«var pre = (module.getModule().elements.filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
 		<!DOCTYPE html>
 		<html>
@@ -58,9 +58,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 		</head>
 		
 		<body>
-		«FOR imp :module.getModule().eAllContents().toIterable().filter(typeof(Import))»
-	      «imp.compile»
-	    «ENDFOR»
+		«FOR BibtexEntryTypes be : _bibRes.contents.filter(typeof(BibtexEntryTypes))»
+			«be.printPlainnat(pre)»
+		«ENDFOR»
 		</body>
 		
 		</html>
@@ -76,6 +76,11 @@ class HTMLGeneratorGenerator implements IGenerator {
 			font-color: «styles.fontColor»;
 			font-type: «styles.fontType»;
 		}
+	'''
+	
+	// Different templates to print entries
+	def printPlainnat(BibtexEntryTypes entries, String pre) '''
+		<span class="«pre»-author">Test</span>
 	'''
 	//public HTMLGeneratorGenerator() {}
 	
@@ -139,7 +144,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 			try {
 				fsa.generateFile(
 				module.getModule().getName() + ".txt", // class name
-				module.compile)
+				module.compile(bibRes))
 			} catch(NullPointerException e) {
 				System.out.println(e.getMessage());
 			}

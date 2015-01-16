@@ -4,7 +4,7 @@
 	<style>
 .B2H- {
 	font-style: BOLD;
-	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@38dc322d (colorsemantic: true);
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@5162bede (colorsemantic: true);
 	font-type: Arial;
 }
 	</style>
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-library.bib
 </body>
 
 </html>
