@@ -6,7 +6,7 @@ module thisistest {
 	prefix = "B1H-"
 	// Styles
 	* {
-		font-style: bold;
+		font-style: italic;
 		font-color: red;
 		font-type: "Arial";
 	}
