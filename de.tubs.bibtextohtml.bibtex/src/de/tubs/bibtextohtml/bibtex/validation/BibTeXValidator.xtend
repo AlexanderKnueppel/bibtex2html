@@ -3,19 +3,32 @@
  */
 package de.tubs.bibtextohtml.bibtex.validation
 
-import org.eclipse.xtext.validation.Check
-import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
-import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXPackage
-import de.tubs.bibtextohtml.bibtex.bibTeX.Article
+import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
-import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
+import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXPackage
+import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
+import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
 import de.tubs.bibtextohtml.bibtex.bibTeX.JournalField
-import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
-import de.tubs.bibtextohtml.bibtex.bibTeX.VolumeField
-import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField
-import de.tubs.bibtextohtml.bibtex.bibTeX.NoteField
 import de.tubs.bibtextohtml.bibtex.bibTeX.MonthField
+import de.tubs.bibtextohtml.bibtex.bibTeX.NoteField
+import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField
 import de.tubs.bibtextohtml.bibtex.bibTeX.PagesField
+import de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField
+import de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
+import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
+import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
+import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
+import org.eclipse.xtext.validation.Check
+import de.tubs.bibtextohtml.bibtex.bibTeX.VolumeField
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
+import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Article
+import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes
+import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
+import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
+import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
+import de.tubs.bibtextohtml.bibtex.bibTeX.Book
 
 /**
  * Custom validation rules. 
@@ -47,9 +60,50 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	//Map for the mandatory fields of an article
 	public static val articleMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
 		'Journal' -> JournalField, 'Year' -> YearField)
-	//Map for the otpional fields of an article	
+
+	//Map for the optional fields of an article	
 	public static val articleMapOptional = newHashMap('Volume' -> VolumeField, 'Number' -> NumberField,
 		'Pages' -> PagesField, 'Month' -> MonthField, 'Note' -> NoteField)
+
+	//Map for the mandatory fields of a book
+	public static val bookMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
+		'Publisher' -> PublisherField, 'Year' -> YearField)
+
+	//Map for the optional fields of a book
+	public static val bookMapOptional = newHashMap('Editor' -> EditorField, 'Volume' -> VolumeField,
+		'Number' -> NumberField, 'Month' -> MonthField, 'Note' -> NoteField, 'Series' -> SeriesField,
+		'Address' -> AddressField, 'Edition' -> EditionField, 'Isbn' -> IsbnField)
+
+	//Map for the mandatory fields of a conference
+	public static val conferenceMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
+		'Booktitle' -> BooktitleField, 'Year' -> YearField)
+
+	//Map for the optional fields of a conference	
+	public static val conferenceMapOptional = newHashMap('Volume' -> VolumeField, 'Number' -> NumberField,
+		'Pages' -> PagesField, 'Month' -> MonthField, 'Note' -> NoteField, 'Series' -> SeriesField,
+		'Address' -> AddressField, 'Editor' -> EditorField, 'Organization' -> OrganizationField,
+		'Publisher' -> PublisherField)
+
+	//Map for the mandatory fields of a Inproceedings
+	public static val inproceedingsMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
+		'Booktitle' -> BooktitleField, 'Year' -> YearField)
+
+	//Map for the optional fields of a Inproceedings	
+	public static val inproceedingsMapOptional = newHashMap('Editor' -> EditorField, 'Volume' -> VolumeField,
+		'Number' -> NumberField, 'Series' -> SeriesField, 'Pages' -> PagesField, 'Address' -> AddressField,
+		'Month' -> MonthField, 'Organization' -> OrganizationField, 'Publisher' -> PublisherField, 'Note' -> NoteField)
+
+	//Map for the mandatory fields of a manual
+	public static val manualMapMandatory = newHashMap('Title' -> TitleField, 'Year' -> YearField,
+		'Address' -> AddressField)
+
+	//Map for the optional fields of a manual	
+	public static val manualMapOptional = newHashMap('Author' -> AuthorField, 'Organization' -> OrganizationField,
+		'Edition' -> EditionField, 'Month' -> MonthField, 'Note' -> NoteField)
+
+//	public static val entryMap = newHashMap('Article' -> Article, 'Book' -> Book, 'Conference' -> Conference,
+//		'Inproceedings' -> Inproceedings, 'Manual' -> Manual)
+
 
 	@Check
 	def checkForMultipleOccurence(Article article) {
@@ -64,6 +118,74 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 		articleMapOptional.forEach [ str, field |
 			if (article.elements.filter(field).size > 1) {
 				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.ARTICLE__ELEMENTS)
+			}
+		]
+	}
+	
+	@Check
+	def checkForMultipleOccurence(Book book) {
+		bookMapMandatory.forEach [ str, field |
+			if (book.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.BOOK__ELEMENTS)
+			} else if (book.elements.filter(field).size == 0) {
+				error(str + " is missing!", BibTeXPackage.Literals.BOOK__ELEMENTS)
+			}
+		]
+
+		bookMapOptional.forEach [ str, field |
+			if (book.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.BOOK__ELEMENTS)
+			}
+		]
+	}
+	
+	@Check
+	def checkForMultipleOccurence(Conference conference) {
+		conferenceMapMandatory.forEach [ str, field |
+			if (conference.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.CONFERENCE__ELEMENTS)
+			} else if (conference.elements.filter(field).size == 0) {
+				error(str + " is missing!", BibTeXPackage.Literals.CONFERENCE__ELEMENTS)
+			}
+		]
+
+		conferenceMapOptional.forEach [ str, field |
+			if (conference.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.CONFERENCE__ELEMENTS)
+			}
+		]
+	}
+	
+	@Check
+	def checkForMultipleOccurence(Inproceedings inproceedings) {
+		inproceedingsMapMandatory.forEach [ str, field |
+			if (inproceedings.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.INPROCEEDINGS__ELEMENTS)
+			} else if (inproceedings.elements.filter(field).size == 0) {
+				error(str + " is missing!", BibTeXPackage.Literals.INPROCEEDINGS__ELEMENTS)
+			}
+		]
+
+		inproceedingsMapOptional.forEach [ str, field |
+			if (inproceedings.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.INPROCEEDINGS__ELEMENTS)
+			}
+		]
+	}
+	
+	@Check
+	def checkForMultipleOccurence(Manual manual) {
+		manualMapMandatory.forEach [ str, field |
+			if (manual.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.MANUAL__ELEMENTS)
+			} else if (manual.elements.filter(field).size == 0) {
+				error(str + " is missing!", BibTeXPackage.Literals.MANUAL__ELEMENTS)
+			}
+		]
+
+		manualMapOptional.forEach [ str, field |
+			if (manual.elements.filter(field).size > 1) {
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.MANUAL__ELEMENTS)
 			}
 		]
 	}
