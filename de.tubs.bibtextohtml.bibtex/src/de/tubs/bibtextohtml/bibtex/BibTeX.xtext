@@ -15,17 +15,17 @@ Article:
 	'@' 'article' '{'
 	key=CiteKey
 	//mandatory
-//	((',' author=AuthorField)
-//	& (',' title=TitleField)
-//	& (',' journal=JournalField)
-//	& (',' year=YearField)
+//		AuthorField
+//		TitleField
+//		JournalField
+//		YearField
 //	//optional
-//	& (',' volume=VolumeField)?
-//	& (',' number=NumberField)?
-//	& (',' pages=PagesField)?
-//	& (',' month=MonthField)?
-//	& (',' note=NoteField)?
-//	& (',' unknowns+=UnknownField)* //Unknown doesn't really work, we need a workaround
+//		VolumeField
+//		NumberField
+//		PagesField
+//		MonthField
+//		NoteField
+//		UnknownField
 //)
 	(',' elements+=ArticleFields)*
 	'}';
@@ -42,79 +42,106 @@ ArticleFields:
 Book:
 	'@' 'book' '{'
 	key=CiteKey
-	//mandatory
-	((',' author_editor=(AuthorField | EditorField))
-	& (',' title=TitleField)
-	& (',' publisher=PublisherField)
-	& (',' year=YearField)
-	//optional
-	& (',' volume_number=(VolumeField | NumberField))?
-	& (',' series=SeriesField)?
-	& (',' address=AddressField)?
-	& (',' edition=EditionField)?
-	& (',' month=MonthField)?
-	& (',' isbn=IsbnField)?
-	& (',' note=NoteField)?
-	& (',' unknowns+=UnknownField)*)
+//	//mandatory
+//		AuthorField or EditorField
+//		TitleField
+//		PublisherField
+//		YearField
+//	//optional
+//		VolumeField or NumberField
+//		SeriesField
+//		AddressField
+//		EditionField
+//		MonthField
+//		IsbnField
+//		NoteField
+//		UnknownField
+	(',' elements+=BookFields)*
 	'}';
+	
+BookFields:
+	AuthorField | TitleField | PublisherField | YearField |
+	VolumeField | NumberField | SeriesField | AddressField |
+	EditionField | MonthField | IsbnField | NoteField | UnknownField
+;
 
 Conference:
 	'@' 'conference' '{'
 	key=CiteKey
-	//mandatory
-	((',' author=AuthorField)
-	& (',' title=TitleField)
-	& (',' booktitle=BooktitleField)
-	& (',' year=YearField)
-	//optional
-	& (',' editor=EditorField)?
-	& (',' volume_number=(VolumeField | NumberField))?
-	& (',' series=SeriesField)?
-	& (',' pages=PagesField)?
-	& (',' address=AddressField)?
-	& (',' month=MonthField)?
-	& (',' organization=OrganizationField)?
-	& (',' publisher=PublisherField)?
-	& (',' note=NoteField)?
-	& (',' unknowns+=UnknownField)*)
+//	//mandatory
+//		AuthorField
+//		TitleField
+//		BooktitleField
+//		YearField
+//	//optional
+//		EditorField
+//		VolumeField or NumberField
+//		SeriesField
+//		PagesField
+//		AddressField
+//		MonthField
+//		OrganizationField
+//		PublisherField
+//		NoteField
+//		UnknownField
+	(',' elements+=ConferenceFields)*
 	'}';
+	
+ConferenceFields:
+	AuthorField | TitleField | BooktitleField | YearField | EditorField |
+	VolumeField | NumberField | SeriesField | PagesField | AddressField |
+	MonthField | OrganizationField | PublisherField | NoteField | UnknownField
+;
 
 Inproceedings:
 	'@' 'inproceedings' '{'
 	key=CiteKey
-	//mandatory
-	((',' author=AuthorField)
-	& (',' title=TitleField)
-	& (',' booktitle=BooktitleField)
-	& (',' year=YearField)
-	//optional
-	& (',' editor=EditorField)?
-	& (',' volume_number=(VolumeField | NumberField))?
-	& (',' series=SeriesField)?
-	& (',' pages=PagesField)?
-	& (',' address=AddressField)?
-	& (',' month=MonthField)?
-	& (',' organization=OrganizationField)?
-	& (',' publisher=PublisherField)?
-	& (',' note=NoteField)?
-	& (',' unknowns+=UnknownField)*)
+//	//mandatory
+//		AuthorField
+//		TitleField
+//		BooktitleField
+//		YearField
+//	//optional
+//		EditorField
+//		VolumeField or NumberField
+//		SeriesField
+//		PagesField
+//		AddressField
+//		MonthField
+//		OrganizationField
+//		PublisherField
+//		NoteField
+//		UnknownField
+	(',' elements+=InproceedingsFields)*
 	'}';
+
+InproceedingsFields:
+	AuthorField | TitleField | BooktitleField | YearField | EditorField |
+	VolumeField | NumberField | SeriesField | PagesField | AddressField |
+	MonthField | OrganizationField | PublisherField | NoteField | UnknownField
+;
 
 Manual:
 	'@' 'manual' '{'
 	key=CiteKey
-	//mandatory
-	& (',' address=AddressField)
-	& (',' title=TitleField)
-	& (',' year=YearField)
-	//optional
-	((',' author=AuthorField)?
-	& (',' organization=OrganizationField)?
-	& (',' edition=EditionField)?
-	& (',' month=MonthField)?
-	& (',' note=NoteField)?
-	& (',' unknowns+=UnknownField)*)
+//	//mandatory
+//		AddressField
+//		TitleField
+//		YearField
+//	//optional
+//		AuthorField
+//		OrganizationField
+//		EditionField
+//		MonthField
+//		NoteField
+//		UnknownField
+	(',' elements+=ManualFields)*
 	'}';
+	
+ManualFields:
+	AddressField | TitleField | YearField | AuthorField | OrganizationField |
+	EditionField | MonthField | NoteField | UnknownField
+;
 
 UnknownField:
 	type=UnknownType '=' value=FieldValue;

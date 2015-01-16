@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-	def compile(RunModule module, Resource _bibRes) '''
+	def compile(RunModule module, Model _bibRes) '''
 		«var pre = (module.getModule().elements.filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
 		<!DOCTYPE html>
 		<html>
@@ -58,8 +58,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 		</head>
 		
 		<body>
-		«FOR BibtexEntryTypes be : _bibRes.contents.filter(typeof(BibtexEntryTypes))»
-			«be.printPlainnat(pre)»
+		«FOR BibtexEntryTypes be : _bibRes.bibtexEntries»
+			«be.printplain(pre)»
 		«ENDFOR»
 		</body>
 		
@@ -79,8 +79,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 	'''
 	
 	// Different templates to print entries
-	def printPlainnat(BibtexEntryTypes entries, String pre) '''
-		<span class="«pre»-author">Test</span>
+	def printplain(BibtexEntryTypes entries, String pre) '''
+		<span class="«pre»author">«entries»</span>
 	'''
 	//public HTMLGeneratorGenerator() {}
 	
@@ -132,22 +132,16 @@ class HTMLGeneratorGenerator implements IGenerator {
 				for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
 					System.out.println(be.getKey().getKey());
 				}
+				
+				//print output to file
+				fsa.generateFile(
+				module.getModule().getName() + ".txt", // class name
+				module.compile(bibtexModel))
 			} catch(Exception e) {
 				System.out.println(e.getMessage());
 				//do nothing
 			}
-//			val Model bibtexModel = bibRes.contents.get(0) as Model	
-//			for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
-//				System.out.println(be.getKey().getKey());
-//			}
-			
-			try {
-				fsa.generateFile(
-				module.getModule().getName() + ".txt", // class name
-				module.compile(bibRes))
-			} catch(NullPointerException e) {
-				System.out.println(e.getMessage());
-			}
+
 	
 			}
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 

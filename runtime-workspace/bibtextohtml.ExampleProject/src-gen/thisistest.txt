@@ -4,7 +4,7 @@
 	<style>
 .B1H-* {
 	font-style: BOLD;
-	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@54139bd3 (colorsemantic: true);
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@5634c26c (colorsemantic: true);
 	font-type: Arial;
 }
 	</style>
@@ -13,6 +13,13 @@
 </head>
 
 <body>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
+<span class="B1H--author">Test</span>
 </body>
 
 </html>
