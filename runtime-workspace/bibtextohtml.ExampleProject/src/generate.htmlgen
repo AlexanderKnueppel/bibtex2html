@@ -3,7 +3,7 @@ module thisistest {
 	import "library.bib"
 //	import "library2.bib"
 	// Options
-	prefix = "B2H-"
+	prefix = "B1H-"
 	// Styles
 	* {
 		font-style: bold;
@@ -25,7 +25,7 @@ module thisistest2 {
 module thisistest3 {
 	import "library.bib"
 	// Options
-	prefix = "B2H-"
+	prefix = "B3H-"
 	// Styles
 	title {
 		font-style: bold;

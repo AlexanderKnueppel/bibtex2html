@@ -71,7 +71,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 	'''
 	
 	def printStyles(Styles styles, String pre) '''
-		.«pre»«styles.attributeType» {
+		.«pre»«IF !styles.isWildcard»«styles.attributeType»«ELSEIF styles.wildcard»*«ENDIF» {
 			font-style: «styles.fontStyle.getName()»;
 			font-color: «styles.fontColor»;
 			font-type: «styles.fontType»;

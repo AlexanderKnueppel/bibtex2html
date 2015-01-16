@@ -2,9 +2,9 @@
 <html>
 <head>
 	<style>
-.B2H- {
+.B1H-* {
 	font-style: BOLD;
-	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@5162bede (colorsemantic: true);
+	font-color: de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.impl.FontColorSemanticImpl@54139bd3 (colorsemantic: true);
 	font-type: Arial;
 }
 	</style>
