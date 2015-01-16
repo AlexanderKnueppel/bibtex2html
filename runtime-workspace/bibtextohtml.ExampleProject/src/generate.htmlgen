@@ -6,7 +6,7 @@ module thisistest {
 	prefix = "B1H-"
 	// Styles
 	* {
-		font-style: bold;
+		font-styles: bold italic;
 		font-color: red;
 		font-type: "Arial";
 	}
@@ -17,7 +17,7 @@ module thisistest2 {
 	prefix = "B2H-"
 	// Styles
 	author {
-		font-style: bold;
+		font-styles: bold;
 		font-color: red;
 		font-type: "Arial";
 	}
@@ -28,7 +28,7 @@ module thisistest3 {
 	prefix = "B3H-"
 	// Styles
 	title {
-		font-style: bold;
+		font-styles: bold;
 		font-color: red;
 		font-type: "Arial";
 	}

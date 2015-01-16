@@ -36,6 +36,8 @@ import com.google.inject.Guice
 import de.tubs.bibtextohtml.bibtex.BibTeXRuntimeModule
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.resource.ResourceSet
+import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
+import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
 
 /**
  * Generates code from your model files on save.
@@ -58,8 +60,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 		</head>
 		
 		<body>
-		«FOR BibtexEntryTypes be : _bibRes.bibtexEntries»
-			«be.printplain(pre)»
+		«FOR BibtexEntryTypes entry : _bibRes.bibtexEntries»
+			«entry.printplain(pre)»
 		«ENDFOR»
 		</body>
 		
@@ -72,15 +74,18 @@ class HTMLGeneratorGenerator implements IGenerator {
 	
 	def printStyles(Styles styles, String pre) '''
 		.«pre»«IF !styles.isWildcard»«styles.attributeType»«ELSEIF styles.wildcard»*«ENDIF» {
-			font-style: «styles.fontStyle.getName()»;
-			font-color: «styles.fontColor»;
 			font-type: «styles.fontType»;
+			«IF styles.fontStyles.isBold»font-weight: bold;«ENDIF»
+			«IF styles.fontStyles.isItalic»font-style: italic;«ENDIF»
+			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
 		}
 	'''
 	
 	// Different templates to print entries
-	def printplain(BibtexEntryTypes entries, String pre) '''
-		<span class="«pre»author">«entries»</span>
+	def printplain(BibtexEntryTypes entry, String pre) '''
+		<p>
+			<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
+		</p>
 	'''
 	//public HTMLGeneratorGenerator() {}
 	
@@ -135,8 +140,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 				
 				//print output to file
 				fsa.generateFile(
-				module.getModule().getName() + ".txt", // class name
+				module.getModule().getName() + ".html", // class name
 				module.compile(bibtexModel))
+				System.out.println("File Created......")
 			} catch(Exception e) {
 				System.out.println(e.getMessage());
 				//do nothing

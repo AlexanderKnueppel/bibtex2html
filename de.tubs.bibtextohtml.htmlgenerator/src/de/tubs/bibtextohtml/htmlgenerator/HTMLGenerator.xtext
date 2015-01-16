@@ -37,26 +37,18 @@ PrefixOption:
 	'prefix' '=' prefix = STRING
 ;
 
-enum FontStyle:
-	BOLD = 'bold' | ITALIC = 'italic' | UNDERLINED = 'underlined'
+FontStyles: 
+	{FontStyles} ((bold ?= 'bold')? & (italic ?= 'italic')? & (underlined ?= 'underlined')?)
 ;
-FontColorSemantic:
-	colorsemantic?=('red' | 'green' | 'blue' /* and some more */) 
-;
-FontColorHexcode hidden():
-	colorhexcode?= '#' ((INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f') 
-						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
-						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
-						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
-						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f')
-						(INT | 'a' | 'b' | 'c' | 'd' | 'e' | 'f'))
+FontColor:
+	color = ('red' | 'green' | 'blue' | 'black' /* and some more */) 
 ;
 
 Styles:
 	(attributeType = AttributeSet | wildcard?='*') '{' 
-		("font-style" ":" fontStyle=(FontStyle) ";")? 
-		& ("font-color" ":" fontColor=(FontColorSemantic | FontColorHexcode) ";")? 
-		& ("font-type" ":" fontType=STRING ";")? 
+		("font-styles" ":"  fontStyles = (FontStyles) ";")? 
+		& ("font-color" ":" fontColor= (FontColor) ";")? 
+		& ("font-type" ":" fontType = STRING ";")? 
 	'}' 
 ;
 
