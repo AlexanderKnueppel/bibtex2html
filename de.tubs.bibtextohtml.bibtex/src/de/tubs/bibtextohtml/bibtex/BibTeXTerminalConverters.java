@@ -8,11 +8,16 @@ import com.google.inject.Inject;
 
 public class BibTeXTerminalConverters extends DefaultTerminalConverters {
     @Inject
-    private FIELD_VALUEValueConverter fieldValueConverter;
+    private FieldValueConverter fieldValueConverter;
     
-    @ValueConverter(rule = "FIELD_VALUE")
-    public IValueConverter<String> FIELD_VALUE() {
+    @ValueConverter(rule = "FieldValue")
+    public IValueConverter<String> FieldValue() {
             return fieldValueConverter;
+    }
+    
+    @ValueConverter(rule = "NameValue")
+    public IValueConverter<String> NameValue() {
+            return fieldValueConverter; // use the same converter that is used for other fields
     }
 
 }

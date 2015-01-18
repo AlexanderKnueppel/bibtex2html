@@ -38,6 +38,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.resource.ResourceSet
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
 import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
+import java.util.List
+import java.util.ArrayList
 
 /**
  * Generates code from your model files on save.
@@ -83,8 +85,14 @@ class HTMLGeneratorGenerator implements IGenerator {
 	
 	// Different templates to print entries
 	def printplain(BibtexEntryTypes entry, String pre) '''
+	«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
 		<p>
 			<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
+			<span class="«pre»">
+			«FOR a : authors»
+			«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size()-1)» und «ENDIF»
+			«ENDFOR»
+			</span>
 		</p>
 	'''
 	//public HTMLGeneratorGenerator() {}
@@ -135,7 +143,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 			try {
 				val Model bibtexModel = bibRes.contents.get(0) as Model	
 				for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
-					System.out.println(be.getKey().getKey());
+					System.out.println(be.getKey());
 				}
 				
 				//print output to file

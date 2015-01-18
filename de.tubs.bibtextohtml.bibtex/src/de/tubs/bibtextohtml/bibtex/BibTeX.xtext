@@ -154,30 +154,30 @@ UnknownValue:
 
 	// Values for various combinations
 FieldValue:
-	STRING | '{' (ID | '(' | ')' | '"' | "'" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | FieldValue | INT)* '}';
+	STRING | '{' (ID | '(' | ')' | '"' | "'" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | '^'| ',' | FieldValue | INT)* '}';
 
 FieldValuePlusInt:
 	FieldValue | INT;
 
 FieldValuePlusId:
 	FieldValue | ID;
-
-CiteKey:
-	key=ID (':' | '-' | ID | INT)*;
-
-AuthorField:
-	'author' '=' (singleauthor?=(Author) | '{' Authors '}');
-
-Author:
-	author=STRING //needed to be parsed seperatly
+//
+NameValue:
+	 (('{' '\\' ('\"' | "\'" ) ID '}')? ID)+ //add more special characters...
 ;
 
-Authors:
-	names+=Fullname
-	('and' names+=Fullname)*;
+CiteKey:
+	ID (':' | '-' | ID | INT)*;
 
-Fullname:
-	(lastname=ID ',' firstname=ID | (firstname=ID)? lastname=ID);
+AuthorField:
+	'author' '=' authors = FieldValue;//'{' authors += Authors+ '}' | '"' authors += Authors+ '"';
+
+//Authors:
+////	names+=Fullname
+//	('and')? fullname=Fullname;
+//
+//Fullname:
+//	=> (lastname=NameValue ',' firstname=NameValue)  | ((firstname=NameValue )? lastname=NameValue);
 
 EditorField:
 	'editor' '=' editor=FieldValue;
@@ -226,3 +226,14 @@ IsbnField:
 
 NoteField:
 	'note' '=' note=FieldValue;
+	
+//URLField:
+//	'url' '=' url=FieldValue;
+//AbstractField:
+//	'abstract' '=' abstract=FieldValue;
+//PDFField:
+//	'pdf' '=' pdf=FieldValue;
+//DOIField:
+//	'doi' '=' doi=FieldValue;
+//KeysField:
+//	'keys' '=' keys=FieldValue;

@@ -11,6 +11,8 @@ public class BibtexHighlightingConfiguration extends DefaultHighlightingConfigur
 	// provide an id string for the highlighting calculator
 	public static final String FIELDVALUE_ID = "fieldvalue";
 	public static final String CITEKEY_ID = "citekey";
+	public static final String AUTHOR_ID = "author";
+	public static final String AUTHOR_AND_ID = "authorand";
 	// default fonts used by this specific highlighting (defaults)
 //	private static FontData defaultAnnotationBlockFont = new FontData("Courier New", 12);
 
@@ -20,6 +22,8 @@ public class BibtexHighlightingConfiguration extends DefaultHighlightingConfigur
 		super.configure(acceptor);
 		acceptor.acceptDefaultHighlighting(FIELDVALUE_ID, "Field Value", fieldValueStyle());
 		acceptor.acceptDefaultHighlighting(CITEKEY_ID, "Cite Key", citeKeyStyle());
+		acceptor.acceptDefaultHighlighting(AUTHOR_ID, "Author ID", authorStyle());
+		acceptor.acceptDefaultHighlighting(AUTHOR_AND_ID, "Author And", authorAndStyle());
 	}
 
 	// method for calculating an actual text styles
@@ -38,6 +42,20 @@ public class BibtexHighlightingConfiguration extends DefaultHighlightingConfigur
 		textStyle.setColor(new RGB(255, 140, 0));
 		textStyle.setStyle(SWT.BOLD);
 //		textStyle.setFontData(defaultCommentFont);
+		return textStyle;
+	}
+	
+	public TextStyle authorStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(100, 149, 237));
+		textStyle.setStyle(SWT.BOLD);
+		return textStyle;
+	}
+
+	public TextStyle authorAndStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(100, 0, 237));
+		textStyle.setStyle(SWT.ITALIC);
 		return textStyle;
 	}
 }

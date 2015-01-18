@@ -1,9 +1,38 @@
 
-module thisistest {
+/*Style custom_style {
+	<authors> <title> <thisthat> URL: <url>
+}*/ 
+
+//module test[PLAIN] { //or: HARVARD, ??...
+//	import "test.bib";
+//	options {
+//		prefix: "B1H";
+//		sort: year asc;
+//		categorize: year;
+//	}
+//	styles {
+//		* {
+//			font-styles: none;
+//			font-color: rgb(0,0,0); // or red, green, blue, black...
+//			font-type: "Arial";
+//		}
+//		author {
+//			font-styles: bold;
+//		}
+//		title {
+//			font-styles: italic;
+//		}
+//	}
+//}
+
+module thisistest /*[Plain]*/ {
 	import "library.bib"
 //	import "library2.bib"
 	// Options
-	prefix = "B1H-"
+	prefix = "B1H-" // :
+	// sortby: year [ASC|DSC];
+	// style = Styles.Harvard
+	// 
 	// Styles
 	* {
 		font-styles: bold italic;
