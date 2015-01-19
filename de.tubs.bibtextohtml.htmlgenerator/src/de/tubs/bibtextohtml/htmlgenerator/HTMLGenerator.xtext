@@ -8,14 +8,19 @@ HTMLGeneratorModel:
 	(elements+=ModuleDeclaration)* (modulesToRun+=RunModule)*;
 	
 AbstractElement:
-   Option | Styles | Import
+   OptionSet | StylesSet | Import
 ;
 
 RunModule:
 	'run' module = [ModuleDeclaration]
 ;
 
+//enum BibTexSytle:
+//	HARVARD = 'harvard' | PLAIN = 'plain' | ALPHA = 'alpha' | ABBRV = 'abbrv'
+//;
+
 ModuleDeclaration:
+//  'module' name = AllowedName '(' bibtexStyle = BibTexStyle ')' '{'
   'module' name = AllowedName '{'
     (elements += AbstractElement)*
   '}'
@@ -29,13 +34,37 @@ Import:
   'import' (importBibtex = STRING | importAll?= '*')
 ;
 
+OptionSet:
+	'options' '=' '['
+	{OptionSet} (options += Option)*
+	']'
+;
+
 Option:
-	PrefixOption //| OutputNameOption | SortByOption | SpecificDesignOption
+	PrefixOption | SortingOption | CategoryOption//| OutputNameOption | SortByOption | SpecificDesignOption
 ;
 
 PrefixOption:
-	'prefix' '=' prefix = STRING
+	 'prefix' ':' prefix = STRING
 ;
+
+SortingOption:
+	'sorting' ':' sortby = SortBy (asc ?= 'asc' | desc ?= 'desc')
+;
+SortBy:
+	author ?= 'author' | title ?= 'title' | year ?= 'year' |  key ?= 'key' //maybe critera = [Field] ??
+;
+
+CategoryOption:
+	'category' '{' 
+	'sorting' ':' sortby = CategorySortBy (asc ?= 'asc' | desc ?= 'desc') 
+	(',' 'output' ':' (output ?= 'true' | 'false'))?
+	'}'
+;
+CategorySortBy:
+	author ?= 'author' | year ?= 'year'
+;
+
 
 FontStyles: 
 	{FontStyles} ((bold ?= 'bold')? & (italic ?= 'italic')? & (underlined ?= 'underlined')?)
@@ -43,17 +72,26 @@ FontStyles:
 FontColor:
 	color = ('red' | 'green' | 'blue' | 'black' /* and some more */) 
 ;
+FontColorRGB:
+	'rgb' '('red = INT ',' green = INT ',' blue = INT ')'
+;
+
+StylesSet:
+	'styles' '=' '['
+	{StylesSet} (styles += Styles)*
+	']'
+;
 
 Styles:
 	(attributeType = AttributeSet | wildcard?='*') '{' 
 		("font-styles" ":"  fontStyles = (FontStyles) ";")? 
-		& ("font-color" ":" fontColor= (FontColor) ";")? 
+		& ("font-color" ":" fontColor= (FontColor | FontColorRGB) ";")? 
 		& ("font-type" ":" fontType = STRING ";")? 
 	'}' 
 ;
 
 AttributeSet:
-	"author" | "title" | "year" | "location"
+	"author" | "title" | "year" | "location" | "category"
 ;
 
 									  

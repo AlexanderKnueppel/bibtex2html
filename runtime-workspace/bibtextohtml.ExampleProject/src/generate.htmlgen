@@ -25,44 +25,64 @@
 //	}
 //}
 
-module thisistest /*[Plain]*/ {
+module thisistest /*(harvard)*/ {
 	import "library.bib"
-//	import "library2.bib"
-	// Options
-	prefix = "B1H-" // :
-	// sortby: year [ASC|DSC];
-	// style = Styles.Harvard
-	// 
-	// Styles
-	* {
-		font-styles: bold italic;
+	options = [
+		prefix : "B1H-" 
+		sorting: author asc
+		category {
+			sorting: year asc,
+			output: true
+		}
+	]
+	styles = [
+		* {
+			font-styles: bold italic;
+			font-color: red;
+			font-type: "Arial";
+		}
+	]
+}
 
-		font-color: red;
-		font-type: "Arial";
-	}
-}
-module thisistest2 {
-	import "library.bib"
-	// Options
-	prefix = "B2H-"
-	// Styles
-	author {
-		font-styles: bold;
-		font-color: red;
-		font-type: "Arial";
-	}
-}
-module thisistest3 {
-	import "library.bib"
-	// Options
-	prefix = "B3H-"
-	// Styles
-	title {
-		font-styles: bold;
-		font-color: red;
-		font-type: "Arial";
-	}
-}
+
+//module thisistest /*[Plain]*/ {
+//	import "library.bib"
+////	import "library2.bib"
+//	// Options
+//	prefix = "B1H-" // :
+//	// sortby: year [ASC|DSC];
+//	// style = Styles.Harvard
+//	// 
+//	// Styles
+//	* {
+//		font-styles: bold italic;
+//
+//		font-color: red;
+//		font-type: "Arial";
+//	}
+//}
+//module thisistest2 {
+//	import "library.bib"
+//	// Options
+//	prefix = "B2H-"
+//	// Styles
+//	author {
+//		font-styles: bold;
+//		font-color: red;
+//		font-type: "Arial";
+//	}
+//}
+//module thisistest3 {
+//	import "library.bib"
+//	// Options
+//	prefix = "B3H-"
+//	// Styles
+//	title {
+//		font-styles: bold;
+//		font-color: red;
+//		font-type: "Arial";
+//	}
+//}
 
 run thisistest
 //run thisistest2

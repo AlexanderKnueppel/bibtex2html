@@ -41,6 +41,7 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
 import java.util.List
 import java.util.ArrayList
 import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
 
 /**
  * Generates code from your model files on save.
@@ -48,8 +49,17 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-	def compile(RunModule module, Model _bibRes) '''
-		«var pre = (module.getModule().elements.filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
+//	var prefix = "";
+//	def initOptionsDefault() {
+//		prefix = "";
+//		
+//	}
+//	def initOptions(OptionSet opts) {
+//		if(opts.options.filter(typeof())
+//	}
+	//
+	def compile(RunModule module, Model _bibRes) '''	
+	«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
 		<!DOCTYPE html>
 		<html>
 		<head>
