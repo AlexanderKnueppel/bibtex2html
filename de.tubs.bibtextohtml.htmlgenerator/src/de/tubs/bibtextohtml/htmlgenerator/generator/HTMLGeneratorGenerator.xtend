@@ -40,6 +40,7 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
 import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
 import java.util.List
 import java.util.ArrayList
+import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
 
 /**
  * Generates code from your model files on save.
@@ -62,7 +63,13 @@ class HTMLGeneratorGenerator implements IGenerator {
 		</head>
 		
 		<body>
-		«FOR BibtexEntryTypes entry : _bibRes.bibtexEntries»
+		«var year = ""»
+		«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes,  Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
+		«IF(entry.eContents.filter(YearField).size > 0 && (entry.eContents.filter(YearField).get(0) as YearField).year != year) »
+			<p>
+				<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+			</p>
+		«ENDIF»
 			«entry.printplain(pre)»
 		«ENDFOR»
 		</body>
@@ -84,8 +91,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 	'''
 	
 	// Different templates to print entries
+	//note: we've to check wether these elements exist...
 	def printplain(BibtexEntryTypes entry, String pre) '''
-	«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+	«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)» 
 		<p>
 			<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
 			<span class="«pre»">
@@ -97,6 +105,45 @@ class HTMLGeneratorGenerator implements IGenerator {
 	'''
 	//public HTMLGeneratorGenerator() {}
 	
+	public enum Sorting {
+//	    AUTHOR_TITLE_YEAR, AUTHOR_YEAR_TITLE, 
+//	    TITLE_AUTHOR_YEAR, TITLE_YEAR_AUTHOR,
+//	    YEAR_TITLE_AUTHOR, YEAR_AUTHOR_TITLE, 
+		AUTHOR, TITLE, YEAR,  KEY
+	}
+	
+	public enum Category {
+	    AUTHOR, YEAR, NONE
+	}
+	
+	def sortedEntrySet(Model model, Sorting criteria, boolean asc, Category cat, boolean catasc) {
+		var sortedList = model.bibtexEntries.clone;
+
+		if(criteria == Sorting.AUTHOR)
+			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
+		else if(criteria == Sorting.TITLE)
+			sortedList.sortInplaceBy[(eContents.filter(TitleField).get(0) as TitleField).title]
+		else if(criteria == Sorting.YEAR)
+			sortedList.sortInplaceBy[(eContents.filter(YearField).get(0) as YearField).year]
+		else if(criteria == Sorting.KEY)
+			sortedList.sortInplaceBy[key]
+			
+		if(!asc)
+			sortedList = sortedList.reverse
+			
+		if(criteria != Sorting.YEAR && cat == Category.YEAR)
+			sortedList.sortInplaceBy[(eContents.filter(YearField).get(0) as YearField).year]
+			
+		if(criteria != Sorting.AUTHOR && cat == Category.AUTHOR)
+			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
+			
+		if(!catasc)
+			sortedList = sortedList.reverse
+			
+		return sortedList
+		
+	}
+
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
 		//val BibParser parser = new BibParser;

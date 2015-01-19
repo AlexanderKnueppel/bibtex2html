@@ -17,23 +17,23 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 	public static final Map<String, String> charToHTMLCode;
 	static {
 		charToHTMLCode = new HashMap<String, String>();
-//		charToHTMLCode.put("\\\'e", "&eacute;"); charToHTMLCode.put("\\\'E", "&Eacute;");
-//		charToHTMLCode.put("\\\'a", "&aacute;"); charToHTMLCode.put("\\\'A", "&Aacute;");
-//		charToHTMLCode.put("\\\'o", "&oacute;"); charToHTMLCode.put("\\\'O", "&Oacute;");
-//		charToHTMLCode.put("\\\'i", "&iacute;"); charToHTMLCode.put("\\\'I", "&Iacute;");
-//		charToHTMLCode.put("\\\'u", "&Uacute;"); charToHTMLCode.put("\\\'U", "&Uacute;");
+		charToHTMLCode.put("\\\\\'e", "&eacute;"); charToHTMLCode.put("\\\\'E", "&Eacute;");
+		charToHTMLCode.put("\\\\\'a", "&aacute;"); charToHTMLCode.put("\\\\'A", "&Aacute;");
+		charToHTMLCode.put("\\\\'o", "&oacute;"); charToHTMLCode.put("\\\\'O", "&Oacute;");
+		charToHTMLCode.put("\\\\'i", "&iacute;"); charToHTMLCode.put("\\\\'I", "&Iacute;");
+		charToHTMLCode.put("\\\\'u", "&Uacute;"); charToHTMLCode.put("\\\\'U", "&Uacute;");
 		
-//		charToHTMLCode.put("\\\\^e", "&ecirc;"); charToHTMLCode.put("\\\\^E", "&Ecirc;");
-//		charToHTMLCode.put("\\\\^a", "&acirc;"); charToHTMLCode.put("\\\\^A", "&Acirc;");
-//		charToHTMLCode.put("\\\\^o", "&ocirc;"); charToHTMLCode.put("\\\\^O", "&Ocirc;");
-//		charToHTMLCode.put("\\\\^i", "&icirc;"); charToHTMLCode.put("\\\\^I", "&Icirc;");
-//		charToHTMLCode.put("\\\\^u", "&Ucirc;"); charToHTMLCode.put("\\\\^U", "&Ucirc;");
+		charToHTMLCode.put("\\\\^e", "&ecirc;"); charToHTMLCode.put("\\\\^E", "&Ecirc;");
+		charToHTMLCode.put("\\\\^a", "&acirc;"); charToHTMLCode.put("\\\\^A", "&Acirc;");
+		charToHTMLCode.put("\\\\^o", "&ocirc;"); charToHTMLCode.put("\\\\^O", "&Ocirc;");
+		charToHTMLCode.put("\\\\^i", "&icirc;"); charToHTMLCode.put("\\\\^I", "&Icirc;");
+		charToHTMLCode.put("\\\\^u", "&Ucirc;"); charToHTMLCode.put("\\\\^U", "&Ucirc;");
 		
-//		charToHTMLCode.put("\\\"e", "&euml;"); charToHTMLCode.put("\\\"E", "&Euml;");
-//		charToHTMLCode.put("\\\"a", "&auml;"); charToHTMLCode.put("\\\"A", "&Auml;");
-//		charToHTMLCode.put("\\\"o", "&ouml;"); charToHTMLCode.put("\\\"O", "&Ouml;");
-//		charToHTMLCode.put("\\\"i", "&iuml;"); charToHTMLCode.put("\\\"I", "&Iuml;");
-//		charToHTMLCode.put("\\\"u", "&Uuml;"); charToHTMLCode.put("\\\"U", "&Uuml;");
+		charToHTMLCode.put("\\\\\"e", "&euml;"); charToHTMLCode.put("\\\"E", "&Euml;");
+		charToHTMLCode.put("\\\\\"a", "&auml;"); charToHTMLCode.put("\\\"A", "&Auml;");
+		charToHTMLCode.put("\\\"o", "&ouml;"); charToHTMLCode.put("\\\"O", "&Ouml;");
+		charToHTMLCode.put("\\\"i", "&iuml;"); charToHTMLCode.put("\\\"I", "&Iuml;");
+		charToHTMLCode.put("\\\"u", "&Uuml;"); charToHTMLCode.put("\\\"U", "&Uuml;");
 //		
 //		charToHTMLCode.put("<", "&lt;"); charToHTMLCode.put(">", "&gt;");
 //		
@@ -58,13 +58,14 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 		}
 		
 		//parse this string in some fancy way...
-		
 		string = string.replaceAll("[{}]", "");
 		
 		//Charset.forName("UTF-8").encode(string);
 		for(Entry<String, String> e : charToHTMLCode.entrySet()) {
 			string = string.replaceAll(e.getKey(), e.getValue());
 		}
+
+		
 		// replace remaining slashes
 //		string = string.replaceAll("\\", "");
 

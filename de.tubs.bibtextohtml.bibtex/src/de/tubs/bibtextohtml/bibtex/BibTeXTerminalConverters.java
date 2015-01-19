@@ -14,10 +14,18 @@ public class BibTeXTerminalConverters extends DefaultTerminalConverters {
     public IValueConverter<String> FieldValue() {
             return fieldValueConverter;
     }
-    
-    @ValueConverter(rule = "NameValue")
-    public IValueConverter<String> NameValue() {
-            return fieldValueConverter; // use the same converter that is used for other fields
+    @ValueConverter(rule = "FieldValuePlusInt")
+    public IValueConverter<String> FieldValuePlusInt() {
+            return fieldValueConverter;
     }
+    @ValueConverter(rule = "FieldValuePlusId")
+    public IValueConverter<String> FieldValuePlusId() {
+            return fieldValueConverter;
+    }
+    
+//    @ValueConverter(rule = "NameValue")
+//    public IValueConverter<String> NameValue() {
+//            return fieldValueConverter; // use the same converter that is used for other fields
+//    }
 
 }

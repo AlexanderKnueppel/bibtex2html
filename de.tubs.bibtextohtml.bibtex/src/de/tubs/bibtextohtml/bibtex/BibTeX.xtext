@@ -154,7 +154,7 @@ UnknownValue:
 
 	// Values for various combinations
 FieldValue:
-	STRING | '{' (ID | '(' | ')' | '"' | "'" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | '^'| ',' | FieldValue | INT)* '}';
+	STRING | '{' (ID | '(' | ')' | '\\\"' | "\\\'" | "\\`"| "\\~" | "\\´" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | '^'| ',' | FieldValue | INT)* '}';
 
 FieldValuePlusInt:
 	FieldValue | INT;
