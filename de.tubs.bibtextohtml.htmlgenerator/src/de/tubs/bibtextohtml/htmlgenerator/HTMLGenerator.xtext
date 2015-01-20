@@ -15,15 +15,15 @@ RunModule:
 	'run' module = [ModuleDeclaration]
 ;
 
-//enum BibTexSytle:
-//	HARVARD = 'harvard' | PLAIN = 'plain' | ALPHA = 'alpha' | ABBRV = 'abbrv'
-//;
-
 ModuleDeclaration:
-//  'module' name = AllowedName '(' bibtexStyle = BibTexStyle ')' '{'
-  'module' name = AllowedName '{'
+  'module' name = AllowedName '(' bibtexStyle = BibTexStyle ')' '{'
+//  'module' name = AllowedName '{'
     (elements += AbstractElement)*
   '}'
+;
+ 
+BibTexStyle:
+	{BibTexStyle} ((NUM ?= 'num') | (ALPAHNUM ?= 'alphanum'))?	
 ;
 
 AllowedName:
@@ -41,7 +41,7 @@ OptionSet:
 ;
 
 Option:
-	PrefixOption | SortingOption | CategoryOption//| OutputNameOption | SortByOption | SpecificDesignOption
+	PrefixOption | SortingOption | CategoryOption  //| OutputNameOption | SortByOption
 ;
 
 PrefixOption:

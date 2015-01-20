@@ -42,6 +42,9 @@ import java.util.List
 import java.util.ArrayList
 import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.BibTexStyle
+import javax.swing.text.StyleConstants.ParagraphConstants
+import javax.swing.text.StyledEditorKit.AlignmentAction
 
 /**
  * Generates code from your model files on save.
@@ -49,48 +52,55 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-//	var prefix = "";
-//	def initOptionsDefault() {
-//		prefix = "";
-//		
-//	}
-//	def initOptions(OptionSet opts) {
-//		if(opts.options.filter(typeof())
-//	}
+
+	var numCounter = 1
+
+	//	var prefix = "";
+	//	def initOptionsDefault() {
+	//		prefix = "";
+	//		
+	//	}
+	//	def initOptions(OptionSet opts) {
+	//		if(opts.options.filter(typeof())
+	//	}
 	//
 	def compile(RunModule module, Model _bibRes) '''	
-	«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix»
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<style>
-			«FOR styles :module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
-		      «styles.printStyles(pre)»
-		    «ENDFOR»
-			</style>
-		<meta charset="UTF-8">
-		<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
-		</head>
-		
-		<body>
-		«var year = ""»
-		«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes,  Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
-		«IF(entry.eContents.filter(YearField).size > 0 && (entry.eContents.filter(YearField).get(0) as YearField).year != year) »
-			<p>
-				<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
-			</p>
-		«ENDIF»
-			«entry.printplain(pre)»
-		«ENDFOR»
-		</body>
-		
-		</html>
-		
+			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
+			prefix»
+			«var printShortcut = (module.getModule().bibtexStyle)»
+			<!DOCTYPE html>
+			<html>
+			<head>
+				<style>
+				«FOR styles : module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
+					«styles.printStyles(pre)»
+				«ENDFOR»
+				</style>
+			<meta charset="UTF-8">
+			<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
+			</head>
+			
+			<body>
+			«var year = ""»
+			«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
+				«IF (entry.eContents.filter(YearField).size > 0 &&
+			(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
+					<p>
+						<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+					</p>
+				«ENDIF»
+				«entry.printplain(pre, printShortcut)»
+			«ENDFOR»
+			</body>
+			
+			</html>
+			
 	'''
+
 	def compile(Import imp) '''
-	  «imp.importBibtex»
+		«imp.importBibtex»
 	'''
-	
+
 	def printStyles(Styles styles, String pre) '''
 		.«pre»«IF !styles.isWildcard»«styles.attributeType»«ELSEIF styles.wildcard»*«ENDIF» {
 			font-type: «styles.fontType»;
@@ -99,140 +109,171 @@ class HTMLGeneratorGenerator implements IGenerator {
 			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
 		}
 	'''
-	
+
 	// Different templates to print entries
 	//note: we've to check wether these elements exist...
-	def printplain(BibtexEntryTypes entry, String pre) '''
-	«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)» 
-		<p>
-			<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
-			<span class="«pre»">
-			«FOR a : authors»
-			«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size()-1)» und «ENDIF»
-			«ENDFOR»
-			</span>
-		</p>
+	def printplain(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)» 
+			<div>«entry.printShortcut(style)»</div>
+			<p>
+				<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
+				<span class="«pre»">
+				«FOR a : authors»
+					«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» und «ENDIF»
+				«ENDFOR»
+				</span>
+			</p>
 	'''
+
+	def printShortcut(BibtexEntryTypes entry, BibTexStyle style) {
+		var shortcut = ""
+		var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
+		var year = (entry.eContents.filter(YearField).get(0) as YearField).year
+
+		switch style {
+			case style.isALPAHNUM: {
+				for (a : authors) {
+					var name = a.lastname
+					var firstChar = String.valueOf(name.charAt(0))
+					shortcut += firstChar
+				}
+				var yearStr = year.toString
+				shortcut += String.valueOf(yearStr.charAt(0)) + String.valueOf(yearStr.charAt(1))
+				return "[" + shortcut + "]"
+			}
+			case style.isNUM: {
+				return "[" + numCounter++ + "]"
+			}
+			default:
+				return shortcut
+		}
+	}
+
 	//public HTMLGeneratorGenerator() {}
-	
 	public enum Sorting {
-//	    AUTHOR_TITLE_YEAR, AUTHOR_YEAR_TITLE, 
-//	    TITLE_AUTHOR_YEAR, TITLE_YEAR_AUTHOR,
-//	    YEAR_TITLE_AUTHOR, YEAR_AUTHOR_TITLE, 
-		AUTHOR, TITLE, YEAR,  KEY
+
+		//	    AUTHOR_TITLE_YEAR, AUTHOR_YEAR_TITLE, 
+		//	    TITLE_AUTHOR_YEAR, TITLE_YEAR_AUTHOR,
+		//	    YEAR_TITLE_AUTHOR, YEAR_AUTHOR_TITLE, 
+		AUTHOR,
+		TITLE,
+		YEAR,
+		KEY
 	}
-	
+
 	public enum Category {
-	    AUTHOR, YEAR, NONE
+		AUTHOR,
+		YEAR,
+		NONE
 	}
-	
+
 	def sortedEntrySet(Model model, Sorting criteria, boolean asc, Category cat, boolean catasc) {
 		var sortedList = model.bibtexEntries.clone;
 
-		if(criteria == Sorting.AUTHOR)
+		if (criteria == Sorting.AUTHOR)
 			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
-		else if(criteria == Sorting.TITLE)
+		else if (criteria == Sorting.TITLE)
 			sortedList.sortInplaceBy[(eContents.filter(TitleField).get(0) as TitleField).title]
-		else if(criteria == Sorting.YEAR)
+		else if (criteria == Sorting.YEAR)
 			sortedList.sortInplaceBy[(eContents.filter(YearField).get(0) as YearField).year]
-		else if(criteria == Sorting.KEY)
+		else if (criteria == Sorting.KEY)
 			sortedList.sortInplaceBy[key]
-			
-		if(!asc)
+
+		if (!asc)
 			sortedList = sortedList.reverse
-			
-		if(criteria != Sorting.YEAR && cat == Category.YEAR)
+
+		if (criteria != Sorting.YEAR && cat == Category.YEAR)
 			sortedList.sortInplaceBy[(eContents.filter(YearField).get(0) as YearField).year]
-			
-		if(criteria != Sorting.AUTHOR && cat == Category.AUTHOR)
+
+		if (criteria != Sorting.AUTHOR && cat == Category.AUTHOR)
 			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
-			
-		if(!catasc)
+
+		if (!catasc)
 			sortedList = sortedList.reverse
-			
+
 		return sortedList
-		
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		
+
 		//val BibParser parser = new BibParser;
-//		//val List<String> modulesToRun = new ArrayList<String>();
-//		//val HTMLGeneratorModel model = resource.getContents().get(0) as HTMLGeneratorModel;
+		//		//val List<String> modulesToRun = new ArrayList<String>();
+		//		//val HTMLGeneratorModel model = resource.getContents().get(0) as HTMLGeneratorModel;
+		val foldername = "/" +
+			String.join("/", resource.getURI().segmentsList().subList(1, resource.getURI().segmentCount() - 1))
 
-      	val foldername = "/" + String.join("/", resource.getURI().segmentsList().subList(1, resource.getURI().segmentCount()-1))
+		val IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(foldername)); //getFigetProject(proj_name);
+		val String resLocation = folder.getRawLocation().toOSString();
 
-  		val IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(foldername));//getFigetProject(proj_name);
-  		val String resLocation = folder.getRawLocation().toOSString();
-  		
-  		// Parse BibTeX-Model
-  		//val injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration
-//  		val injector = Guice.createInjector(new BibTeXRuntimeModule())
-//		val resourceSet = injector.getInstance(typeof(XtextResourceSet))
+		// Parse BibTeX-Model
+		//val injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration
+		//  		val injector = Guice.createInjector(new BibTeXRuntimeModule())
+		//		val resourceSet = injector.getInstance(typeof(XtextResourceSet))
 		val ResourceSet resourceSet = new ResourceSetImpl();
+
 		//XtextResourceSet.
 		//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		
-		for(RunModule module: resource.getAllContents().toIterable().filter(typeof(RunModule))) {
+		for (RunModule module : resource.getAllContents().toIterable().filter(typeof(RunModule))) {
 			System.out.println(module.getModule().getName());
 			var String bibtexEntries = "";
-			for(Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
-				if(!imp.isImportAll()) { //import all doesn't make any sense or does it?
+			for (Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
+				if (!imp.isImportAll()) { //import all doesn't make any sense or does it?
 					try {
-						val byte[] data = Files.readAllBytes( Paths.get(resLocation, imp.getImportBibtex()));
+						val byte[] data = Files.readAllBytes(Paths.get(resLocation, imp.getImportBibtex()));
 						val String n = new String(
-	  							data, 
-	  							Charset.defaultCharset()
-	  						)
+							data,
+							Charset.defaultCharset()
+						)
 						bibtexEntries += n;
-					} catch(FileNotFoundException e) {
+					} catch (FileNotFoundException e) {
 						System.out.println("File not found: " + e.getMessage());
-					} catch(Exception e) {
+					} catch (Exception e) {
 						System.out.println("Exception: " + e.getMessage());
 					}
 				} else {
 					// import everything from directory
 				}
-			}		
+			}
 			val bibRes = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("dummy:/inmemory.bib"))
-		    bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
+			bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
+
 			//bibRes.
 			try {
-				val Model bibtexModel = bibRes.contents.get(0) as Model	
-				for(BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
+				val Model bibtexModel = bibRes.contents.get(0) as Model
+				for (BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
 					System.out.println(be.getKey());
 				}
-				
+
 				//print output to file
-				fsa.generateFile(
-				module.getModule().getName() + ".html", // class name
+				fsa.generateFile(module.getModule().getName() + ".html", // class name
 				module.compile(bibtexModel))
 				System.out.println("File Created......")
-			} catch(Exception e) {
+			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				//do nothing
+
+			//do nothing
 			}
 
-	
-			}
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
-//new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("../");
-//Injector injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration();
-//XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
-//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-//Resource resource = resourceSet.getResource(
-//    URI.createURI("platform:/resource/org.xtext.example.mydsl/src/example.mydsl"), true);
-//Model model = (Model) resource.getContents().get(0);
-//fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
-//	BibTeXParser parser;
-//	Model model = (Model) resource.getContents().get(0);
+		}
+
+	//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
+	//			resource.allContents
+	//				.filter(typeof(Greeting))
+	//				.map[name]
+	//				.join(', '))
+	//new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("../");
+	//Injector injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration();
+	//XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
+	//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
+	//Resource resource = resourceSet.getResource(
+	//    URI.createURI("platform:/resource/org.xtext.example.mydsl/src/example.mydsl"), true);
+	//Model model = (Model) resource.getContents().get(0);
+	//fsa.generateFile('greetings.txt', 'People to greet: ' + 
+	//			resource.allContents
+	//				.filter(typeof(Greeting))
+	//				.map[name]
+	//				.join(', '))
+	//	BibTeXParser parser;
+	//	Model model = (Model) resource.getContents().get(0);
 	}
 }
