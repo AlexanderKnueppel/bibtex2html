@@ -29,7 +29,7 @@ module thisistest /*(harvard)*/ {
 	import "library.bib"
 	options = [
 		prefix : "B1H-" 
-		sorting: author asc
+		sorting: title desc
 		category {
 			sorting: year asc,
 			output: true

@@ -29,6 +29,7 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
 import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
 import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
 import de.tubs.bibtextohtml.bibtex.bibTeX.Book
+import de.tubs.bibtextohtml.bibtex.BibTeXTerminalConverters
 
 /**
  * Custom validation rules. 
@@ -101,34 +102,38 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	public static val manualMapOptional = newHashMap('Author' -> AuthorField, 'Organization' -> OrganizationField,
 		'Edition' -> EditionField, 'Month' -> MonthField, 'Note' -> NoteField)
 
-//	public static val entryMap = newHashMap('Article' -> Article, 'Book' -> Book, 'Conference' -> Conference,
-//		'Inproceedings' -> Inproceedings, 'Manual' -> Manual)
-
-
+	//	public static val entryMap = newHashMap('Article' -> Article, 'Book' -> Book, 'Conference' -> Conference,
+	//		'Inproceedings' -> Inproceedings, 'Manual' -> Manual)
 	@Check
 	def checkForMultipleOccurence(Article article) {
 		articleMapMandatory.forEach [ str, field |
+			
+			
 			if (article.elements.filter(field).size > 1) {
-				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.ARTICLE__ELEMENTS)
+				article.elements.forEach [ fieldType, i |
+					if (fieldType.equals(field))
+						warning(str + " is duplicated! Just one allowed!", fieldType.eContainmentFeature, i)
+				//warning(str + " is duplicated! Just one allowed!", fieldType.eContainmentFeature)
+				]
 			} else if (article.elements.filter(field).size == 0) {
-				error(str + " is missing!", BibTeXPackage.Literals.ARTICLE__ELEMENTS)
+				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 
 		articleMapOptional.forEach [ str, field |
 			if (article.elements.filter(field).size > 1) {
-				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.ARTICLE__ELEMENTS)
+				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 	}
-	
+
 	@Check
 	def checkForMultipleOccurence(Book book) {
 		bookMapMandatory.forEach [ str, field |
 			if (book.elements.filter(field).size > 1) {
 				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.BOOK__ELEMENTS)
 			} else if (book.elements.filter(field).size == 0) {
-				error(str + " is missing!", BibTeXPackage.Literals.BOOK__ELEMENTS)
+				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 
@@ -138,14 +143,14 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 			}
 		]
 	}
-	
+
 	@Check
 	def checkForMultipleOccurence(Conference conference) {
 		conferenceMapMandatory.forEach [ str, field |
 			if (conference.elements.filter(field).size > 1) {
 				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.CONFERENCE__ELEMENTS)
 			} else if (conference.elements.filter(field).size == 0) {
-				error(str + " is missing!", BibTeXPackage.Literals.CONFERENCE__ELEMENTS)
+				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 
@@ -155,14 +160,14 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 			}
 		]
 	}
-	
+
 	@Check
 	def checkForMultipleOccurence(Inproceedings inproceedings) {
 		inproceedingsMapMandatory.forEach [ str, field |
 			if (inproceedings.elements.filter(field).size > 1) {
 				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.INPROCEEDINGS__ELEMENTS)
 			} else if (inproceedings.elements.filter(field).size == 0) {
-				error(str + " is missing!", BibTeXPackage.Literals.INPROCEEDINGS__ELEMENTS)
+				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 
@@ -172,14 +177,14 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 			}
 		]
 	}
-	
+
 	@Check
 	def checkForMultipleOccurence(Manual manual) {
 		manualMapMandatory.forEach [ str, field |
 			if (manual.elements.filter(field).size > 1) {
 				warning(str + " is duplicated! Just one allowed!", BibTeXPackage.Literals.MANUAL__ELEMENTS)
 			} else if (manual.elements.filter(field).size == 0) {
-				error(str + " is missing!", BibTeXPackage.Literals.MANUAL__ELEMENTS)
+				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
 			}
 		]
 
