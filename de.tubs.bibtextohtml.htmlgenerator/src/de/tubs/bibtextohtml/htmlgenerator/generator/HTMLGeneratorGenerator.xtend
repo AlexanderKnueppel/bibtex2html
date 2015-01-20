@@ -68,33 +68,236 @@ class HTMLGeneratorGenerator implements IGenerator {
 			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
 			prefix»
 			«var printShortcut = (module.getModule().bibtexStyle)»
-			<!DOCTYPE html>
-			<html>
+«««			<!DOCTYPE html>
+«««			<html>
+«««			<head>
+«««				<style>
+«««				«FOR styles : module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
+«««					«styles.printStyles(pre)»
+«««				«ENDFOR»
+«««				</style>
+«««			<meta charset="UTF-8">
+«««			<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
+«««			</head>
+«««			
+«««			<body>
+«««			«var year = ""»
+«««			«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
+«««				«IF (entry.eContents.filter(YearField).size > 0 &&
+«««			(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
+«««					<p>
+«««						<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+«««					</p>
+«««				«ENDIF»
+«««				«entry.printplain(pre, printShortcut)»
+«««			«ENDFOR»
+«««			</body>
+«««			
+«««			</html>
+<!DOCTYPE html>
+
+			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+			<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+			<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+			
+			<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+			
 			<head>
+				<meta charset="UTF-8">
+				
+				<!-- Remove this line if you use the .htaccess -->
+				<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+				
+				<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
+				
 				<style>
 				«FOR styles : module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
 					«styles.printStyles(pre)»
 				«ENDFOR»
 				</style>
-			<meta charset="UTF-8">
-			<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
+				
+				<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+				<link rel="stylesheet" href="css/style.css">
+				
+				<!--[if lt IE 9]>
+				<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+				<![endif]-->
 			</head>
 			
 			<body>
-			«var year = ""»
-			«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
-				«IF (entry.eContents.filter(YearField).size > 0 &&
-			(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
-					<p>
-						<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
-					</p>
-				«ENDIF»
-				«entry.printplain(pre, printShortcut)»
-			«ENDFOR»
+			<!-- Prompt IE 7 users to install Chrome Frame -->
+			<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">
+			Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+			
+			<div class="container">
+			
+				<header id="navtop" style="margin-top: -4em">
+					<a href="index.html" class="logo fleft">
+						<img src="img/bibhtml.png" alt="Startsite">
+					</a>
+					
+					<nav class="fright">
+					</nav>
+				</header>
+			
+			
+			<div class="home-page main">
+				<section class="grid-wrap" >
+					<header class="grid col-full" style="text-align: center">
+						<hr>
+						<h1 >References</h1>
+					</header>
+					
+					<!-- begin: entry for article -->
+					<section class="grid col-full">
+						<h5>Article</h5>
+					</section>
+					
+					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+						[1]
+					</aside>
+						
+					
+					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+						<div>
+						   <span class="author">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
+						   <span class="title">MSBE with XText</span>.
+						   <span class="journal"><i>TU BS Wissensarchiv</i></span>, 
+						   <span class="volume">1</span>(<span class="number">2</span>):<span class="pages">37-310</span>, 
+						   <span class="month">January</span>
+						   <span class="year">2015</span>. 
+						   <span class="note">Just an article note</span>.
+						</div>
+					 </section>
+					 <!-- end: entry for article -->
+					 
+					 <!-- begin: entry for book -->
+					<section class="grid col-full">
+						<h5>Book</h5>
+					</section>
+					
+					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+						[2]
+					</aside>
+						
+					
+					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+						<div>
+						   <span class="author editor">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
+						   <span class="title"><i>MSBE with XText II</i></span>,
+						   <span class="volume number">volume 1 of</span> <span class="series">Series. 
+						   <span class="publisher">The Publisher</span>, <span class="address">Location</span>, <span class="edition">first </span>edition, 
+						   <span class="month">January</span>
+						   <span class="year">2015</span>. 
+						   ISBN-13 <span class="isbn"><i>978-3-7657-2781-?</i></span>.
+						   <span class="note">Just an article note</span>.
+						</div>
+					 </section>
+					 <!-- end: entry for book -->
+				
+				
+					 <!-- begin: entry for Conference -->
+					<section class="grid col-full">
+						<h5>Conference</h5>
+					</section>
+					
+					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+						[3]
+					</aside>
+						
+					
+					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+						<div>
+						   <span class="author">John Doe</span>. 
+						   <span class="title">MSBE with XText - Lessons</span>. 
+						   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
+						   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
+						   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
+						   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
+						   <span class="note">Just an article note</span>.
+						</div>
+					 </section>
+					 <!-- end: entry for Conference -->
+					 
+					 <!-- begin: entry for InProceeding -->
+					<section class="grid col-full">
+						<h5>InProceeding</h5>
+					</section>
+					
+					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+						[4]
+					</aside>
+						
+					
+					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+						<div>
+						   <span class="author">John Doe</span>. 
+						   <span class="title">MSBE with XText - Lessons</span>. 
+						   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
+						   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
+						   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
+						   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
+						   <span class="note">Just an article note</span>.
+						</div>
+					 </section>
+					 <!-- end: entry for InProceeding -->
+					 
+					 
+					  <!-- begin: entry for Manual -->
+					<section class="grid col-full">
+						<h5>Manual</h5>
+					</section>
+					
+					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+						[5]
+					</aside>
+						
+					
+					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+						<div>
+						   <span class="author">Genie Doe</span>. 
+						   <span class="title"><i>How to build your own life</i></span>. 
+						   <span class="organization">The Organization</span>, <span class="address">The address of the publisher</span>, 
+						   <span class="edition">3</span> edition, <span class="month">7</span> <span class="year">1998</span> 			    
+						   <span class="note">Just an article note</span>.
+						</div>
+					 </section>
+					 <!-- end: entry for Manual -->
+					
+					<section class="grid col-full">
+						<hr>
+					</section>
+				</section>
+				«var year = ""»
+				«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
+					«IF (entry.eContents.filter(YearField).size > 0 &&
+				(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
+						<p>
+							<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+						</p>
+					«ENDIF»
+					«entry.printplain(pre, printShortcut)»
+				«ENDFOR»
+				
+			   
+			</div> <!--main-->
+			
+			
+			</div><!--container-->
+			
+			<!-- Javascript - jQuery -->
+			<script src="http://code.jquery.com/jquery.min.js"></script>
+			<script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>
+			
+			<!--[if (gte IE 6)&(lte IE 8)]>
+			<script src="js/selectivizr.js"></script>
+			<![endif]-->
+			
+			<script src="js/jquery.flexslider-min.js"></script>
+			<script src="js/scripts.js"></script>
+			
 			</body>
-			
-			</html>
-			
+			</html>			
 	'''
 
 	def compile(Import imp) '''
