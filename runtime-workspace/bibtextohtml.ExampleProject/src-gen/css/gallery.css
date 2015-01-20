@@ -1,0 +1,225 @@
+.gallery{
+	margin-top:13px;
+	margin-bottom:20px;
+	margin-left: 40px;
+	display:block;
+}
+
+.gallery_clear{
+	clear:both;
+}
+
+.gallery .thumnail_col{ 
+	float:left;
+	opacity:1;
+	width:181px;
+}
+
+.gallery .gal_content {
+	/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
+	display: none;
+	float: right;
+	width: 400px;
+}
+.gallery .gal_content a, 
+.gallery .thumnail_col a {
+	text-decoration: none;
+	color: #777;
+}
+
+.gallery .gal_content a:hover{
+	text-decoration: underline;
+}
+
+.gallery .controls {
+	margin-top: -20px;
+	height: 20px;
+}
+
+.gallery .controls a.next {
+	margin-left:10px;
+}
+
+
+
+.gallery .ss-controls {
+	float: left;
+}
+.gallery .nav-controls {
+	float: right;
+}
+.gallery .slideshow-container {
+	position:relative;
+	clear: both;
+	height: 492px; /* This should be set to be at least the height of the largest image in the slideshow */
+}
+.gallery .loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url('loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 400px;
+	height: 492px; /* This should be set to be at least the height of the largest image in the slideshow */
+}
+
+.gallery .slideshow span.image-wrapper {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	line-height:0px; /* line space in webkit */
+	font-size:0px; /* line space in webkit */
+	white-space:nowrap; /* line space in webkit */
+	letter-spacing:-1px; /* line space in webkit */
+}
+.gallery .slideshow a.advance-link {
+	display: block;
+	width: 400px;
+	height: 492px; /* This should be set to be at least the height of the largest image in the slideshow */
+	/* line-height: 502px;  This should be set to be at least the height of the largest image in the slideshow */
+	text-align: center;
+	
+}
+
+.gallery .slideshow a.advance-link:hover, 
+.gallery .slideshow a.advance-link:active, 
+.gallery .slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+.gallery .slideshow img {
+	vertical-align: top;
+}
+.gallery .download {
+	float: right;
+}
+.gallery .caption-container {
+	
+}
+.gallery span.image-caption {
+	display: block;
+	position: absolute;
+}  
+.gallery .caption {
+	color: #8e8e8e;
+	text-align:right;
+	padding-right:0;
+	padding-top:10px;
+}
+
+.gallery li .caption{
+	display:none;
+}
+
+.gallery .caption a {
+}
+
+.gallery .image-desc {
+	line-height: 1.3em;
+	padding-top: 12px;
+}
+.gallery .thumnail_col {
+	float:left;
+	/* The thumnail_col style is set using jQuery so that the javascript specific styles won't be applied unless javascript is enabled. */
+}
+.gallery ul.thumbs {
+	margin: 0;
+	padding: 0;
+}
+.gallery ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	list-style: none  !important;
+}
+
+.gallery a.thumb {
+	display: block;
+}
+
+.gallery a.thumb:focus {
+	outline: none;
+}
+.gallery ul.thumbs img {
+	display: block;	
+}
+.gallery .pagination {
+	clear: both;
+}
+.gallery .thumnail_col div.top {
+	margin-bottom: 12px;
+	height: 11px;
+}
+.gallery .thumnail_col div.bottom {
+	margin-top: 12px;
+}
+.gallery .pagination a, 
+.gallery .pagination span.current, 
+.gallery .pagination span.ellipsis {
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #ccc;
+}
+.gallery .pagination a:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+.gallery .pagination span.current {
+	font-weight: bold;
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
+}
+.gallery .pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+.gallery #captionToggle a {
+	float: right;
+	display: block;
+	background-image: url('caption.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	margin-top: 5px;
+	padding: 5px 30px 5px 5px;
+}
+
+.gallery .thumnail_col a.pageLink {
+	height: 70px;
+	line-height: 70px;
+}
+
+.gallery .thumnail_col a.pageLink {
+	display: block;
+	position: relative;
+	float: left;
+	width: 60px;
+	height:60px;
+	background-position:center center;
+	background-repeat:no-repeat;
+	margin-right:15px;
+}
+.gallery .thumnail_col a.pageLink:focus {
+	outline: none;
+}
+
+.gallery .thumnail_col a.prev {
+	background-image: url('prevPageArrow.gif');
+}
+.gallery .thumnail_col a.next {
+	background-image: url('nextPageArrow.gif');
+}
+
+
+
+
+
+
+			
+			
+
