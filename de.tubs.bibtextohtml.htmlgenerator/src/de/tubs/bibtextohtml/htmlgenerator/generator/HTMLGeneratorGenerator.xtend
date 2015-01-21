@@ -45,6 +45,17 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.BibTexStyle
 import javax.swing.text.StyleConstants.ParagraphConstants
 import javax.swing.text.StyledEditorKit.AlignmentAction
+import de.tubs.bibtextohtml.bibtex.bibTeX.Article
+import de.tubs.bibtextohtml.bibtex.bibTeX.JournalField
+import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField
+import de.tubs.bibtextohtml.bibtex.bibTeX.PagesField
+import de.tubs.bibtextohtml.bibtex.bibTeX.MonthField
+import de.tubs.bibtextohtml.bibtex.bibTeX.VolumeField
+import de.tubs.bibtextohtml.bibtex.bibTeX.NoteField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Book
+import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
+import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
+import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
 
 /**
  * Generates code from your model files on save.
@@ -146,139 +157,18 @@ class HTMLGeneratorGenerator implements IGenerator {
 					<header class="grid col-full" style="text-align: center">
 						<hr>
 						<h1 >References</h1>
-					</header>
-					
-					<!-- begin: entry for article -->
-					<section class="grid col-full">
-						<h5>Article</h5>
-					</section>
-					
-					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
-						[1]
-					</aside>
-						
-					
-					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
-						<div>
-						   <span class="author">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
-						   <span class="title">MSBE with XText</span>.
-						   <span class="journal"><i>TU BS Wissensarchiv</i></span>, 
-						   <span class="volume">1</span>(<span class="number">2</span>):<span class="pages">37-310</span>, 
-						   <span class="month">January</span>
-						   <span class="year">2015</span>. 
-						   <span class="note">Just an article note</span>.
-						</div>
-					 </section>
-					 <!-- end: entry for article -->
+					</header>				
 					 
-					 <!-- begin: entry for book -->
-					<section class="grid col-full">
-						<h5>Book</h5>
-					</section>
-					
-					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
-						[2]
-					</aside>
-						
-					
-					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
-						<div>
-						   <span class="author editor">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
-						   <span class="title"><i>MSBE with XText II</i></span>,
-						   <span class="volume number">volume 1 of</span> <span class="series">Series. 
-						   <span class="publisher">The Publisher</span>, <span class="address">Location</span>, <span class="edition">first </span>edition, 
-						   <span class="month">January</span>
-						   <span class="year">2015</span>. 
-						   ISBN-13 <span class="isbn"><i>978-3-7657-2781-?</i></span>.
-						   <span class="note">Just an article note</span>.
-						</div>
-					 </section>
-					 <!-- end: entry for book -->
-				
-				
-					 <!-- begin: entry for Conference -->
-					<section class="grid col-full">
-						<h5>Conference</h5>
-					</section>
-					
-					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
-						[3]
-					</aside>
-						
-					
-					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
-						<div>
-						   <span class="author">John Doe</span>. 
-						   <span class="title">MSBE with XText - Lessons</span>. 
-						   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
-						   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
-						   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
-						   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
-						   <span class="note">Just an article note</span>.
-						</div>
-					 </section>
-					 <!-- end: entry for Conference -->
-					 
-					 <!-- begin: entry for InProceeding -->
-					<section class="grid col-full">
-						<h5>InProceeding</h5>
-					</section>
-					
-					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
-						[4]
-					</aside>
-						
-					
-					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
-						<div>
-						   <span class="author">John Doe</span>. 
-						   <span class="title">MSBE with XText - Lessons</span>. 
-						   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
-						   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
-						   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
-						   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
-						   <span class="note">Just an article note</span>.
-						</div>
-					 </section>
-					 <!-- end: entry for InProceeding -->
-					 
-					 
-					  <!-- begin: entry for Manual -->
-					<section class="grid col-full">
-						<h5>Manual</h5>
-					</section>
-					
-					<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
-						[5]
-					</aside>
-						
-					
-					 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
-						<div>
-						   <span class="author">Genie Doe</span>. 
-						   <span class="title"><i>How to build your own life</i></span>. 
-						   <span class="organization">The Organization</span>, <span class="address">The address of the publisher</span>, 
-						   <span class="edition">3</span> edition, <span class="month">7</span> <span class="year">1998</span> 			    
-						   <span class="note">Just an article note</span>.
-						</div>
-					 </section>
-					 <!-- end: entry for Manual -->
-					
-					<section class="grid col-full">
-						<hr>
-					</section>
-				</section>
-				«var year = ""»
-				«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
-					«IF (entry.eContents.filter(YearField).size > 0 &&
-				(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
-						<p>
-							<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
-						</p>
-					«ENDIF»
-					«entry.printplain(pre, printShortcut)»
-				«ENDFOR»
-				
+					«var year = ""»
+					«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
+						«IF (entry.eContents.filter(YearField).size > 0 && (entry.eContents.filter(YearField).get(0) as YearField).year != year)»
+							<section class="grid col-full">
+								<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+							</section>
+						«ENDIF»
+						«entry.printAll(pre, printShortcut)»
+					«ENDFOR»
+				</section>				
 			   
 			</div> <!--main-->
 			
@@ -312,22 +202,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
 		}
 	'''
-
-	// Different templates to print entries
-	//note: we've to check wether these elements exist...
-	def printplain(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
-		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)» 
-			<div>«entry.printShortcut(style)»</div>
-			<p>
-				<span class="«pre»">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>
-				<span class="«pre»">
-				«FOR a : authors»
-					«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» und «ENDIF»
-				«ENDFOR»
-				</span>
-			</p>
-	'''
-
+	
 	def printShortcut(BibtexEntryTypes entry, BibTexStyle style) {
 		var shortcut = ""
 		var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
@@ -352,6 +227,128 @@ class HTMLGeneratorGenerator implements IGenerator {
 		}
 	}
 
+	// Different templates to print entries
+	//note: we've to check wether these elements exist...
+	def printAll(BibtexEntryTypes entry, String pre, BibTexStyle style) ''' 
+		«if(entry instanceof Article) {entry.printArticle(pre, style)}»
+«««		«if(entry instanceof Book) {entry.printBook(pre, style)}»
+«««		«if(entry instanceof Conference) {entry.printArticle(pre, style)}»
+«««		«if(entry instanceof Manual) {entry.printManual(pre, style)}»
+«««		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
+	'''
+	
+	def printArticle(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+		<!-- begin: entry for article -->		
+		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+			«entry.printShortcut(style)»
+		</aside>
+			
+		
+		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+			<div>
+			   	<span class="«pre»author">
+				   	«FOR a : authors»
+						«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» and «ENDIF»
+					«ENDFOR»
+				</span>. 
+			   <span class="«pre»title">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>.
+			   <span class="«pre»journal"><i>«(entry.eContents.filter(JournalField).get(0) as JournalField).journal»</i></span>, 
+			   «IF (entry.eContents.filter(VolumeField).size > 0)»<span class="«pre»volume">«(entry.eContents.filter(VolumeField).get(0) as VolumeField).volume»</span>«ENDIF»
+			   		«IF (entry.eContents.filter(NumberField).size > 0)»(<span class="«pre»number">«(entry.eContents.filter(NumberField).get(0) as NumberField).number»</span>):«ENDIF»
+			   		«IF (entry.eContents.filter(PagesField).size > 0)»<span class="«pre»pages">«(entry.eContents.filter(PagesField).get(0) as PagesField).pages»</span>«ENDIF», 
+			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span>«ENDIF»
+			   <span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. 
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>«ENDIF».
+			</div>
+		 </section>
+		 <!-- end: entry for article -->
+ 	'''
+ 	
+ 	def printBook(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+		<!-- begin: entry for book -->		
+		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+			«entry.printShortcut(style)»
+		</aside>
+			
+		
+		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+			<div>
+			   <span class="author editor">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
+			   <span class="title"><i>MSBE with XText II</i></span>,
+			   <span class="volume number">volume 1 of</span> <span class="series">Series. 
+			   <span class="publisher">The Publisher</span>, <span class="address">Location</span>, <span class="edition">first </span>edition, 
+			   <span class="month">January</span>
+			   <span class="year">2015</span>. 
+			   ISBN-13 <span class="isbn"><i>978-3-7657-2781-?</i></span>.
+			   <span class="note">Just an article note</span>.
+			</div>
+		 </section>
+		 <!-- end: entry for book -->
+ 	'''
+ 	
+ 	def printConference(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		<!-- begin: entry for Conference -->		
+		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+			«entry.printShortcut(style)»
+		</aside>
+			
+		
+		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+			<div>
+			   <span class="author">John Doe</span>. 
+			   <span class="title">MSBE with XText - Lessons</span>. 
+			   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
+			   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
+			   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
+			   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
+			   <span class="note">Just an article note</span>.
+			</div>
+		 </section>
+		 <!-- end: entry for Conference -->
+ 	'''
+ 	
+ 	def printManual(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		<!-- begin: entry for Manual -->		
+		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+			«entry.printShortcut(style)»
+		</aside>
+			
+		
+		<section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+			<div>
+			   <span class="author">Genie Doe</span>. 
+			   <span class="title"><i>How to build your own life</i></span>. 
+			   <span class="organization">The Organization</span>, <span class="address">The address of the publisher</span>, 
+			   <span class="edition">3</span> edition, <span class="month">7</span> <span class="year">1998</span> 			    
+			   <span class="note">Just an article note</span>.
+			</div>
+		 </section>
+		 <!-- end: entry for Manual -->
+ 	'''
+ 	
+ 	def printInProceeding(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
+		<!-- begin: entry for InProceeding -->		
+		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
+			«entry.printShortcut(style)»
+		</aside>
+			
+		
+		<section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+			<div>
+			   <span class="author">John Doe</span>. 
+			   <span class="title">MSBE with XText - Lessons</span>. 
+			   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
+			   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
+			   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
+			   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
+			   <span class="note">Just an article note</span>.
+			</div>
+		 </section>
+		 <!-- end: entry for InProceeding -->
+ 	'''
+ 	
 	//public HTMLGeneratorGenerator() {}
 	public enum Sorting {
 

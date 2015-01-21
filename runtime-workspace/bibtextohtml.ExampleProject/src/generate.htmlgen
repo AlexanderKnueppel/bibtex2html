@@ -25,7 +25,7 @@
 //	}
 //}
 
-module thisistest ()/*(harvard)*/ {
+module thisistest (num)/*(harvard)*/ {
 	import "library.bib"
 	options = [
 		prefix : "B1H-" 
