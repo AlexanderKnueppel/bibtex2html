@@ -56,6 +56,12 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.Book
 import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
 import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
 import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
+import de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField
+import de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
+import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
+import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
 
 /**
  * Generates code from your model files on save.
@@ -167,6 +173,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 							</section>
 						«ENDIF»
 						«entry.printAll(pre, printShortcut)»
+						<section class="grid col-full">
+						</section>
 					«ENDFOR»
 				</section>				
 			   
@@ -231,7 +239,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 	//note: we've to check wether these elements exist...
 	def printAll(BibtexEntryTypes entry, String pre, BibTexStyle style) ''' 
 		«if(entry instanceof Article) {entry.printArticle(pre, style)}»
-«««		«if(entry instanceof Book) {entry.printBook(pre, style)}»
+		«if(entry instanceof Book) {entry.printBook(pre, style)}»
 «««		«if(entry instanceof Conference) {entry.printArticle(pre, style)}»
 «««		«if(entry instanceof Manual) {entry.printManual(pre, style)}»
 «««		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
@@ -266,7 +274,6 @@ class HTMLGeneratorGenerator implements IGenerator {
  	'''
  	
  	def printBook(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
-		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
 		<!-- begin: entry for book -->		
 		<aside class="grid col-one-quarter mq2-col-one-third mq3-col-full" style="text-align: right">
 			«entry.printShortcut(style)»
@@ -275,14 +282,27 @@ class HTMLGeneratorGenerator implements IGenerator {
 		
 		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
 			<div>
-			   <span class="author editor">Sven Frank, Alex Knueppel, Frieder Berhold and Marcus Stelke</span>. 
-			   <span class="title"><i>MSBE with XText II</i></span>,
-			   <span class="volume number">volume 1 of</span> <span class="series">Series. 
-			   <span class="publisher">The Publisher</span>, <span class="address">Location</span>, <span class="edition">first </span>edition, 
-			   <span class="month">January</span>
-			   <span class="year">2015</span>. 
-			   ISBN-13 <span class="isbn"><i>978-3-7657-2781-?</i></span>.
-			   <span class="note">Just an article note</span>.
+			   «IF (entry.eContents.filter(AuthorField).size > 0)»
+			   		«var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+			   		<span class="«pre»author editor">
+			   		«FOR a : authors»
+						«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» and «ENDIF»
+					«ENDFOR»</span>. 
+				«ELSEIF (entry.eContents.filter(EditorField).size > 0)»<span class="«pre»editor">«(entry.eContents.filter(EditorField).get(0) as EditorField).editor»</span>
+				«ENDIF»
+			   <span class="«pre»title"><i>«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</i></span>,
+			   «IF (entry.eContents.filter(VolumeField).size > 0)»
+			   		<span class="«pre»volume">volume «(entry.eContents.filter(VolumeField).get(0) as VolumeField).volume» of</span>  
+		   		«ELSEIF (entry.eContents.filter(NumberField).size > 0)»<span class="«pre»number">number «(entry.eContents.filter(NumberField).get(0) as NumberField).number» of</span>
+		   		«ENDIF»
+		   	   «IF (entry.eContents.filter(SeriesField).size > 0)»<span class="«pre»series">«(entry.eContents.filter(SeriesField).get(0) as SeriesField).series».«ENDIF»
+			   <span class="«pre»publisher">«(entry.eContents.filter(PublisherField).get(0) as PublisherField).publisher»</span>, 
+			   «IF (entry.eContents.filter(AddressField).size > 0)»<span class="«pre»address">«(entry.eContents.filter(AddressField).get(0) as AddressField).address»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(EditionField).size > 0)»<span class="«pre»edition">«(entry.eContents.filter(EditionField).get(0) as EditionField).edition» </span>edition, «ENDIF»
+			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span> «ENDIF»
+			   «IF (entry.eContents.filter(YearField).size > 0)»<span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. «ENDIF»
+			   «IF (entry.eContents.filter(IsbnField).size > 0)»ISBN <span class="«pre»isbn"><i>«(entry.eContents.filter(IsbnField).get(0) as IsbnField).isbn»</i></span>.«ENDIF»
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for book -->
