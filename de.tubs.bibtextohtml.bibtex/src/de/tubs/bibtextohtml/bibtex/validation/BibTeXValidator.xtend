@@ -107,13 +107,14 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	@Check
 	def checkForMultipleOccurence(Article article) {
 		articleMapMandatory.forEach [ str, field |
-			
-			
-			if (article.elements.filter(field).size > 1) {
-				article.elements.forEach [ fieldType, i |
-					if (fieldType.equals(field))
-						warning(str + " is duplicated! Just one allowed!", fieldType.eContainmentFeature, i)
-				//warning(str + " is duplicated! Just one allowed!", fieldType.eContainmentFeature)
+			val elements = article.elements.filter(field);
+			if (elements.size > 1) {
+				elements.forEach [ duplicatedFields, i |
+					article.elements.forEach [ allFields, j |
+						if (duplicatedFields.equals(allFields))
+							warning(str + " is duplicated! Just one allowed!", duplicatedFields.eContainmentFeature, j)
+					//warning(str + " is duplicated! Just one allowed!", fieldType.eContainmentFeature)
+					]
 				]
 			} else if (article.elements.filter(field).size == 0) {
 				error(str + " is missing!", BibTeXPackage.Literals.BIBTEX_ENTRY_TYPES__KEY)
@@ -126,6 +127,8 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 			}
 		]
 	}
+
+	
 
 	@Check
 	def checkForMultipleOccurence(Book book) {
