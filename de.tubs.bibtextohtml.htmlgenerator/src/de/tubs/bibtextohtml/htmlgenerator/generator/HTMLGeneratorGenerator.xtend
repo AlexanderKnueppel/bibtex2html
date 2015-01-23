@@ -63,12 +63,13 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-	var numCounter = 1
+	var numCounter = 0
 
 	def compile(RunModule module, Model _bibRes) '''	
 			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
 			prefix»
 			«var printShortcut = (module.getModule().bibtexStyle)»
+			«numCounter = 1»
 «««			<!DOCTYPE html>
 «««			<html>
 «««			<head>
