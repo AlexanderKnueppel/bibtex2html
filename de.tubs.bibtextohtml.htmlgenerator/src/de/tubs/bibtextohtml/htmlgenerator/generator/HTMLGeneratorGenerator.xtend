@@ -54,6 +54,8 @@ import java.io.File
 import java.util.List
 import java.io.FilenameFilter
 import java.util.ArrayList
+import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
+import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
 
 /**
  * Generates code from your model files on save.
@@ -222,9 +224,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 	def printAll(BibtexEntryTypes entry, String pre, BibTexStyle style) ''' 
 		«if(entry instanceof Article) {entry.printArticle(pre, style)}»
 		«if(entry instanceof Book) {entry.printBook(pre, style)}»
-«««		«if(entry instanceof Conference) {entry.printArticle(pre, style)}»
+		«if(entry instanceof Conference) {entry.printConference(pre, style)}»
 «««		«if(entry instanceof Manual) {entry.printManual(pre, style)}»
-«««		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
+		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
 	'''
 	
 	def printArticle(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
@@ -299,13 +301,27 @@ class HTMLGeneratorGenerator implements IGenerator {
 		
 		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
 			<div>
-			   <span class="author">John Doe</span>. 
-			   <span class="title">MSBE with XText - Lessons</span>. 
-			   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
-			   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
-			   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
-			   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
-			   <span class="note">Just an article note</span>.
+			   «var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+			   		<span class="«pre»author editor">
+			   		«FOR a : authors»
+						«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» and «ENDIF»
+					«ENDFOR»</span>. 
+			   <span class="«pre»title">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>. 
+			   «IF (entry.eContents.filter(EditorField).size > 0)»In <span class="«pre»editor">«(entry.eContents.filter(EditorField).get(0) as EditorField).editor»</span>, editor,«ENDIF» 
+			   <span class="«pre»booktitle"><i>«(entry.eContents.filter(BooktitleField).get(0) as BooktitleField).booktitle»</i></span>, 
+			   «IF (entry.eContents.filter(VolumeField).size > 0)»
+			   		volume <span class="«pre»volume">«(entry.eContents.filter(VolumeField).get(0) as VolumeField).volume»</span> 
+		   		«ELSEIF (entry.eContents.filter(NumberField).size > 0)»
+			   number <span class="«pre»number">«(entry.eContents.filter(NumberField).get(0) as NumberField).number»</span> 
+		   		«ENDIF»
+		   		«IF (entry.eContents.filter(SeriesField).size > 0)»of <span class="«pre»series">«(entry.eContents.filter(SeriesField).get(0) as SeriesField).series»</span>«ENDIF», 
+		   		«IF (entry.eContents.filter(PagesField).size > 0)»page <span class="«pre»page">«(entry.eContents.filter(PagesField).get(0) as PagesField).pages»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(AddressField).size > 0)»<span class="«pre»address">«(entry.eContents.filter(AddressField).get(0) as AddressField).address»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span>«ENDIF» 
+			   <span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. 
+			   «IF (entry.eContents.filter(OrganizationField).size > 0)»<span class="«pre»organization">«(entry.eContents.filter(OrganizationField).get(0) as OrganizationField).organization»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(PublisherField).size > 0)»<span class="«pre»publisher">«(entry.eContents.filter(PublisherField).get(0) as PublisherField).publisher»</span>. «ENDIF»
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for Conference -->
@@ -337,15 +353,29 @@ class HTMLGeneratorGenerator implements IGenerator {
 		</aside>
 			
 		
-		<section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+		 <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
 			<div>
-			   <span class="author">John Doe</span>. 
-			   <span class="title">MSBE with XText - Lessons</span>. 
-			   In <span class="editor">The Editor</span>, editor, <span class="booktitle"><i>Lessons (Booktitle)</i></span>, 
-			   volume <span class="volume number">1</span> of <span class="series">5</span>, page <span class="page">310</span>, 
-			   <span class="address">Location</span>, <span class="month">January</span> <span class="year">2015</span>. 
-			   <span class="organization">The Verlag</span>, <span class="publisher">The Publisher</span>. 			    
-			   <span class="note">Just an article note</span>.
+			   «var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)»
+			   		<span class="«pre»author editor">
+			   		«FOR a : authors»
+						«a.firstname» «a.lastname» «IF authors.indexOf(a) != (authors.size() - 1)» and «ENDIF»
+					«ENDFOR»</span>. 
+			   <span class="«pre»title">«(entry.eContents.filter(TitleField).get(0) as TitleField).title»</span>. 
+			   «IF (entry.eContents.filter(EditorField).size > 0)»In <span class="«pre»editor">«(entry.eContents.filter(EditorField).get(0) as EditorField).editor»</span>, editor,«ENDIF» 
+			   <span class="«pre»booktitle"><i>«(entry.eContents.filter(BooktitleField).get(0) as BooktitleField).booktitle»</i></span>, 
+			   «IF (entry.eContents.filter(VolumeField).size > 0)»
+			   		volume <span class="«pre»volume">«(entry.eContents.filter(VolumeField).get(0) as VolumeField).volume»</span> 
+		   		«ELSEIF (entry.eContents.filter(NumberField).size > 0)»
+			   number <span class="«pre»number">«(entry.eContents.filter(NumberField).get(0) as NumberField).number»</span> 
+		   		«ENDIF»
+		   		«IF (entry.eContents.filter(SeriesField).size > 0)»of <span class="«pre»series">«(entry.eContents.filter(SeriesField).get(0) as SeriesField).series»</span>«ENDIF», 
+		   		«IF (entry.eContents.filter(PagesField).size > 0)»page <span class="«pre»page">«(entry.eContents.filter(PagesField).get(0) as PagesField).pages»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(AddressField).size > 0)»<span class="«pre»address">«(entry.eContents.filter(AddressField).get(0) as AddressField).address»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span>«ENDIF» 
+			   <span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. 
+			   «IF (entry.eContents.filter(OrganizationField).size > 0)»<span class="«pre»organization">«(entry.eContents.filter(OrganizationField).get(0) as OrganizationField).organization»</span>, «ENDIF»
+			   «IF (entry.eContents.filter(PublisherField).size > 0)»<span class="«pre»publisher">«(entry.eContents.filter(PublisherField).get(0) as PublisherField).publisher»</span>. «ENDIF»
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for InProceeding -->
