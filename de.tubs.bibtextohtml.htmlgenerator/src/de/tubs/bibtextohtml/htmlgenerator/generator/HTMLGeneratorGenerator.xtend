@@ -70,33 +70,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 			prefix»
 			«var printShortcut = (module.getModule().bibtexStyle)»
 			«numCounter = 1»
-«««			<!DOCTYPE html>
-«««			<html>
-«««			<head>
-«««				<style>
-«««				«FOR styles : module.getModule().eAllContents().toIterable().filter(typeof(Styles))»
-«««					«styles.printStyles(pre)»
-«««				«ENDFOR»
-«««				</style>
-«««			<meta charset="UTF-8">
-«««			<title>«(module.getModule().elements.filter(typeof(Import)).get(0) as Import).importBibtex»</title>
-«««			</head>
-«««			
-«««			<body>
-«««			«var year = ""»
-«««			«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
-«««				«IF (entry.eContents.filter(YearField).size > 0 &&
-«««			(entry.eContents.filter(YearField).get(0) as YearField).year != year)»
-«««					<p>
-«««						<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
-«««					</p>
-«««				«ENDIF»
-«««				«entry.printplain(pre, printShortcut)»
-«««			«ENDFOR»
-«««			</body>
-«««			
-«««			</html>
-<!DOCTYPE html>
+			<!DOCTYPE html>
 
 			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 			<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
