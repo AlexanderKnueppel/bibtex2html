@@ -223,11 +223,11 @@ class HTMLGeneratorGenerator implements IGenerator {
 	// Different templates to print entries
 	//note: we've to check wether these elements exist...
 	def printAll(BibtexEntryTypes entry, String pre, BibTexStyle style) ''' 
-«««		«if(entry instanceof Article) {entry.printArticle(pre, style)}»
-«««		«if(entry instanceof Book) {entry.printBook(pre, style)}»
-«««		«if(entry instanceof Conference) {entry.printConference(pre, style)}»
+		«if(entry instanceof Article) {entry.printArticle(pre, style)}»
+		«if(entry instanceof Book) {entry.printBook(pre, style)}»
+		«if(entry instanceof Conference) {entry.printConference(pre, style)}»
 		«if(entry instanceof Manual) {entry.printManual(pre, style)}»
-«««		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
+		«if(entry instanceof Inproceedings) {entry.printInProceeding(pre, style)}»
 	'''
 	
 	def printArticle(BibtexEntryTypes entry, String pre, BibTexStyle style) '''
