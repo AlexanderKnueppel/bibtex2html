@@ -36,7 +36,7 @@ Article:
 ArticleFields:
 	AuthorField | TitleField | JournalField | YearField |
 	 VolumeField | NumberField | PagesField | MonthField |
-     NoteField  | UnknownField
+     NoteField  | URLField | UnknownField
 ;
 
 Book:
@@ -62,7 +62,7 @@ Book:
 BookFields:
 	AuthorField | TitleField | PublisherField | YearField |
 	VolumeField | NumberField | SeriesField | AddressField |
-	EditionField | MonthField | IsbnField | NoteField | UnknownField
+	EditionField | MonthField | IsbnField | NoteField | URLField | UnknownField
 ;
 
 Conference:
@@ -90,7 +90,7 @@ Conference:
 ConferenceFields:
 	AuthorField | TitleField | BooktitleField | YearField | EditorField |
 	VolumeField | NumberField | SeriesField | PagesField | AddressField |
-	MonthField | OrganizationField | PublisherField | NoteField | UnknownField
+	MonthField | OrganizationField | PublisherField | NoteField | URLField | UnknownField
 ;
 
 Inproceedings:
@@ -118,7 +118,7 @@ Inproceedings:
 InproceedingsFields:
 	AuthorField | TitleField | BooktitleField | YearField | EditorField |
 	VolumeField | NumberField | SeriesField | PagesField | AddressField |
-	MonthField | OrganizationField | PublisherField | NoteField | UnknownField
+	MonthField | OrganizationField | PublisherField | NoteField | URLField | UnknownField
 ;
 
 Manual:
@@ -154,7 +154,7 @@ UnknownValue:
 
 	// Values for various combinations
 FieldValue:
-	STRING | '{' (ID | '(' | ')' | '\\\"' | "\\\'" | "\\`"| "\\~" | "\\´" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | '^'| ',' | FieldValue | INT)* '}';
+	STRING | '{' (ID | '(' | ')' | '?' | '#' | '$' | '~' | '[' | ']' | '\\\"' | "\\\'" | "\\`"| "\\~" | "\\´" | '.' | '-' | '_' | '//' | ';' | ':' | '\\' | '^'| ',' | FieldValue | INT)* '}';
 
 FieldValuePlusInt:
 	FieldValue | INT;
@@ -226,6 +226,10 @@ IsbnField:
 
 NoteField:
 	'note' '=' note=FieldValue;
+	
+URLField:
+	'url' '=' url=FieldValue;
+	
 	
 //URLField:
 //	'url' '=' url=FieldValue;

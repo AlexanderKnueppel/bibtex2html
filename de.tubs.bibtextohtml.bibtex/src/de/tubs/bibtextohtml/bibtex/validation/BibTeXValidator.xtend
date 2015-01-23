@@ -4,35 +4,33 @@
 package de.tubs.bibtextohtml.bibtex.validation
 
 import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Article
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibTeXPackage
+import de.tubs.bibtextohtml.bibtex.bibTeX.Book
 import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
 import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
+import de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
 import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
 import de.tubs.bibtextohtml.bibtex.bibTeX.JournalField
+import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
 import de.tubs.bibtextohtml.bibtex.bibTeX.MonthField
 import de.tubs.bibtextohtml.bibtex.bibTeX.NoteField
 import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField
+import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
 import de.tubs.bibtextohtml.bibtex.bibTeX.PagesField
 import de.tubs.bibtextohtml.bibtex.bibTeX.PublisherField
 import de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
 import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
+import de.tubs.bibtextohtml.bibtex.bibTeX.URLField
 import de.tubs.bibtextohtml.bibtex.bibTeX.UnknownField
-import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
-import org.eclipse.xtext.validation.Check
 import de.tubs.bibtextohtml.bibtex.bibTeX.VolumeField
-import de.tubs.bibtextohtml.bibtex.bibTeX.EditorField
-import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
-import de.tubs.bibtextohtml.bibtex.bibTeX.Article
-import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes
-import de.tubs.bibtextohtml.bibtex.bibTeX.Conference
-import de.tubs.bibtextohtml.bibtex.bibTeX.Inproceedings
-import de.tubs.bibtextohtml.bibtex.bibTeX.Manual
-import de.tubs.bibtextohtml.bibtex.bibTeX.Book
-import de.tubs.bibtextohtml.bibtex.BibTeXTerminalConverters
-import org.eclipse.emf.ecore.EObject
-import de.tubs.bibtextohtml.bibtex.bibTeX.ArticleFields
+import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
 import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.validation.Check
 
 /**
  * Custom validation rules. 
@@ -67,7 +65,7 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 
 	//Map for the optional fields of an article	
 	public static val articleMapOptional = newHashMap('Volume' -> VolumeField, 'Number' -> NumberField,
-		'Pages' -> PagesField, 'Month' -> MonthField, 'Note' -> NoteField)
+		'Pages' -> PagesField, 'Month' -> MonthField, 'Note' -> NoteField, 'URL' -> URLField)
 
 	//Map for the mandatory fields of a book
 	public static val bookMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
@@ -76,7 +74,7 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	//Map for the optional fields of a book
 	public static val bookMapOptional = newHashMap('Editor' -> EditorField, 'Volume' -> VolumeField,
 		'Number' -> NumberField, 'Month' -> MonthField, 'Note' -> NoteField, 'Series' -> SeriesField,
-		'Address' -> AddressField, 'Edition' -> EditionField, 'Isbn' -> IsbnField)
+		'Address' -> AddressField, 'Edition' -> EditionField, 'Isbn' -> IsbnField, 'URL' -> URLField)
 
 	//Map for the mandatory fields of a conference
 	public static val conferenceMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
@@ -86,7 +84,7 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	public static val conferenceMapOptional = newHashMap('Volume' -> VolumeField, 'Number' -> NumberField,
 		'Pages' -> PagesField, 'Month' -> MonthField, 'Note' -> NoteField, 'Series' -> SeriesField,
 		'Address' -> AddressField, 'Editor' -> EditorField, 'Organization' -> OrganizationField,
-		'Publisher' -> PublisherField)
+		'Publisher' -> PublisherField, 'URL' -> URLField)
 
 	//Map for the mandatory fields of a Inproceedings
 	public static val inproceedingsMapMandatory = newHashMap('Author' -> AuthorField, 'Title' -> TitleField,
@@ -95,7 +93,8 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 	//Map for the optional fields of a Inproceedings	
 	public static val inproceedingsMapOptional = newHashMap('Editor' -> EditorField, 'Volume' -> VolumeField,
 		'Number' -> NumberField, 'Series' -> SeriesField, 'Pages' -> PagesField, 'Address' -> AddressField,
-		'Month' -> MonthField, 'Organization' -> OrganizationField, 'Publisher' -> PublisherField, 'Note' -> NoteField)
+		'Month' -> MonthField, 'Organization' -> OrganizationField, 'Publisher' -> PublisherField, 'Note' -> NoteField,
+		'URL' -> URLField)
 
 	//Map for the mandatory fields of a manual
 	public static val manualMapMandatory = newHashMap('Title' -> TitleField, 'Year' -> YearField,
@@ -103,7 +102,7 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 
 	//Map for the optional fields of a manual	
 	public static val manualMapOptional = newHashMap('Author' -> AuthorField, 'Organization' -> OrganizationField,
-		'Edition' -> EditionField, 'Month' -> MonthField, 'Note' -> NoteField)
+		'Edition' -> EditionField, 'Month' -> MonthField, 'Note' -> NoteField, 'URL' -> URLField)
 
 	//	public static val entryMap = newHashMap('Article' -> Article, 'Book' -> Book, 'Conference' -> Conference,
 	//		'Inproceedings' -> Inproceedings, 'Manual' -> Manual)
