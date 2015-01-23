@@ -107,6 +107,7 @@ class BibTeXValidator extends AbstractBibTeXValidator {
 
 	//	public static val entryMap = newHashMap('Article' -> Article, 'Book' -> Book, 'Conference' -> Conference,
 	//		'Inproceedings' -> Inproceedings, 'Manual' -> Manual)
+	@Check
 	def checkMultiple(String str, Class<? extends EObject> field, Iterable<? extends EObject> filteredList,
 		EList<? extends EObject> completeList) {
 		if (filteredList.size > 1) {

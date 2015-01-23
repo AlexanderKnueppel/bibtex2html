@@ -26,7 +26,7 @@
 //}
 
 module thisistest (num)/*(harvard)*/ {
-	import "library.bib"
+	import *
 	options = [
 		prefix : "B1H-" 
 		sorting: title desc

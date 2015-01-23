@@ -8,15 +8,10 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.RunModule
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.core.resources.IFile
 import org.eclipse.core.resources.ResourcesPlugin
-import java.net.URI
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.PrefixOption
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import com.google.inject.Inject
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Import
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.Styles
-import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.IFolder
 import org.eclipse.core.runtime.Path
 import java.nio.file.Files
@@ -24,27 +19,16 @@ import java.nio.file.Paths
 import java.nio.charset.Charset
 import java.io.FileNotFoundException
 import de.tubs.bibtextohtml.bibtex.bibTeX.Model
-import de.tubs.bibtextohtml.bibtex.BibParser
 import org.eclipse.xtext.util.StringInputStream
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes
 import java.io.InputStream
 import java.io.InputStreamReader
-import de.tubs.bibtextohtml.bibtex.BibTeXStandaloneSetup
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.xtext.resource.XtextResource
-import com.google.inject.Guice
-import de.tubs.bibtextohtml.bibtex.BibTeXRuntimeModule
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.resource.ResourceSet
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
 import de.tubs.bibtextohtml.bibtex.bibTeX.TitleField
-import java.util.List
-import java.util.ArrayList
 import de.tubs.bibtextohtml.bibtex.bibTeX.YearField
-import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.BibTexStyle
-import javax.swing.text.StyleConstants.ParagraphConstants
-import javax.swing.text.StyledEditorKit.AlignmentAction
 import de.tubs.bibtextohtml.bibtex.bibTeX.Article
 import de.tubs.bibtextohtml.bibtex.bibTeX.JournalField
 import de.tubs.bibtextohtml.bibtex.bibTeX.NumberField
@@ -62,6 +46,14 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.SeriesField
 import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
 import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
 import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
+import java.io.IOException
+//import org.eclipse.emf.ecore.resource.Resource.Diagnostic
+import org.eclipse.emf.ecore.util.Diagnostician
+import org.eclipse.emf.common.util.Diagnostic
+import java.io.File
+import java.util.List
+import java.io.FilenameFilter
+import java.util.ArrayList
 
 /**
  * Generates code from your model files on save.
@@ -69,18 +61,8 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-
 	var numCounter = 1
 
-	//	var prefix = "";
-	//	def initOptionsDefault() {
-	//		prefix = "";
-	//		
-	//	}
-	//	def initOptions(OptionSet opts) {
-	//		if(opts.options.filter(typeof())
-	//	}
-	//
 	def compile(RunModule module, Model _bibRes) '''	
 			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
 			prefix»
@@ -369,9 +351,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 		 <!-- end: entry for InProceeding -->
  	'''
  	
-	//public HTMLGeneratorGenerator() {}
 	public enum Sorting {
-
 		//	    AUTHOR_TITLE_YEAR, AUTHOR_YEAR_TITLE, 
 		//	    TITLE_AUTHOR_YEAR, TITLE_YEAR_AUTHOR,
 		//	    YEAR_TITLE_AUTHOR, YEAR_AUTHOR_TITLE, 
@@ -415,85 +395,132 @@ class HTMLGeneratorGenerator implements IGenerator {
 	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-
-		//val BibParser parser = new BibParser;
-		//		//val List<String> modulesToRun = new ArrayList<String>();
-		//		//val HTMLGeneratorModel model = resource.getContents().get(0) as HTMLGeneratorModel;
 		val foldername = "/" +
 			String.join("/", resource.getURI().segmentsList().subList(1, resource.getURI().segmentCount() - 1))
 
-		val IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(foldername)); //getFigetProject(proj_name);
+		val IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(foldername));
 		val String resLocation = folder.getRawLocation().toOSString();
 
 		// Parse BibTeX-Model
-		//val injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration
-		//  		val injector = Guice.createInjector(new BibTeXRuntimeModule())
-		//		val resourceSet = injector.getInstance(typeof(XtextResourceSet))
 		val ResourceSet resourceSet = new ResourceSetImpl();
 
-		//XtextResourceSet.
-		//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
 		for (RunModule module : resource.getAllContents().toIterable().filter(typeof(RunModule))) {
 			System.out.println(module.getModule().getName());
 			var String bibtexEntries = "";
+			var importAll = false;
 			for (Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
-				if (!imp.isImportAll()) { //import all doesn't make any sense or does it?
-					try {
-						val byte[] data = Files.readAllBytes(Paths.get(resLocation, imp.getImportBibtex()));
-						val String n = new String(
-							data,
-							Charset.defaultCharset()
-						)
-						bibtexEntries += n;
-					} catch (FileNotFoundException e) {
-						System.out.println("File not found: " + e.getMessage());
-					} catch (Exception e) {
-						System.out.println("Exception: " + e.getMessage());
-					}
-				} else {
-					// import everything from directory
-				}
+				if(imp.isImportAll())
+					importAll = true;
 			}
-			val bibRes = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("dummy:/inmemory.bib"))
-			bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
-
-			//bibRes.
+			var List<String> files = new ArrayList<String>();
+			if(!importAll) {
+				for (Import imp : module.getModule().eAllContents().toIterable().filter(typeof(Import))) {
+					files.add(imp.getImportBibtex())	
+				}
+							
+			} else {
+				for(String f : (new File(resLocation)).list )
+					if(f.endsWith(".bib")) 
+						files.addAll(f)
+			}
+			
+			for (String file : files) {
+				try {
+					val byte[] data = Files.readAllBytes(Paths.get(resLocation, file));
+					val String n = new String(
+						data,
+						Charset.defaultCharset()
+					)
+					bibtexEntries += n;
+				} catch (FileNotFoundException e) {
+					System.out.println("File not found: " + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("Exception: " + e.getMessage());
+				}						
+			}
+//				if (!imp.isImportAll()) { //import all doesn't make any sense or does it?
+//					try {
+//						val byte[] data = Files.readAllBytes(Paths.get(resLocation, imp.getImportBibtex()));
+//						val String n = new String(
+//							data,
+//							Charset.defaultCharset()
+//						)
+//						bibtexEntries += n;
+//					} catch (FileNotFoundException e) {
+//						System.out.println("File not found: " + e.getMessage());
+//					} catch (Exception e) {
+//						System.out.println("Exception: " + e.getMessage());
+//					}
+//				} else {
+//					// import everything from directory
+//					importAll = true;
+//				}
+//			}
+			
+//			if(importAll) {
+//				val File dir = new File(resLocation);
+//				val String [] files = dir.list();
+//				
+//
+//			}
+//			
 			try {
+				val bibRes = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("dummy:/inmemory.bib"))
+				bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
+			
+				if(bibRes.contents.empty) 
+					throw new IOException("Please import *.bib-file(s) or check whether all imported files are empty.")
+				
+				// Bibtex-Model
 				val Model bibtexModel = bibRes.contents.get(0) as Model
-				for (BibtexEntryTypes be : bibtexModel.getBibtexEntries()) {
-					System.out.println(be.getKey());
+			    // Model-Validation
+				val Diagnostic diagnostic = Diagnostician.INSTANCE.validate(bibtexModel);
+				if(diagnostic.getSeverity() != Diagnostic.OK) { // oh boy, there are errors...
+				   	var int errors = 0;
+					var int warnings = 0;
+					val StringBuilder builder = new StringBuilder();
+				
+					if(diagnostic.getSeverity() == Diagnostic.ERROR) {
+						builder.append("Errors were found!").append('\n');
+					}
+					else {
+						builder.append("Only warnings were found!").append('\n');
+					}
+
+					for(Diagnostic d : diagnostic.children) {
+							builder.append('\n\n');
+							if(d.getSeverity() == Diagnostic.ERROR) {
+								builder.append("Error: ");
+								errors++;
+							}
+							else {
+								builder.append("Warning: ");
+								warnings++;
+							}
+							builder.append(d.message + '\n');
+							builder.append("(Source: " + d.source + ")");
+					}
+					builder.append('\n\n[').append(warnings).append(" warning(s), ").append(errors).append(" error(s)]");
+					if(errors > 0) {
+						builder.append(" Generation unsuccessful! Please check imported files, resolve all errors and try again.");
+						throw new Exception(builder.toString());
+					} else {
+						System.out.println(builder.toString)
+					}
 				}
 
 				//print output to file
 				fsa.generateFile(module.getModule().getName() + ".html", // class name
 				module.compile(bibtexModel))
-				System.out.println("File Created......")
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-
-			//do nothing
+				System.out.println(" Generation successful!");
+			} 
+			catch (IOException e) {
+				System.out.println("IOException: " + e.getMessage());
+			} 
+			catch (Exception e) {
+				System.out.println(e.getMessage()); //should rather be logged than printed to primary console...
 			}
 
 		}
-
-	//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-	//			resource.allContents
-	//				.filter(typeof(Greeting))
-	//				.map[name]
-	//				.join(', '))
-	//new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("../");
-	//Injector injector = new BibTeXStandaloneSetup().createInjectorAndDoEMFRegistration();
-	//XtextResourceSet resourceSet = injector.getInstance(XtextResourceSet.class);
-	//resourceSet.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-	//Resource resource = resourceSet.getResource(
-	//    URI.createURI("platform:/resource/org.xtext.example.mydsl/src/example.mydsl"), true);
-	//Model model = (Model) resource.getContents().get(0);
-	//fsa.generateFile('greetings.txt', 'People to greet: ' + 
-	//			resource.allContents
-	//				.filter(typeof(Greeting))
-	//				.map[name]
-	//				.join(', '))
-	//	BibTeXParser parser;
-	//	Model model = (Model) resource.getContents().get(0);
 	}
 }
