@@ -30,16 +30,17 @@ module thisistest (num)/*(harvard)*/ {
 	options = [
 		prefix : "B1H-" 
 		sorting: title desc
-		category {
-			sorting: year asc,
-			output: true
-		}
+		category: year asc
 	]
 	styles = [
 		* {
 			font-styles: bold italic;
 			font-color: red;
 			font-type: "Arial";
+		}
+		
+		author {
+			font-styles: bold;
 		}
 	]
 }

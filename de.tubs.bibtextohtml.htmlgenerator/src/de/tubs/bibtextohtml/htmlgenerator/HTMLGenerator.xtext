@@ -56,10 +56,7 @@ SortBy:
 ;
 
 CategoryOption:
-	'category' '{' 
-	'sorting' ':' sortby = CategorySortBy (asc ?= 'asc' | desc ?= 'desc') 
-	(',' 'output' ':' (output ?= 'true' | 'false'))?
-	'}'
+	'category' ':' sortby = CategorySortBy (asc ?= 'asc' | desc ?= 'desc') 
 ;
 CategorySortBy:
 	author ?= 'author' | year ?= 'year'
