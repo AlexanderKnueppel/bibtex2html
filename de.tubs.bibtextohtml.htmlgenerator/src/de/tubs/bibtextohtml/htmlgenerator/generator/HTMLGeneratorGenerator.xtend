@@ -56,6 +56,12 @@ import java.io.FilenameFilter
 import java.util.ArrayList
 import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
 import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
+import java.util.Comparator
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.SortingOption
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.SortBy
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategoryOption
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategorySortBy
 
 /**
  * Generates code from your model files on save.
@@ -124,11 +130,26 @@ class HTMLGeneratorGenerator implements IGenerator {
 						<h1 >References</h1>
 					</header>				
 					 
-					«var year = ""»
-					«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, Sorting.AUTHOR, false, Category.YEAR, true)/*_bibRes.bibtexEntries*/»
-						«IF (entry.eContents.filter(YearField).size > 0 && (entry.eContents.filter(YearField).get(0) as YearField).year != year)»
+					«var curValue = ""»
+					«var printCategory = false»
+					«val optionSet = module.getModule().eAllContents().toIterable.filter(typeof(OptionSet)).get(0) as OptionSet»
+					
+					«if(!optionSet.eContents.filter(typeof(CategoryOption)).empty) { printCategory = true; ""}»
+					
+					«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, optionSet)»
+						«var newVal = ""»
+						«if(printCategory && (optionSet.eAllContents.toIterable.filter(typeof(CategorySortBy)).get(0) as CategorySortBy).year
+							&& entry.eContents.filter(YearField).size > 0) { 
+							newVal = (entry.eContents.filter(YearField).get(0) as YearField).year; ""
+						}»
+						«if(printCategory && (optionSet.eAllContents.toIterable.filter(typeof(CategorySortBy)).get(0) as CategorySortBy).author
+							&& entry.eContents.filter(AuthorField).size > 0) { 
+							val HTMLParserHelper.Author firstAuthor = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors).get(0)
+							newVal = firstAuthor.lastname + ", " + firstAuthor.firstname; ""
+						}»						 
+						«IF (printCategory && !newVal.equals("") && !newVal.equals(curValue))»
 							<section class="grid col-full">
-								<b>«year = (entry.eContents.filter(YearField).get(0) as YearField).year»</b>
+								<b>«curValue = newVal»</b>
 							</section>
 						«ENDIF»
 						«entry.printAll(pre, printShortcut)»
@@ -366,13 +387,11 @@ class HTMLGeneratorGenerator implements IGenerator {
  	'''
  	
 	public enum Sorting {
-		//	    AUTHOR_TITLE_YEAR, AUTHOR_YEAR_TITLE, 
-		//	    TITLE_AUTHOR_YEAR, TITLE_YEAR_AUTHOR,
-		//	    YEAR_TITLE_AUTHOR, YEAR_AUTHOR_TITLE, 
 		AUTHOR,
 		TITLE,
 		YEAR,
-		KEY
+		KEY,
+		NONE
 	}
 
 	public enum Category {
@@ -380,12 +399,65 @@ class HTMLGeneratorGenerator implements IGenerator {
 		YEAR,
 		NONE
 	}
-
-	def sortedEntrySet(Model model, Sorting criteria, boolean asc, Category cat, boolean catasc) {
+	
+	/*
+	 * sort by first authors last name...
+	 */
+	public static class AuthorComparator implements Comparator<BibtexEntryTypes> {  
+	    override int compare (BibtexEntryTypes e1, BibtexEntryTypes e2) {
+	    	if(e1.eContents.filter(AuthorField).empty)
+	    		return 1;
+	    	if(e2.eContents.filter(AuthorField).empty)
+	    		return -1;
+	    		
+	    	val authors1 = HTMLParserHelper.parseAuthors((e1.eContents.filter(AuthorField).get(0) as AuthorField).authors) 
+	    	val authors2 = HTMLParserHelper.parseAuthors((e2.eContents.filter(AuthorField).get(0) as AuthorField).authors)  		
+	    	
+	        return authors1.get(0).lastname.compareTo(authors2.get(0).lastname)
+	    }
+	}
+	def sortedEntrySet(Model model, OptionSet options) { //Sorting criteria, boolean asc, Category cat, boolean catasc) {
 		var sortedList = model.bibtexEntries.clone;
+		
+		var Sorting criteria = Sorting.NONE
+		var asc = true
+		
+		var Category cat = Category.NONE
+		var catasc = true
+		
+		if(!options.eContents.filter(SortingOption).empty) {
+			val sortby =(options.eAllContents.toIterable.filter(SortBy).get(0) as SortBy)
+			switch sortby {
+				case sortby.author:
+					criteria = Sorting.AUTHOR
+				case sortby.key:
+					criteria = Sorting.KEY
+				case sortby.year:
+					criteria = Sorting.YEAR
+				default:
+					criteria = Sorting.NONE
+			}
+			asc = (options.eContents.filter(SortingOption).get(0) as SortingOption).asc
+		}
+		
+		if(!options.eContents.filter(CategoryOption).empty) {
+			val sortby =(options.eAllContents.toIterable.filter(CategorySortBy).get(0) as CategorySortBy)
+			switch sortby {
+				case sortby.author:
+					cat = Category.AUTHOR
+				case sortby.year:
+					cat = Category.YEAR
+				default:
+					cat = Category.NONE
+			}
+			catasc = (options.eContents.filter(CategoryOption).get(0) as CategoryOption).asc
+		}
+		
+		if(criteria == Sorting.NONE)
+			return sortedList
 
 		if (criteria == Sorting.AUTHOR)
-			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
+			sortedList.sortInplace(new HTMLGeneratorGenerator.AuthorComparator()) //sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
 		else if (criteria == Sorting.TITLE)
 			sortedList.sortInplaceBy[(eContents.filter(TitleField).get(0) as TitleField).title]
 		else if (criteria == Sorting.YEAR)
@@ -395,12 +467,15 @@ class HTMLGeneratorGenerator implements IGenerator {
 
 		if (!asc)
 			sortedList = sortedList.reverse
+			
+		if(cat == Category.NONE)
+			return sortedList;
 
 		if (criteria != Sorting.YEAR && cat == Category.YEAR)
 			sortedList.sortInplaceBy[(eContents.filter(YearField).get(0) as YearField).year]
 
 		if (criteria != Sorting.AUTHOR && cat == Category.AUTHOR)
-			sortedList.sortInplaceBy[(eContents.filter(AuthorField).get(0) as AuthorField).authors]
+			sortedList.sortInplace(new HTMLGeneratorGenerator.AuthorComparator())
 
 		if (!catasc)
 			sortedList = sortedList.reverse
@@ -452,32 +527,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 					System.out.println("Exception: " + e.getMessage());
 				}						
 			}
-//				if (!imp.isImportAll()) { //import all doesn't make any sense or does it?
-//					try {
-//						val byte[] data = Files.readAllBytes(Paths.get(resLocation, imp.getImportBibtex()));
-//						val String n = new String(
-//							data,
-//							Charset.defaultCharset()
-//						)
-//						bibtexEntries += n;
-//					} catch (FileNotFoundException e) {
-//						System.out.println("File not found: " + e.getMessage());
-//					} catch (Exception e) {
-//						System.out.println("Exception: " + e.getMessage());
-//					}
-//				} else {
-//					// import everything from directory
-//					importAll = true;
-//				}
-//			}
-			
-//			if(importAll) {
-//				val File dir = new File(resLocation);
-//				val String [] files = dir.list();
-//				
-//
-//			}
-//			
+
 			try {
 				val bibRes = resourceSet.createResource(org.eclipse.emf.common.util.URI.createURI("dummy:/inmemory.bib"))
 				bibRes.load(new StringInputStream(bibtexEntries), resourceSet.getLoadOptions())
