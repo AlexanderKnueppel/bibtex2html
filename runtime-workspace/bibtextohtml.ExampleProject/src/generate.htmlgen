@@ -29,8 +29,8 @@ module thisistest (num)/*(harvard)*/ {
 	import "../bib/library.bib"
 	options = [
 		prefix : "B1H-" 
-		sorting: title desc
-		category: year asc
+		sorting: author desc
+		category: year desc
 	]
 	styles = [
 		* {
