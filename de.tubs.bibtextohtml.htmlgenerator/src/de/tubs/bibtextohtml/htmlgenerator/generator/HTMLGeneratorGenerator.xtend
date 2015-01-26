@@ -62,6 +62,8 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.OptionSet
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.SortBy
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategoryOption
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategorySortBy
+import de.tubs.bibtextohtml.bibtex.bibTeX.URLField
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
 
 /**
  * Generates code from your model files on save.
@@ -188,6 +190,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 			«IF styles.fontStyles.isBold»font-weight: bold;«ENDIF»
 			«IF styles.fontStyles.isItalic»font-style: italic;«ENDIF»
 			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
+			«IF (styles.eContents.filter(FontColor).size > 0)»color: «(styles.eContents.filter(FontColor).get(0) as FontColor).color»;«ENDIF»
 		}
 	'''
 	
@@ -247,7 +250,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 			   		«IF (entry.eContents.filter(PagesField).size > 0)»<span class="«pre»pages">«(entry.eContents.filter(PagesField).get(0) as PagesField).pages»</span>«ENDIF», 
 			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span>«ENDIF»
 			   <span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. 
-			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>«ENDIF».
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
+			   «IF (entry.eContents.filter(URLField).size > 0)»<br/>URL: <a href="«(entry.eContents.filter(URLField).get(0) as URLField).url»" class="«pre»url" style="color:black;"><i>
+			   		«(entry.eContents.filter(URLField).get(0) as URLField).url»</i></a>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for article -->
@@ -283,6 +288,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 			   «IF (entry.eContents.filter(YearField).size > 0)»<span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span>. «ENDIF»
 			   «IF (entry.eContents.filter(IsbnField).size > 0)»ISBN <span class="«pre»isbn"><i>«(entry.eContents.filter(IsbnField).get(0) as IsbnField).isbn»</i></span>.«ENDIF»
 			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
+			   «IF (entry.eContents.filter(URLField).size > 0)»<br/>URL: <a href="«(entry.eContents.filter(URLField).get(0) as URLField).url»" class="«pre»url" style="color:black;"><i>
+			   		«(entry.eContents.filter(URLField).get(0) as URLField).url»</i></a>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for book -->
@@ -318,6 +325,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 			   «IF (entry.eContents.filter(OrganizationField).size > 0)»<span class="«pre»organization">«(entry.eContents.filter(OrganizationField).get(0) as OrganizationField).organization»</span>, «ENDIF»
 			   «IF (entry.eContents.filter(PublisherField).size > 0)»<span class="«pre»publisher">«(entry.eContents.filter(PublisherField).get(0) as PublisherField).publisher»</span>. «ENDIF»
 			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
+			   «IF (entry.eContents.filter(URLField).size > 0)»<br/>URL: <a href="«(entry.eContents.filter(URLField).get(0) as URLField).url»" class="«pre»url" style="color:black;"><i>
+			   		«(entry.eContents.filter(URLField).get(0) as URLField).url»</i></a>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for Conference -->
@@ -345,7 +354,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 			   «IF (entry.eContents.filter(EditionField).size > 0)»<span class="«pre»edition">«(entry.eContents.filter(EditionField).get(0) as EditionField).edition»</span> edition, «ENDIF»
 			   «IF (entry.eContents.filter(MonthField).size > 0)»<span class="«pre»month">«(entry.eContents.filter(MonthField).get(0) as MonthField).month»</span> «ENDIF»
 			   <span class="«pre»year">«(entry.eContents.filter(YearField).get(0) as YearField).year»</span> 			    
-			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>«ENDIF».
+			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
+			   «IF (entry.eContents.filter(URLField).size > 0)»<br/>URL: <a href="«(entry.eContents.filter(URLField).get(0) as URLField).url»" class="«pre»url" style="color:black;"><i>
+			   		«(entry.eContents.filter(URLField).get(0) as URLField).url»</i></a>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for Manual -->
@@ -381,6 +392,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 			   «IF (entry.eContents.filter(OrganizationField).size > 0)»<span class="«pre»organization">«(entry.eContents.filter(OrganizationField).get(0) as OrganizationField).organization»</span>, «ENDIF»
 			   «IF (entry.eContents.filter(PublisherField).size > 0)»<span class="«pre»publisher">«(entry.eContents.filter(PublisherField).get(0) as PublisherField).publisher»</span>. «ENDIF»
 			   «IF (entry.eContents.filter(NoteField).size > 0)»<span class="«pre»note">«(entry.eContents.filter(NoteField).get(0) as NoteField).note»</span>.«ENDIF»
+			   «IF (entry.eContents.filter(URLField).size > 0)»<br/>URL: <a href="«(entry.eContents.filter(URLField).get(0) as URLField).url»" class="«pre»url" style="color:black;"><i>
+			   		«(entry.eContents.filter(URLField).get(0) as URLField).url»</i></a>.«ENDIF»
 			</div>
 		 </section>
 		 <!-- end: entry for InProceeding -->

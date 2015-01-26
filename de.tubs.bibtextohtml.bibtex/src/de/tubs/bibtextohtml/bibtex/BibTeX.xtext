@@ -140,7 +140,7 @@ Manual:
 	
 ManualFields:
 	AddressField | TitleField | YearField | AuthorField | OrganizationField |
-	EditionField | MonthField | NoteField | UnknownField
+	EditionField | MonthField | NoteField | URLField | UnknownField
 ;
 
 UnknownField:

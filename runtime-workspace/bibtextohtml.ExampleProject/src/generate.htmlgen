@@ -1,90 +1,22 @@
 
-/*Style custom_style {
-	<authors> <title> <thisthat> URL: <url>
-}*/ 
-
-//module test[PLAIN] { //or: HARVARD, ??...
-//	import "test.bib";
-//	options {
-//		prefix: "B1H";
-//		sort: year asc;
-//		categorize: year;
-//	}
-//	styles {
-//		* {
-//			font-styles: none;
-//			font-color: rgb(0,0,0); // or red, green, blue, black...
-//			font-type: "Arial";
-//		}
-//		author {
-//			font-styles: bold;
-//		}
-//		title {
-//			font-styles: italic;
-//		}
-//	}
-//}
-
-module thisistest (num)/*(harvard)*/ {
-	import "../bib/library.bib"
+module TestGeneration (num) {
+	import "example.bib"
 	options = [
-		prefix : "B1H-" 
+		prefix : "userprefix-" 
 		sorting: author desc
 		category: year desc
 	]
 	styles = [
-		* {
-			font-styles: bold italic;
-			font-color: red;
-			font-type: "Arial";
-		}
-		
 		author {
 			font-styles: bold;
+			font-color: blue;
+			font-type: "Arial";
+		}	
+		title {
+			font-styles: italic;
+			font-color: red;
 		}
 	]
 }
 
-
-//module thisistest /*[Plain]*/ {
-//	import "library.bib"
-////	import "library2.bib"
-//	// Options
-//	prefix = "B1H-" // :
-//	// sortby: year [ASC|DSC];
-//	// style = Styles.Harvard
-//	// 
-//	// Styles
-//	* {
-//		font-styles: bold italic;
-//
-//		font-color: red;
-//		font-type: "Arial";
-//	}
-//}
-//module thisistest2 {
-//	import "library.bib"
-//	// Options
-//	prefix = "B2H-"
-//	// Styles
-//	author {
-//		font-styles: bold;
-//		font-color: red;
-//		font-type: "Arial";
-//	}
-//}
-//module thisistest3 {
-//	import "library.bib"
-//	// Options
-//	prefix = "B3H-"
-//	// Styles
-//	title {
-//		font-styles: bold;
-//		font-color: red;
-//		font-type: "Arial";
-//	}
-//}
-
-run thisistest
-//run thisistest2
-//run thisistest3
+run TestGeneration
