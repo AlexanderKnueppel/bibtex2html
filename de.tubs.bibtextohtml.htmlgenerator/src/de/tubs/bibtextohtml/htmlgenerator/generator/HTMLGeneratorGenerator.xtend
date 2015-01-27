@@ -73,9 +73,11 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
 class HTMLGeneratorGenerator implements IGenerator {
 	var numCounter = 1
 
-	def compile(RunModule module, Model _bibRes) '''	
-			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
-			prefix»
+	def compile(RunModule module, Model _bibRes) '''
+			«var pre = ""»
+			«IF (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).size > 0)»	
+			«pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
+			prefix»«ENDIF»
 			«var printShortcut = (module.getModule().bibtexStyle)»
 			<!DOCTYPE html>
 
@@ -134,7 +136,6 @@ class HTMLGeneratorGenerator implements IGenerator {
 					«var curValue = ""»
 					«var printCategory = false»
 					«val optionSet = module.getModule().eAllContents().toIterable.filter(typeof(OptionSet)).get(0) as OptionSet»
-					
 					«if(!optionSet.eContents.filter(typeof(CategoryOption)).empty) { printCategory = true; ""}»
 					
 					«FOR BibtexEntryTypes entry : sortedEntrySet(_bibRes, optionSet)»
@@ -157,6 +158,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 						<section class="grid col-full">
 						</section>
 					«ENDFOR»
+					
 				</section>				
 			   
 			</div> <!--main-->
