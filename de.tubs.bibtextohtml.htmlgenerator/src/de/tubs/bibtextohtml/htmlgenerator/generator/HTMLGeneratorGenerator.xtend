@@ -71,13 +71,12 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class HTMLGeneratorGenerator implements IGenerator {
-	var numCounter = 0
+	var numCounter = 1
 
 	def compile(RunModule module, Model _bibRes) '''	
 			«var pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
 			prefix»
 			«var printShortcut = (module.getModule().bibtexStyle)»
-			«numCounter = 1»
 			<!DOCTYPE html>
 
 			<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -478,7 +477,7 @@ class HTMLGeneratorGenerator implements IGenerator {
 		else if (criteria == Sorting.KEY)
 			sortedList.sortInplaceBy[key]
 
-		if (!asc)
+		if (!asc != !catasc) 
 			sortedList = sortedList.reverse
 			
 		if(cat == Category.NONE)
@@ -585,6 +584,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 						System.out.println(builder.toString)
 					}
 				}
+				
+				//reset num-counter
+				numCounter = 1
 
 				//print output to file
 				fsa.generateFile(module.getModule().getName() + ".html", // class name

@@ -3,7 +3,7 @@ module TestGeneration (num) {
 	import "example.bib"
 	options = [
 		prefix : "userprefix-" 
-		sorting: author desc
+		sorting: author asc
 		category: year desc
 	]
 	styles = [
