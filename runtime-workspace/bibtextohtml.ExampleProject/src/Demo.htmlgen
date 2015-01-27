@@ -1,0 +1,8 @@
+
+module Demo () {
+	import "example.bib"
+	options = []
+	styles = []
+}
+
+run Demo
