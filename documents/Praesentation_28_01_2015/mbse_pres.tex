@@ -60,7 +60,7 @@
 \begin{itemize}
 \item Sortierung
 \item Benutzerspezifische Gestaltung (Farbe, Schrifttyp etc.)
-\item Ausgabe einer Quellenmakierung (?)
+\item Ausgabe einer Referenzbezeichnung
 \end{itemize}
 \item Validierung von Constraints
 \end{itemize}
@@ -68,7 +68,7 @@
 \textbf{Transformation }
 \begin{itemize}
 \item T2M-Transformation durch Xtext (Ecore-Modelle für beide DSLs)
-\item M2T-Transformation durch Xtend (integrierte Template-Engine)
+\item M2T-Transformation durch Xtext/Xtend2 (Templating)
 \end{itemize}
 
 \textbf{Ausgabe}
@@ -147,8 +147,8 @@ Im Editor der Eclipse-Instanz:
 \end{figure}   
 \end{frame}
 
-\begin{frame}{Beispiel einer Generator-Datei}
-\begin{columns}[t] 
+\begin{frame}[t]{Beispiel einer Generator-Datei}
+\begin{columns} 
 \column{.5\textwidth}
 \begin{itemize}
 \item Unterteilung in Module
@@ -157,18 +157,12 @@ Im Editor der Eclipse-Instanz:
 \item Unterschiedliche Gestaltung einzelner Felder
 \end{itemize}
 \column{.5\textwidth}
-\begin{figure}
+\begin{figure}[th]
 \includegraphics[scale=0.6]{../ExampleHTMLGEN.png} 
 %\caption{*.htmlgen}
 \end{figure}
 \end{columns}
    
-\end{frame}
-
-\begin{frame}{Demo}
-\centering
-\Huge
-\textbf{Live-Demo :-)}
 \end{frame}
 
 \begin{frame}{Lessons Learned}
@@ -184,20 +178,26 @@ Im Editor der Eclipse-Instanz:
 
 \textbf{Grammatik}
 \begin{itemize}
-\item Ähnlichkeit mit EBNF
+\item Erweiterung zu EBNF
 \item Mehrdeutigkeiten oftmals schwer aufzulösen
 \end{itemize}
 
 \textbf{Validierung}
 \begin{itemize}
-\item Verortung von Fehlermeldungen schwierig
+\item Positionierung von Fehlermeldungen schwierig
 \end{itemize}
 
 \textbf{Xtend}
 \begin{itemize}
-\item Mächtige Spracherweiterung
+\item Mächtige Spracherweiterung von Java
 \end{itemize}
 
+\end{frame}
+
+\begin{frame}{Demo}
+\centering
+\Huge
+\textbf{Live-Demo :-)}
 \end{frame}
 
 \end{document}
