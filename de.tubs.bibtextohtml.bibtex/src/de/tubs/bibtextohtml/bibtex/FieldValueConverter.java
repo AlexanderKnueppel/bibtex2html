@@ -17,23 +17,41 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 	public static final Map<String, String> charToHTMLCode;
 	static {
 		charToHTMLCode = new HashMap<String, String>();
-		charToHTMLCode.put("\\\\\'e", "&eacute;"); charToHTMLCode.put("\\\\'E", "&Eacute;");
-		charToHTMLCode.put("\\\\\'a", "&aacute;"); charToHTMLCode.put("\\\\'A", "&Aacute;");
-		charToHTMLCode.put("\\\\'o", "&oacute;"); charToHTMLCode.put("\\\\'O", "&Oacute;");
-		charToHTMLCode.put("\\\\'i", "&iacute;"); charToHTMLCode.put("\\\\'I", "&Iacute;");
-		charToHTMLCode.put("\\\\'u", "&Uacute;"); charToHTMLCode.put("\\\\'U", "&Uacute;");
+		charToHTMLCode.put("\\\\\'e", "&eacute;"); charToHTMLCode.put("\\\\\'E", "&Eacute;");
+		charToHTMLCode.put("\\\\\'a", "&aacute;"); charToHTMLCode.put("\\\\\'A", "&Aacute;");
+		charToHTMLCode.put("\\\\\'o", "&oacute;"); charToHTMLCode.put("\\\\\'O", "&Oacute;");
+		charToHTMLCode.put("\\\\\'i", "&iacute;"); charToHTMLCode.put("\\\\\'I", "&Iacute;");
+		charToHTMLCode.put("\\\\\'u", "&uacute;"); charToHTMLCode.put("\\\\\'U", "&Uacute;");
 		
-		charToHTMLCode.put("\\\\^e", "&ecirc;"); charToHTMLCode.put("\\\\^E", "&Ecirc;");
-		charToHTMLCode.put("\\\\^a", "&acirc;"); charToHTMLCode.put("\\\\^A", "&Acirc;");
-		charToHTMLCode.put("\\\\^o", "&ocirc;"); charToHTMLCode.put("\\\\^O", "&Ocirc;");
-		charToHTMLCode.put("\\\\^i", "&icirc;"); charToHTMLCode.put("\\\\^I", "&Icirc;");
-		charToHTMLCode.put("\\\\^u", "&Ucirc;"); charToHTMLCode.put("\\\\^U", "&Ucirc;");
+		charToHTMLCode.put("\\\\`e", "&egrave;"); charToHTMLCode.put("\\\\`E", "&Egrave;");
+		charToHTMLCode.put("\\\\`a", "&agrave;"); charToHTMLCode.put("\\\\`A", "&Agrave;");
+		charToHTMLCode.put("\\\\`o", "&ograve;"); charToHTMLCode.put("\\\\`O", "&Ograve;");
+		charToHTMLCode.put("\\\\`i", "&igrave;"); charToHTMLCode.put("\\\\`I", "&Igrave;");
+		charToHTMLCode.put("\\\\`u", "&ugrave;"); charToHTMLCode.put("\\\\`U", "&Ugrave;");
 		
-		charToHTMLCode.put("\\\\\"e", "&euml;"); charToHTMLCode.put("\\\"E", "&Euml;");
-		charToHTMLCode.put("\\\\\"a", "&auml;"); charToHTMLCode.put("\\\"A", "&Auml;");
-		charToHTMLCode.put("\\\"o", "&ouml;"); charToHTMLCode.put("\\\"O", "&Ouml;");
-		charToHTMLCode.put("\\\"i", "&iuml;"); charToHTMLCode.put("\\\"I", "&Iuml;");
-		charToHTMLCode.put("\\\"u", "&Uuml;"); charToHTMLCode.put("\\\"U", "&Uuml;");
+		// Needs additional slash escaping because in regular expressions, circumflex has to be escaped, but in strings it has not
+		charToHTMLCode.put("\\\\\\^e", "&ecirc;"); charToHTMLCode.put("\\\\\\^E", "&Ecirc;");
+		charToHTMLCode.put("\\\\\\^a", "&acirc;"); charToHTMLCode.put("\\\\\\^A", "&Acirc;");
+		charToHTMLCode.put("\\\\\\^o", "&ocirc;"); charToHTMLCode.put("\\\\\\^O", "&Ocirc;");
+		charToHTMLCode.put("\\\\\\^i", "&icirc;"); charToHTMLCode.put("\\\\\\^I", "&Icirc;");
+		charToHTMLCode.put("\\\\\\^u", "&ucirc;"); charToHTMLCode.put("\\\\\\^U", "&Ucirc;");
+		
+		charToHTMLCode.put("\\\\\"e", "&euml;"); charToHTMLCode.put("\\\\\"E", "&Euml;");
+		charToHTMLCode.put("\\\\\"a", "&auml;"); charToHTMLCode.put("\\\\\"A", "&Auml;");
+		charToHTMLCode.put("\\\\\"o", "&ouml;"); charToHTMLCode.put("\\\\\"O", "&Ouml;");
+		charToHTMLCode.put("\\\\\"i", "&iuml;"); charToHTMLCode.put("\\\\\"I", "&Iuml;");
+		charToHTMLCode.put("\\\\\"u", "&uuml;"); charToHTMLCode.put("\\\\\"U", "&Uuml;");
+		
+		charToHTMLCode.put("\\\\AA", "&Aring;"); charToHTMLCode.put("\\\\aa", "&aring;");
+		
+		charToHTMLCode.put("\\\\~a", "&atilde;"); charToHTMLCode.put("\\\\~A", "&Atilde;");
+		charToHTMLCode.put("\\\\~o", "&otilde;"); charToHTMLCode.put("\\\\~O", "&Otilde;");
+		charToHTMLCode.put("\\\\~n", "&ntilde;"); charToHTMLCode.put("\\\\~N", "&Ntilde;");
+		
+		charToHTMLCode.put("\\\\cc", "&ccedil;"); charToHTMLCode.put("\\\\cC", "&Ccedil;");
+		
+		charToHTMLCode.put("\\\\sz", "&szlig;"); 
+		
 //		
 //		charToHTMLCode.put("<", "&lt;"); charToHTMLCode.put(">", "&gt;");
 //		
@@ -67,7 +85,7 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 
 		
 		// replace remaining slashes
-//		string = string.replaceAll("\\", "");
+		string = string.replaceAll("\\\\", "");
 
 		return string;
 	}

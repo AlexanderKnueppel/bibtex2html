@@ -85,7 +85,7 @@ class ParsingTest {
 		val article = '''
 		@Article{XXX00,
 			Author={Albert-L\'{a}szl\'{o} Barab\'{a}si and M\^{o}nica Ferreira da Silva and F. Patern\`{o} 
-			        and Sten-\AA{ke} T\"{a}rnlund and Ketil B{\o} and J. Encarna\c{c}{\~a}o},
+			        and Sten-\AA{ke} T\"{a}rnlund and Ketil B{\o} and J. Encarna\c{c}{\~a}o and Alex Kn{\"u}ppel and a\{sz}a t{\"A}},
 			Journal="!`Journal of Authors Against ASCII!",
 			Title="Cite this Paper",
 			Volume={45},
@@ -94,8 +94,8 @@ class ParsingTest {
 			Year=2000
 			} 
 		'''.parse		
-		val parsed = "Albert-L&aacute;szl&oacute; Barab&aacute;si and M&ocirc;nica Ferreira da Silva and F. Patern&ograve; 
-			          and Sten-&Aring;ke T&auml;rnlund and Ketil Bo and J. Encarnac&atilde;o"		
+		val parsed = "Albert-L&aacute;szl&oacute; Barab&aacute;si and M&ocirc;nica Ferreira da Silva and "
++ "F. Patern&ograve; and Sten-&Aring;ke T&auml;rnlund and Ketil Bo and J. Encarna&ccedil;&atilde;o and Alex Kn&uuml;ppel and a&szlig;a t&Auml;"		
 		assertEquals((article.eAllContents.toIterable.filter(typeof(AuthorField)).get(0) as AuthorField).authors, 
 			parsed)		
 	}
