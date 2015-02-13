@@ -66,6 +66,7 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.URLField
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
 import java.util.Map
 import java.util.HashMap
+import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColorRGB
 
 /**
  * Generates code from your model files on save.
@@ -194,6 +195,11 @@ class HTMLGeneratorGenerator implements IGenerator {
 			«IF styles.fontStyles.isItalic»font-style: italic;«ENDIF»
 			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
 			«IF (styles.eContents.filter(FontColor).size > 0)»color: «(styles.eContents.filter(FontColor).get(0) as FontColor).color»;«ENDIF»
+			«IF (styles.eContents.filter(FontColorRGB).size > 0)»
+			color: rgb(«(styles.eContents.filter(FontColorRGB).get(0) as FontColorRGB).red»,
+			«(styles.eContents.filter(FontColorRGB).get(0) as FontColorRGB).green»,
+			«(styles.eContents.filter(FontColorRGB).get(0) as FontColorRGB).blue»);
+			«ENDIF»
 			«IF (!styles.fontFamily.empty)»font-family: "«styles.fontFamily»";«ENDIF»
 		}
 	'''
