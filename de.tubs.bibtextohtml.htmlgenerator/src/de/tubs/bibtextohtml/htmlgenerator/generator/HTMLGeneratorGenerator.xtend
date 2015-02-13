@@ -21,8 +21,6 @@ import java.io.FileNotFoundException
 import de.tubs.bibtextohtml.bibtex.bibTeX.Model
 import org.eclipse.xtext.util.StringInputStream
 import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes
-import java.io.InputStream
-import java.io.InputStreamReader
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.resource.ResourceSet
 import de.tubs.bibtextohtml.bibtex.bibTeX.AuthorField
@@ -47,12 +45,10 @@ import de.tubs.bibtextohtml.bibtex.bibTeX.IsbnField
 import de.tubs.bibtextohtml.bibtex.bibTeX.AddressField
 import de.tubs.bibtextohtml.bibtex.bibTeX.EditionField
 import java.io.IOException
-//import org.eclipse.emf.ecore.resource.Resource.Diagnostic
 import org.eclipse.emf.ecore.util.Diagnostician
 import org.eclipse.emf.common.util.Diagnostic
 import java.io.File
 import java.util.List
-import java.io.FilenameFilter
 import java.util.ArrayList
 import de.tubs.bibtextohtml.bibtex.bibTeX.OrganizationField
 import de.tubs.bibtextohtml.bibtex.bibTeX.BooktitleField
@@ -237,19 +233,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 	
 	def printShortcut(BibtexEntryTypes entry, BibTexStyle style) {
 		var shortcut = ""
-//		var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
-//		var year = (entry.eContents.filter(YearField).get(0) as YearField).year
 
 		switch style {
 			case style.isALPAHNUM: {
-//				for (a : authors) {
-//					var name = a.lastname
-//					var firstChar = String.valueOf(name.charAt(0))
-//					shortcut += firstChar
-//				}
-//				var yearStr = year.toString
-//				shortcut += String.valueOf(yearStr.charAt(0)) + String.valueOf(yearStr.charAt(1))
-
 				return "[" + shortcuts.get(entry.key) + "]"
 			}
 			case style.isNUM: {

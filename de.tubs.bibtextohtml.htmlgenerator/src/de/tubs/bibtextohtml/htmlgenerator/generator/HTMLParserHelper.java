@@ -1,18 +1,7 @@
 package de.tubs.bibtextohtml.htmlgenerator.generator;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.DelegatingEList;
-import org.eclipse.emf.common.util.EList;
-
-import de.tubs.bibtextohtml.bibtex.bibTeX.BibtexEntryTypes;
-import de.tubs.bibtextohtml.bibtex.bibTeX.Model;
-
 
 public class HTMLParserHelper {
 	static public class Author {

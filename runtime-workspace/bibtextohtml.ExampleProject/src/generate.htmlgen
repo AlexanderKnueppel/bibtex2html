@@ -14,7 +14,7 @@ module TestGeneration (alphanum) {
 		}	
 		title {
 			font-styles: italic;
-			font-family: red;
+			font-family: "Verdana";
 		}
 	]
 }

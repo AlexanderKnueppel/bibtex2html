@@ -1,6 +1,5 @@
 package de.tubs.bibtextohtml.bibtex;
 
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -9,8 +8,6 @@ import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.conversion.impl.AbstractLexerBasedConverter;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
-
-import com.google.common.collect.Maps;
 
 public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 	
@@ -51,18 +48,13 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 		charToHTMLCode.put("\\\\cc", "&ccedil;"); charToHTMLCode.put("\\\\cC", "&Ccedil;");
 		
 		charToHTMLCode.put("\\\\sz", "&szlig;"); 
-		
-//		
-//		charToHTMLCode.put("<", "&lt;"); charToHTMLCode.put(">", "&gt;");
-//		
-//		charToHTMLCode.put("\\o", "&oslash;"); charToHTMLCode.put("\\O", "&Oslash;");
+
+		// to be extended
 	}
 			
     @Override
     protected void assertValidValue(String value) {
             super.assertValidValue(value);
-//            if (value < 0)
-//                    throw new ValueConverterException(getRuleName() + "-value may not be negative (value: " + value + ").", null, null);
     }
 
 	@Override
@@ -78,7 +70,6 @@ public class FieldValueConverter extends AbstractLexerBasedConverter<String> {
 		//parse this string in some fancy way...
 		string = string.replaceAll("[{}]", "");
 		
-		//Charset.forName("UTF-8").encode(string);
 		for(Entry<String, String> e : charToHTMLCode.entrySet()) {
 			string = string.replaceAll(e.getKey(), e.getValue());
 		}
