@@ -64,6 +64,8 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategoryOption
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.CategorySortBy
 import de.tubs.bibtextohtml.bibtex.bibTeX.URLField
 import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
+import java.util.Map
+import java.util.HashMap
 
 /**
  * Generates code from your model files on save.
@@ -72,7 +74,8 @@ import de.tubs.bibtextohtml.htmlgenerator.hTMLGenerator.FontColor
  */
 class HTMLGeneratorGenerator implements IGenerator {
 	var numCounter = 1
-
+    var Map<String, String> shortcuts;
+    
 	def compile(RunModule module, Model _bibRes) '''
 			«var pre = ""»
 			«IF (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).size > 0)»	
@@ -195,21 +198,53 @@ class HTMLGeneratorGenerator implements IGenerator {
 		}
 	'''
 	
+	def Map<String, String> generateShortcutMap(Model m) {
+		var shortcutMap = new HashMap<String, String>();
+		
+		for(BibtexEntryTypes entry : m.bibtexEntries) {
+			var shortcut = ""
+			var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
+			var year = (entry.eContents.filter(YearField).get(0) as YearField).year
+			for (a : authors) {
+				var name = a.lastname
+				var firstChar = String.valueOf(name.charAt(0))
+				shortcut += firstChar
+			}
+			var yearStr = year.toString
+			shortcut += String.valueOf(yearStr.charAt(2)) + String.valueOf(yearStr.charAt(3))
+			shortcutMap.put(entry.key, shortcut); 
+		}
+		
+		for(sh : shortcutMap.values) {
+			val subset = shortcutMap.filter[key, value| sh.equals(value)]
+			if(subset.size > 1) { //all have the same value => update to unique value
+				var char c = 'a'; //put a character to the end: a, b, c,...
+				for(e : subset.entrySet) {
+					shortcutMap.put(e.key, e.value + c)
+					c++;
+				}
+			}
+		}
+		//now we have unique values...
+		return shortcutMap;
+	}
+	
 	def printShortcut(BibtexEntryTypes entry, BibTexStyle style) {
 		var shortcut = ""
-		var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
-		var year = (entry.eContents.filter(YearField).get(0) as YearField).year
+//		var authors = HTMLParserHelper.parseAuthors((entry.eContents.filter(AuthorField).get(0) as AuthorField).authors)
+//		var year = (entry.eContents.filter(YearField).get(0) as YearField).year
 
 		switch style {
 			case style.isALPAHNUM: {
-				for (a : authors) {
-					var name = a.lastname
-					var firstChar = String.valueOf(name.charAt(0))
-					shortcut += firstChar
-				}
-				var yearStr = year.toString
-				shortcut += String.valueOf(yearStr.charAt(0)) + String.valueOf(yearStr.charAt(1))
-				return "[" + shortcut + "]"
+//				for (a : authors) {
+//					var name = a.lastname
+//					var firstChar = String.valueOf(name.charAt(0))
+//					shortcut += firstChar
+//				}
+//				var yearStr = year.toString
+//				shortcut += String.valueOf(yearStr.charAt(0)) + String.valueOf(yearStr.charAt(1))
+
+				return "[" + shortcuts.get(entry.key) + "]"
 			}
 			case style.isNUM: {
 				return "[" + numCounter++ + "]"
@@ -589,7 +624,9 @@ class HTMLGeneratorGenerator implements IGenerator {
 				
 				//reset num-counter
 				numCounter = 1
-
+				//reset shortcuts (actually only needed, when requested... could be improved)
+				shortcuts = generateShortcutMap(bibtexModel)
+				
 				//print output to file
 				fsa.generateFile(module.getModule().getName() + ".html", // class name
 				module.compile(bibtexModel))
