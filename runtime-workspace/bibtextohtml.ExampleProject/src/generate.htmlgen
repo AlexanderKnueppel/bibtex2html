@@ -1,5 +1,5 @@
 
-module TestGeneration (num) {
+module TestGeneration (alphanum) {
 	import "example.bib"
 	options = [
 		prefix : "userprefix-" 
