@@ -83,7 +83,7 @@ Styles:
 	(attributeType = AttributeSet | wildcard?='*') '{' 
 		("font-styles" ":"  fontStyles = (FontStyles) ";")? 
 		& ("font-color" ":" fontColor= (FontColor | FontColorRGB) ";")? 
-		& ("font-type" ":" fontType = STRING ";")? 
+		& ("font-family" ":" fontFamily = STRING ";")? 
 	'}' 
 ;
 

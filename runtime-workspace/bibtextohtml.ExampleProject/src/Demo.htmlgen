@@ -1,8 +1,18 @@
 
-module Demo () {
+module Demo (alphanum) {
 	import "example.bib"
-	options = []
-	styles = []
+	options = [
+		prefix : "userprefix-"
+		sorting :author asc
+		category : year desc 
+	]
+	styles = [
+		author {
+			font-styles: bold;
+			font-color: blue;
+			font-family: "Courier New";
+		}
+	]
 }
 
 run Demo

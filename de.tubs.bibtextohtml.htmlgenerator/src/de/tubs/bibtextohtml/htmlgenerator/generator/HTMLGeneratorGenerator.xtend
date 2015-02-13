@@ -79,8 +79,8 @@ class HTMLGeneratorGenerator implements IGenerator {
 	def compile(RunModule module, Model _bibRes) '''
 			«var pre = ""»
 			«IF (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).size > 0)»	
-			«pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).
-			prefix»«ENDIF»
+				«{pre = (module.getModule().eAllContents().toIterable().filter(typeof(PrefixOption)).get(0) as PrefixOption).prefix; ""}»
+			«ENDIF»
 			«var printShortcut = (module.getModule().bibtexStyle)»
 			<!DOCTYPE html>
 
@@ -190,11 +190,11 @@ class HTMLGeneratorGenerator implements IGenerator {
 
 	def printStyles(Styles styles, String pre) '''
 		.«pre»«IF !styles.isWildcard»«styles.attributeType»«ELSEIF styles.wildcard»*«ENDIF» {
-			font-type: «styles.fontType»;
 			«IF styles.fontStyles.isBold»font-weight: bold;«ENDIF»
 			«IF styles.fontStyles.isItalic»font-style: italic;«ENDIF»
 			«IF styles.fontStyles.isUnderlined»text-decoration: underline;«ENDIF»
 			«IF (styles.eContents.filter(FontColor).size > 0)»color: «(styles.eContents.filter(FontColor).get(0) as FontColor).color»;«ENDIF»
+			«IF (!styles.fontFamily.empty)»font-family: "«styles.fontFamily»";«ENDIF»
 		}
 	'''
 	

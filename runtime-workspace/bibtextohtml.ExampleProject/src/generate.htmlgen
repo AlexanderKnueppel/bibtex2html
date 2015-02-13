@@ -10,11 +10,11 @@ module TestGeneration (alphanum) {
 		author {
 			font-styles: bold;
 			font-color: blue;
-			font-type: "Arial";
+			font-family: "Arial";
 		}	
 		title {
 			font-styles: italic;
-			font-color: red;
+			font-family: red;
 		}
 	]
 }
