@@ -1,7 +1,0 @@
-//Bibtext file to generate HTML from
-File: "C:\Users\...\Documents\test.bib";
-
-Style:
-	// Field = "style type: variable"
-	Author = "font-size: 16, color: red";
-	Title = "font-type: bold, color: blue";
